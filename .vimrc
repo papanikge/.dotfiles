@@ -143,3 +143,5 @@ iabbrev hten then
 iabbrev mmu papanikge@ceid.upatras.gr
 iabbrev llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 iabbrev ccopy ©
+
+let g:Powerline_symbols = 'fancy'
