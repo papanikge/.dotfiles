@@ -43,8 +43,8 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-set undolevels=50                 " History and undo levels
-set history=50
+set undolevels=100                 " History and undo levels
+set history=100
 
 set tabstop=4                    " Global tab width.
 set shiftwidth=4                 " And again, related.
@@ -58,10 +58,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 set laststatus=2                  " Show the status line all the time
+
 " Useful status information at bottom of screen
 " set statusline=[%n]\\ %<%.99f\\ %h%w%m%r%y\\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\\ %l,%c-%v\\ %)%P
 
-set undodir=~/.vim/tmp/undo//     " undo files directory if available
+set undodir=~/.vim/tmp/undo/     " undo files directory if available
 
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -128,6 +129,9 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Edit the .vimrc file easily
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
+" Reload the .vimrc file easily
+nnoremap <leader>rv :source $MYVIMRC<CR>
+
 " Edit the bash aliases
 nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
 
@@ -145,3 +149,4 @@ iabbrev llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
 iabbrev ccopy ©
 
 let g:Powerline_symbols = 'fancy'
+
