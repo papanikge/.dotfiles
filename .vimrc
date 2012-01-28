@@ -143,10 +143,17 @@ iabbrev teh the
 iabbrev adn and
 iabbrev hten then
 
-" personal abbreviations:
+" Personal abbreviations:
 iabbrev mmu papanikge@ceid.upatras.gr
 iabbrev llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 iabbrev ccopy ©
 
+" Powerline settings
 let g:Powerline_symbols = 'fancy'
+
+" Command-T settings
+let g:CommandTMaxFiles=5000
+let g:CommandTMaxHeight=12
+map <C-o> :CommandT<CR>
+let g:CommandTAcceptSelectionMap = '<CR>'
 
