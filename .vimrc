@@ -89,6 +89,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Fix the w-e-b keys
+nnoremap w W
+nnoremap e E
+nnoremap b B
+
 " GUI options:
 set guioptions-=T
 set guioptions-=l
@@ -123,14 +128,14 @@ nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
 nnoremap <leader>i :set list!<CR>
 
+" Use just the Q to :wq
+noremap Q ZQ
+
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Edit the .vimrc file easily
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
-
-" Reload the .vimrc file easily
-nnoremap <leader>rv :source $MYVIMRC<CR>
 
 " Edit the bash aliases
 nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
@@ -156,4 +161,3 @@ let g:CommandTMaxFiles=5000
 let g:CommandTMaxHeight=12
 map <C-o> :CommandT<CR>
 let g:CommandTAcceptSelectionMap = '<CR>'
-
