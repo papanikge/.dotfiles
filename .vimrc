@@ -94,6 +94,9 @@ nnoremap w W
 nnoremap e E
 nnoremap b B
 
+" Fix the Y key
+map Y y$
+
 " GUI options:
 set guioptions-=T
 set guioptions-=l
@@ -131,11 +134,17 @@ nnoremap <leader>i :set list!<CR>
 " Use just the Q to :wq
 noremap Q ZQ
 
+" Return to normal mode on FocustLost
+au FocusLost * call feedkeys("\<C-\>\<C-n>")
+
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Edit the .vimrc file easily
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+
+" automatically reload vimrc when it's saved
+au BufWritePost .vimrc so ~/.vimrc
 
 " Edit the bash aliases
 nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
