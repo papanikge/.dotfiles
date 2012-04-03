@@ -168,5 +168,8 @@ let g:Powerline_symbols = 'fancy'
 " Command-T settings
 let g:CommandTMaxFiles=5000
 let g:CommandTMaxHeight=12
-map <C-o> :CommandT<CR>
+map <C-p> :CommandT<CR>
 let g:CommandTAcceptSelectionMap = '<CR>'
+
+" Vim-Slime setting to tmux
+let g:slime_target = "tmux"
