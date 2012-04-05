@@ -97,6 +97,12 @@ nnoremap b B
 " Fix the Y key
 map Y y$
 
+" Use just the Q to :wq
+noremap Q ZQ
+
+" Use K to split lines
+noremap K a<CR><ESC>k$
+
 " GUI options:
 set guioptions-=T
 set guioptions-=l
@@ -130,9 +136,6 @@ nnoremap <leader>r :registers<CR>
 nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
 nnoremap <leader>i :set list!<CR>
-
-" Use just the Q to :wq
-noremap Q ZQ
 
 " Return to normal mode on FocustLost
 au FocusLost * call feedkeys("\<C-\>\<C-n>")
