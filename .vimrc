@@ -1,5 +1,6 @@
 " Hacked together by George Papanikolaou.
 " Original by Andrew Stewart
+" THIS IS THE LINUX EDITION (Debian)
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -59,11 +60,6 @@ vnoremap > >gv
 
 set laststatus=2                  " Show the status line all the time
 
-" Useful status information at bottom of screen
-" set statusline=[%n]\\ %<%.99f\\ %h%w%m%r%y\\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\\ %l,%c-%v\\ %)%P
-
-set undodir=~/.vim/tmp/undo/     " undo files directory if available
-
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
@@ -110,9 +106,6 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 
-" fonts and sizes: check Inconsolata
-set guifont=Monaco:h12
-
 if has('gui_running')
     set background=light
 else
@@ -137,20 +130,17 @@ nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
 nnoremap <leader>i :set list!<CR>
 
-" Return to normal mode on FocustLost
-au FocusLost * call feedkeys("\<C-\>\<C-n>")
-
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Edit the .vimrc file easily
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
 " Edit the bash aliases
 nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
+
+" Edit the .vimrc file easily
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -160,19 +150,5 @@ iabbrev teh the
 iabbrev adn and
 iabbrev hten then
 
-" Personal abbreviations:
-iabbrev mmu papanikge@ceid.upatras.gr
-iabbrev llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-iabbrev ccopy ©
-
-" Powerline settings
-let g:Powerline_symbols = 'fancy'
-
-" Command-T settings
-let g:CommandTMaxFiles=5000
-let g:CommandTMaxHeight=12
-map <C-p> :CommandT<CR>
-let g:CommandTAcceptSelectionMap = '<CR>'
-
-" Vim-Slime setting to tmux
-let g:slime_target = "tmux"
+" Ctrl-P
+let g:ctrlp_user_command = 'find %s -type f'
