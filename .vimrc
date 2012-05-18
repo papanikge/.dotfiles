@@ -152,3 +152,6 @@ iabbrev hten then
 
 " Ctrl-P
 let g:ctrlp_user_command = 'find %s -type f'
+
+" Powerline settings
+let g:Powerline_symbols = 'fancy'
