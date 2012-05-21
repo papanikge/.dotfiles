@@ -105,14 +105,13 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
+set guioptions-=m
 
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
+" Font:
+set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10  
 
-colorscheme jellybeans  " Or emacs or solarized
+" Colorscheme: 
+colorscheme jellybeans
 set t_Co=256
 
 " Toggle TagBar
