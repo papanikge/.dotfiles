@@ -122,6 +122,8 @@ nnoremap <leader>s :Scratch<CR>
 nnoremap <leader>nh :nohlsearch<CR>
 " Open the NERDTRee plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
+" Toogle Numbers
+nnoremap <leader>nu :NumbersToggle<CR>
 " Show registers
 nnoremap <leader>r :registers<CR>
 " Capitalize the whole document
