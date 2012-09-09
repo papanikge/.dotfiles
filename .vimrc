@@ -1,6 +1,6 @@
 " Hacked together by George Papanikolaou.
 " Original by Andrew Stewart
-" THIS IS THE LINUX EDITION (Debian)
+" This is the Linux version (Debian)
 
 set nocompatible                  " Must come first because it changes other options.
 
