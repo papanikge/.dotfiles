@@ -1,6 +1,6 @@
 " Hacked together by George Papanikolaou.
 " Original by Andrew Stewart
-" This is the Linux version (Debian)
+" THIS IS THE LINUX EDITION (Debian)
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -30,7 +30,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch
 
-set wrap                          " Turn on line wrapping.
+" set wrap                        " Turn on line wrapping.
 
 set title                         " Set the terminal's title
 
@@ -99,6 +99,12 @@ noremap Q ZQ
 " Use K to split lines
 noremap K a<CR><ESC>k$
 
+" Colour collumn 80
+set colorcolumn=80
+
+" Set `-` to go to the end of the line (like $)
+noremap - $
+
 " GUI options:
 set guioptions-=T
 set guioptions-=l
@@ -110,8 +116,8 @@ set guioptions-=m
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10  
 
-" Colorscheme: 
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme badwolf
 set t_Co=256
 
 " Toggle TagBar
@@ -122,14 +128,14 @@ nnoremap <leader>s :Scratch<CR>
 nnoremap <leader>nh :nohlsearch<CR>
 " Open the NERDTRee plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
-" Toogle Numbers
-nnoremap <leader>nu :NumbersToggle<CR>
 " Show registers
 nnoremap <leader>r :registers<CR>
 " Capitalize the whole document
 nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
 nnoremap <leader>i :set list!<CR>
+" Launch the "Elements" notes
+nnoremap <leader>e :cd ~/Dropbox/Elements<CR>:NERDTreeToggle<CR>
 
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
