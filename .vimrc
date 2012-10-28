@@ -30,7 +30,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch
 
-" set wrap                        " Turn on line wrapping.
+set nowrap                        " Turn on line wrapping.
 
 set title                         " Set the terminal's title
 
@@ -126,6 +126,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 nnoremap <leader>s :Scratch<CR>
 " No Highlighted search
 nnoremap <leader>nh :nohlsearch<CR>
+
 " Open the NERDTRee plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
 " Show registers
