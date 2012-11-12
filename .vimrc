@@ -131,6 +131,9 @@ nnoremap <leader>nh :nohlsearch<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 " Show registers
 nnoremap <leader>r :registers<CR>
+" Show marks
+nnoremap <leader>m :marks<CR>
+
 " Capitalize the whole document
 nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
@@ -139,7 +142,7 @@ nnoremap <leader>i :set list!<CR>
 nnoremap <leader>e :cd ~/Dropbox/Elements<CR>:NERDTreeToggle<CR>
 
 " Remove the 'Windows' ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>w mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
