@@ -97,9 +97,13 @@ map Y y$
 noremap Q ZQ
 
 " Use K to split lines
-noremap K a<CR><ESC>k$
+nnoremap K i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
-" Colour collumn 80
+" System clipboard
+nnoremap gp "+p
+nnoremap gy "+y
+
+" colorize the collumn
 set colorcolumn=80
 
 " Set `-` to go to the end of the line (like $)
@@ -111,35 +115,46 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
+set guioptions-=b
 set guioptions-=m
-
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10  
-
-" colorscheme jellybeans
+" colorscheme:
 colorscheme badwolf
 set t_Co=256
 
 " Toggle TagBar
-nnoremap <leader>tb :TagbarToggle<CR>
-" Open a scratch buffer
-nnoremap <leader>s :Scratch<CR>
+nnoremap <leader>b :TagbarToggle<CR>
+
 " No Highlighted search
-nnoremap <leader>nh :nohlsearch<CR>
+nnoremap <leader>n :nohlsearch<CR>
 
 " Open the NERDTRee plugin
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+
 " Show registers
 nnoremap <leader>r :registers<CR>
 " Show marks
 nnoremap <leader>m :marks<CR>
 
-" Capitalize the whole document
-nnoremap <leader>C %s/\<./\u&/g<CR>
 " Show Invisible characters
 nnoremap <leader>i :set list!<CR>
+
+" Capitalize the whole document
+nnoremap <leader>C %s/\<./\u&/g<CR>
+
+" Diffoff
+nnoremap <leader>d :diffoff!<cr>
+
 " Launch the "Elements" notes
 nnoremap <leader>e :cd ~/Dropbox/Elements<CR>:NERDTreeToggle<CR>
+
+" Emacs bindings in command line mode
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
 
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <Leader>w mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -149,12 +164,8 @@ au BufWritePost .vimrc so ~/.vimrc
 
 " Edit the bash aliases
 nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
-
 " Edit the .vimrc file easily
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
-
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
 
 " Abbreviations for correction:
 iabbrev teh the
