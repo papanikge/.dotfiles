@@ -1,6 +1,5 @@
 " Hacked together by George Papanikolaou.
-" Original by Andrew Stewart
-" THIS IS THE LINUX EDITION (Debian)
+" Third edition, optimized for Arch Linux
 
 set nocompatible                  " Must come first because it changes other options.
 
@@ -103,6 +102,11 @@ nnoremap K i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 nnoremap gp "+p
 nnoremap gy "+y
 
+" make the [{ keys useful
+" go to begging/end of current block
+nnoremap [[ [{
+nnoremap ]] ]}
+
 " colorize the collumn
 set colorcolumn=80
 
@@ -134,6 +138,7 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 
 " Show registers
 nnoremap <leader>r :registers<CR>
+
 " Show marks
 nnoremap <leader>m :marks<CR>
 
@@ -144,10 +149,22 @@ nnoremap <leader>i :set list!<CR>
 nnoremap <leader>C %s/\<./\u&/g<CR>
 
 " Diffoff
-nnoremap <leader>d :diffoff!<cr>
+nnoremap <leader>d :diffoff!<CR>
 
-" Launch the "Elements" notes
-nnoremap <leader>e :cd ~/Dropbox/Elements<CR>:NERDTreeToggle<CR>
+" Easily open a new vertical window
+nnoremap <leader>v :vnew<CR>
+
+" Launch the 'text' section of my dropbox
+nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
+
+" Remove the 'Windows' ^M - when the encodings gets messed up
+noremap <leader>w mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+
+" Edit the bash aliases
+nnoremap <leader>ea :e ~/.bash/aliases<CR>
+
+" Edit the .vimrc file easily
+nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
@@ -156,16 +173,8 @@ cnoremap <c-e> <end>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Remove the 'Windows' ^M - when the encodings gets messed up
-noremap <Leader>w mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
-
-" Edit the bash aliases
-nnoremap <leader>ea <C-w><C-v><C-l>:e ~/.bash/aliases<CR>
-" Edit the .vimrc file easily
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
 " Abbreviations for correction:
 iabbrev teh the
