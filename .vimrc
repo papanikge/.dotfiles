@@ -136,6 +136,9 @@ nnoremap <leader>n :nohlsearch<CR>
 " Open the NERDTRee plugin
 nnoremap <leader>t :NERDTreeToggle<CR>
 
+" Why am I just learning about Gundo?
+nnoremap <leader>g :GundoToggle<CR>
+
 " Show registers
 nnoremap <leader>r :registers<CR>
 
@@ -169,6 +172,9 @@ nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+
+" Easy access to man pages with Ref plugin
+cnoremap man Ref man
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
