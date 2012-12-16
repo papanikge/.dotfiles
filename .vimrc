@@ -43,7 +43,7 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-set undolevels=100                 " History and undo levels
+set undolevels=300                " History and undo levels
 set history=100
 
 set tabstop=4                    " Global tab width.
@@ -90,7 +90,7 @@ nnoremap e E
 nnoremap b B
 
 " Fix the Y key
-map Y y$
+nnoremap Y y$
 
 " Use just the Q to :wq
 noremap Q ZQ
@@ -122,7 +122,7 @@ set guioptions-=R
 set guioptions-=b
 set guioptions-=m
 " Font:
-set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10  
+set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 " colorscheme:
 colorscheme badwolf
 set t_Co=256
@@ -149,7 +149,10 @@ nnoremap <leader>m :marks<CR>
 nnoremap <leader>i :set list!<CR>
 
 " Capitalize the whole document
-nnoremap <leader>C %s/\<./\u&/g<CR>
+nnoremap <leader>C :%s/\<./\u&/g<CR>
+
+" Remove trailing whitespace
+nnoremap <leader>z :%s/\s\+$//e<CR>
 
 " Diffoff
 nnoremap <leader>d :diffoff!<CR>
