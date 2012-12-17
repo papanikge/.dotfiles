@@ -70,6 +70,9 @@ set directory=$HOME/.vim/tmp//,.
 set undolevels=300
 set history=100
 
+" Lines left when moving vertically
+set so=2
+
 " Global tab width.
 set tabstop=4
 " And again, related.
