@@ -50,6 +50,9 @@ set nowrap
 " Set the terminal's title
 set title
 
+" Don't redraw while executing macros
+set lazyredraw
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -159,6 +162,9 @@ set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 colorscheme badwolf
 set t_Co=256
 
+" Fast saving
+nnoremap <leader>s :w<CR>
+
 " Toggle TagBar
 nnoremap <leader>b :TagbarToggle<CR>
 
@@ -191,6 +197,9 @@ nnoremap <leader>d :diffoff!<CR>
 
 " Easily open a new vertical window
 nnoremap <leader>v :vnew<CR>
+
+" Switch cwd to the directory of the current buffer
+nnoremap <leader>h :cd %:p:h<CR>:pwd<CR>
 
 " Launch the 'text' section of my dropbox
 nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
