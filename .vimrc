@@ -1,63 +1,92 @@
 " Hacked together by George Papanikolaou.
 " Third edition, optimized for Arch Linux
 
-set nocompatible                  " Must come first because it changes other options.
+" Must come first because it changes other options.
+set nocompatible
 
 silent! call pathogen#runtime_append_all_bundles()
 
-syntax enable                     " Turn on syntax highlighting.
-filetype plugin indent on         " Turn on file type detection.
+" Turn on syntax highlighting.
+syntax enable
+" Turn on file type detection.
+filetype plugin indent on
 
-let mapleader = ","               " Changing the leader to comma
+" Changing the leader to comma
+let mapleader = ","
 
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
+" Display incomplete commands.
+set showcmd
+" Display the mode you're in.
+set showmode
 
-set backspace=indent,eol,start    " Intuitive backspacing.
+" Intuitive backspacing.
+set backspace=indent,eol,start
 
-set hidden                        " Handle multiple buffers better.
+" Handle multiple buffers better.
+set hidden
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+" Enhanced command line completion.
+set wildmenu
+" Complete files like a shell.
+set wildmode=list:longest
 
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
+" Case-insensitive searching.
+set ignorecase
+" But case-sensitive if expression contains a capital letter.
+set smartcase
 
-set number                        " Show line numbers.
-set ruler                         " Show cursor position.
+" Show line numbers.
+set number
+" Show cursor position.
+set ruler
 
-set incsearch                     " Highlight matches as you type.
+" Highlight matches as you type.
+set incsearch
 set hlsearch
 
-set nowrap                        " Turn on line wrapping.
+" Turn on line wrapping.
+set nowrap
 
-set title                         " Set the terminal's title
+" Set the terminal's title
+set title
 
-set autoread                      " Set to auto read when a file is changed from the outside
+" Set to auto read when a file is changed from the outside
+set autoread
 
-set ai                            " Set auto-intend
+" Set auto-intend
+set ai
 
-set visualbell                    " No beeping.
+" No beeping.
+set visualbell
 
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+" Don't make a backup before overwriting a file.
+set nobackup
+" And again.
+set nowritebackup
+" Keep swap files in one location
+set directory=$HOME/.vim/tmp//,.
 
-set undolevels=300                " History and undo levels
+" History and undo levels
+set undolevels=300
 set history=100
 
-set tabstop=4                    " Global tab width.
-set shiftwidth=4                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+" Global tab width.
+set tabstop=4
+" And again, related.
+set shiftwidth=4
+" Use spaces instead of tabs
+set expandtab
 set smarttab
 
-set foldmethod=manual            " syntax folding
+" syntax folding
+set foldmethod=manual
 
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
 
-set laststatus=2                  " Show the status line all the time
+" Show the status line all the time
+set laststatus=2
 
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
