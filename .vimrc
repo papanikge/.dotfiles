@@ -100,6 +100,9 @@ vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
+" C spesific settings (based on the linux kernel guideline)
+au FileType c set noexpandtab
+
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
