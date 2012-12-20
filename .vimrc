@@ -134,7 +134,7 @@ nnoremap Y y$
 noremap Q ZQ
 
 " Use K to split lines
-nnoremap K i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
 " System clipboard
 nnoremap gp "+p
@@ -144,6 +144,9 @@ nnoremap gy "+y
 " go to begging/end of current block
 nnoremap [[ [{
 nnoremap ]] ]}
+
+" Search for word under cursor at the cwd (with external grep)
+nnoremap # :!grep <cword> -r -n -I --exclude-dir=.git . <CR>
 
 " colorize the collumn
 set colorcolumn=80
@@ -190,7 +193,7 @@ nnoremap <leader>m :marks<CR>
 nnoremap <leader>i :set list!<CR>
 
 " Capitalize the whole document
-nnoremap <leader>C :%s/\<./\u&/g<CR>
+nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>
