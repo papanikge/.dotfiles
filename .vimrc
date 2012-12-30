@@ -140,6 +140,12 @@ nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 nnoremap gp "+p
 nnoremap gy "+y
 
+" Fix the 'gd' shortcut
+nnoremap gd gD
+
+" Stay in place when hitting *
+nnoremap * *N
+
 " make the [{ keys useful
 " go to begging/end of current block
 nnoremap [[ [{
