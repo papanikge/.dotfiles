@@ -84,6 +84,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" Make Esc work faster
+set ttimeoutlen=50
+
 " syntax folding
 set foldmethod=manual
 
