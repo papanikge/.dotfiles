@@ -53,6 +53,9 @@ set title
 " Don't redraw while executing macros
 set lazyredraw
 
+" Fast terminal
+set ttyfast
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -207,8 +210,10 @@ nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>
 
-" Diffoff
-nnoremap <leader>d :diffoff!<CR>
+" Diff options
+nnoremap <leader>du :diffupdate<CR>
+nnoremap <leader>dt :diffthis<CR>
+nnoremap <leader>do :diffoff!<CR>
 
 " Easily open a new vertical window
 nnoremap <leader>v :vnew<CR>
