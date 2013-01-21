@@ -69,11 +69,9 @@ set visualbell
 set nobackup
 " And again.
 set nowritebackup
-" Keep swap files in one location
-set directory=$HOME/.vim/tmp//,.
 
 " History and undo levels
-set undolevels=300
+set undolevels=400
 set history=100
 
 " Lines left when moving vertically
@@ -115,6 +113,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.pyc                            " Python bytecode
 
 " Use the Goddamn HJKL keys
 nnoremap <up> <nop>
@@ -183,6 +182,9 @@ set t_Co=256
 " Fast saving
 nnoremap <leader>s :w<CR>
 
+" Select all
+nnoremap <leader>a ggVG
+
 " Toggle TagBar
 nnoremap <leader>b :TagbarToggle<CR>
 
@@ -227,8 +229,8 @@ nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <leader>w mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
-" Edit the bash aliases
-nnoremap <leader>ea :e ~/.bash/aliases<CR>
+" Edit the bash aliases (bashrc actually)
+nnoremap <leader>ea :e ~/.bashrc<CR>
 
 " Edit the .vimrc file easily
 nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
