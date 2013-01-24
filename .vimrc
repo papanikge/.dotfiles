@@ -107,11 +107,11 @@ au VimResized * exe "normal! \<c-w>="
 " C spesific settings (based on the linux kernel guideline)
 au FileType c set noexpandtab
 
-set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
 
@@ -192,10 +192,10 @@ nnoremap <leader>b :TagbarToggle<CR>
 nnoremap <leader>n :nohlsearch<CR>
 
 " Open the NERDTRee plugin
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTree<CR>
 
 " Why am I just learning about Gundo?
-nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>g :NERDTreeClose<CR>:GundoToggle<CR>
 
 " Show registers
 nnoremap <leader>r :registers<CR>
@@ -253,8 +253,14 @@ iabbrev teh the
 iabbrev adn and
 iabbrev hten then
 
-" Ctrl-P
-let g:ctrlp_user_command = 'find %s -type f'
-
 " Powerline settings
 let g:Powerline_symbols = 'fancy'
+
+" Ctrl-P
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_by_filename = 1
+let g:ctrlp_switch_buffer = 2
+let g:ctrlp_max_height = 10
+let g:ctrlp_max_depth = 5
+nnoremap <c-t> :CtrlPTag<CR>
+nnoremap <c-u> :CtrlPMRU<CR>
