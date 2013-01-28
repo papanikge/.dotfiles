@@ -151,6 +151,12 @@ nnoremap gd gD
 " Stay in place when hitting *
 nnoremap * *N
 
+" the `s`s are empty
+" nnoremap s
+
+" Set `-` to go to the end of the line (like $)
+noremap - $
+
 " make the [{ keys useful
 " go to begging/end of current block
 nnoremap [[ [{
@@ -161,9 +167,6 @@ nnoremap # :!grep <cword> -r -n -I --exclude-dir=.git . <CR>
 
 " colorize the collumn
 set colorcolumn=80
-
-" Set `-` to go to the end of the line (like $)
-noremap - $
 
 " GUI options:
 set guioptions-=T
@@ -210,7 +213,7 @@ nnoremap <leader>i :set list!<CR>
 nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 
 " Remove trailing whitespace
-nnoremap <leader>z :%s/\s\+$//e<CR>
+nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
 
 " Diff options
 nnoremap <leader>du :diffupdate<CR>
