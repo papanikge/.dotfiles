@@ -88,9 +88,6 @@ set smarttab
 " Make Esc work faster
 set ttimeoutlen=50
 
-" syntax folding
-set foldmethod=manual
-
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
@@ -151,8 +148,8 @@ nnoremap gd gD
 " Stay in place when hitting *
 nnoremap * *N
 
-" the `s`s are empty
-" nnoremap s
+" the `s` are empty
+nnoremap s <nop>
 
 " Set `-` to go to the end of the line (like $)
 noremap - $
@@ -178,9 +175,18 @@ set guioptions-=b
 set guioptions-=m
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-" colorscheme:
+" alternative colorscheme: solarized
 colorscheme badwolf
 set t_Co=256
+
+" Folding
+set foldenable
+set foldlevelstart=99
+set foldmethod=syntax               " syntax-based (and indent for python)
+au FileType python set foldmethod=indent
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+nnoremap <Space> za
+vnoremap <Space> za
 
 " Fast saving
 nnoremap <leader>s :w<CR>
@@ -206,8 +212,8 @@ nnoremap <leader>r :registers<CR>
 " Show marks
 nnoremap <leader>m :marks<CR>
 
-" Show Invisible characters
-nnoremap <leader>i :set list!<CR>
+" Show invisible characters
+nnoremap <leader>c :set list!<CR>
 
 " Capitalize the whole document
 nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
@@ -267,3 +273,4 @@ let g:ctrlp_max_height = 10
 let g:ctrlp_max_depth = 5
 nnoremap <c-t> :CtrlPTag<CR>
 nnoremap <c-u> :CtrlPMRU<CR>
+
