@@ -101,8 +101,11 @@ vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-" C spesific settings (based on the linux kernel guideline)
-au FileType c set noexpandtab
+" filetype spesific settings
+" C (based on the linux kernel guideline)
+autocmd FileType c set noexpandtab
+" Arduino (for c++)
+autocmd BufRead,BufNewFile *.ino set ft=cpp
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -133,7 +136,7 @@ nnoremap b B
 nnoremap Y y$
 
 " Use just the Q to :wq
-noremap Q ZQ
+noremap Q ZZ
 
 " Use K to split lines
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
@@ -141,6 +144,9 @@ nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 " System clipboard
 nnoremap gp "+p
 nnoremap gy "+y
+
+" Delete without adding to the yank stack
+nnoremap <silent> <leader>d "_d
 
 " Fix the 'gd' shortcut
 nnoremap gd gD
@@ -175,7 +181,9 @@ set guioptions-=b
 set guioptions-=m
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-" alternative colorscheme: solarized
+" colorscheme solarized
+" colorscheme skittles
+" colorscheme dante
 colorscheme badwolf
 set t_Co=256
 
@@ -248,9 +256,6 @@ nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-" Easy access to man pages with Ref plugin
-cnoremap man Ref man
-
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
@@ -273,4 +278,3 @@ let g:ctrlp_max_height = 10
 let g:ctrlp_max_depth = 5
 nnoremap <c-t> :CtrlPTag<CR>
 nnoremap <c-u> :CtrlPMRU<CR>
-
