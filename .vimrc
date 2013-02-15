@@ -6,6 +6,7 @@ set nocompatible
 
 silent! call pathogen#runtime_append_all_bundles()
 
+" ------> Basic options <------
 " Turn on syntax highlighting.
 syntax enable
 " Turn on file type detection.
@@ -25,11 +26,6 @@ set backspace=indent,eol,start
 " Handle multiple buffers better.
 set hidden
 
-" Enhanced command line completion.
-set wildmenu
-" Complete files like a shell.
-set wildmode=list:longest
-
 " Case-insensitive searching.
 set ignorecase
 " But case-sensitive if expression contains a capital letter.
@@ -43,6 +39,9 @@ set ruler
 " Highlight matches as you type.
 set incsearch
 set hlsearch
+
+" Don't continue at top when searching
+set nowrapscan
 
 " Turn on line wrapping.
 set nowrap
@@ -77,6 +76,9 @@ set history=100
 " Lines left when moving vertically
 set so=2
 
+" Show the status line all the time
+set laststatus=2
+
 " Global tab width.
 set tabstop=4
 " And again, related.
@@ -88,24 +90,10 @@ set smarttab
 " Make Esc work faster
 set ttimeoutlen=50
 
-" allow multiple indentation/deindentation in visual mode
-vnoremap < <gv
-vnoremap > >gv
-
-" Show the status line all the time
-set laststatus=2
-
-" Make p in Visual mode replace the selected text with the "" register.
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-" Resize splits when the window is resized
-au VimResized * exe "normal! \<c-w>="
-
-" filetype spesific settings
-" C (based on the linux kernel guideline)
-autocmd FileType c set noexpandtab
-" Arduino (for c++)
-autocmd BufRead,BufNewFile *.ino set ft=cpp
+" Enhanced command line completion.
+set wildmenu
+" Complete files like a shell.
+set wildmode=list:longest
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -114,6 +102,20 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
+
+" ------> Filetype spesific settings <------
+" C (based on the linux kernel guideline)
+autocmd FileType c set noexpandtab
+" Arduino (for c++)
+autocmd BufRead,BufNewFile *.ino set ft=cpp
+
+" ------> Remappings <------
+" allow multiple indentation/deindentation in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Make p in Visual mode replace the selected text with the "" register.
+vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 " Use the Goddamn HJKL keys
 nnoremap <up> <nop>
@@ -135,8 +137,8 @@ nnoremap b B
 " Fix the Y key
 nnoremap Y y$
 
-" Use just the Q to :wq
-noremap Q ZZ
+" Use just the Q to quit
+noremap Q :q<CR>
 
 " Use K to split lines
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
@@ -168,6 +170,7 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :!grep <cword> -r -n -I --exclude-dir=.git . <CR>
 
+" ------> Appearence <------
 " colorize the collumn
 set colorcolumn=80
 
@@ -182,7 +185,6 @@ set guioptions-=m
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 " colorscheme solarized
-" colorscheme skittles
 " colorscheme dante
 colorscheme badwolf
 set t_Co=256
@@ -196,6 +198,7 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
 
+" ------> Leader shortcuts <------
 " Fast saving
 nnoremap <leader>s :w<CR>
 
@@ -259,8 +262,12 @@ cnoremap <c-e> <end>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
+" ------> Auto and plugins <------
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
+
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
 
 " Abbreviations for correction:
 iabbrev teh the
