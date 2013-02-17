@@ -156,11 +156,18 @@ nnoremap gd gD
 " Stay in place when hitting *
 nnoremap * *N
 
-" the `s` are empty
-nnoremap s <nop>
+" format sentence
+nnoremap \ gq)
 
-" Set `-` to go to the end of the line (like $)
+" empty keys
+nnoremap s <nop>
+nnoremap ; <nop>
+
+" Set - to go to the end of the line (like $)
+" and 0 to not go to the start
 noremap - $
+noremap 0 ^
+noremap ^ 0
 
 " make the [{ keys useful
 " go to begging/end of current block
