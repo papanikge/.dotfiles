@@ -14,6 +14,7 @@ filetype plugin indent on
 
 " Changing the leader to comma
 let mapleader = ","
+let maplocalleader = "|"
 
 " Display incomplete commands.
 set showcmd
@@ -72,6 +73,9 @@ set nowritebackup
 " History and undo levels
 set undolevels=400
 set history=100
+
+" Hidden characters
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
 " Lines left when moving vertically
 set so=2
@@ -164,7 +168,7 @@ nnoremap s <nop>
 nnoremap ; <nop>
 
 " Set - to go to the end of the line (like $)
-" and 0 to not go to the start
+" and 0 to not go to the first character
 noremap - $
 noremap 0 ^
 noremap ^ 0
@@ -204,6 +208,9 @@ au FileType python set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " ------> Leader shortcuts <------
 " Fast saving
@@ -280,6 +287,7 @@ au VimResized * exe "normal! \<c-w>="
 iabbrev teh the
 iabbrev adn and
 iabbrev hten then
+cabbrev h vert bo help
 
 " Powerline settings
 let g:Powerline_symbols = 'fancy'
