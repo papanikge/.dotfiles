@@ -151,20 +151,18 @@ nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 nnoremap gp "+p
 nnoremap gy "+y
 
-" Delete without adding to the yank stack
-nnoremap <silent> <leader>d "_d
-
 " Fix the 'gd' shortcut
 nnoremap gd gD
 
 " Stay in place when hitting *
 nnoremap * *N
 
-" format sentence
+" format sentence or visual selection
 nnoremap \ gq)
+vnoremap \ gq
 
 " empty keys
-nnoremap s <nop>
+nnoremap S <nop>
 nnoremap ; <nop>
 
 " Set - to go to the end of the line (like $)
@@ -222,6 +220,9 @@ nnoremap <leader>a ggVG
 " Toggle TagBar
 nnoremap <leader>b :TagbarToggle<CR>
 
+" Toggle paste mode
+nnoremap <leader>p :set paste!<CR>
+
 " No Highlighted search
 nnoremap <leader>n :nohlsearch<CR>
 
@@ -245,6 +246,9 @@ nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
+
+" Delete without adding to the yank stack
+nnoremap <silent> <leader>d "_d
 
 " Diff options
 nnoremap <leader>du :diffupdate<CR>
@@ -272,9 +276,11 @@ nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+cnoremap <m-b> <S-left>
+cnoremap <m-f> <S-right>
 
 " Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % >/dev/null<CR>
 
 " ------> Auto and plugins <------
 " automatically reload vimrc when it's saved
