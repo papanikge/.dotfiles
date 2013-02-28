@@ -300,9 +300,9 @@ let g:Powerline_symbols = 'fancy'
 
 " Ctrl-P
 let g:ctrlp_extensions = ['tag']
-let g:ctrlp_by_filename = 1
 let g:ctrlp_switch_buffer = 2
 let g:ctrlp_max_height = 10
 let g:ctrlp_max_depth = 5
+let g:ctrlp_clear_cache_on_exit = 0
 nnoremap <c-t> :CtrlPTag<CR>
 nnoremap <c-u> :CtrlPMRU<CR>
