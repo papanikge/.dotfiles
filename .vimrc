@@ -191,6 +191,8 @@ set guioptions-=r
 set guioptions-=R
 set guioptions-=b
 set guioptions-=m
+set background=dark
+
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 " colorscheme solarized
@@ -267,10 +269,8 @@ nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <leader>w mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
-" Edit the bash aliases (bashrc actually)
+" Easy edit
 nnoremap <leader>ea :e ~/.bashrc<CR>
-
-" Edit the .vimrc file easily
 nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 
 " Emacs bindings in command line mode
@@ -306,3 +306,10 @@ let g:ctrlp_max_depth = 5
 let g:ctrlp_clear_cache_on_exit = 0
 nnoremap <c-t> :CtrlPTag<CR>
 nnoremap <c-u> :CtrlPMRU<CR>
+
+" NERD_Tree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDChristmasTree = 1
+let NERDTreeChDirMode = 2
+let NERDTreeHighlightCursorline = 1
