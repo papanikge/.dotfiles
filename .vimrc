@@ -148,11 +148,12 @@ noremap Q :q<CR>
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
 " System clipboard
-nnoremap gp "+p
 nnoremap gy "+y
+nnoremap gp o<ESC>"+p
+nnoremap gP O<ESC>"+p
 
 " Fix the 'gd' shortcut
-nnoremap gd gD
+nnoremap gd gD:noh<CR>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -161,9 +162,9 @@ nnoremap * *N
 nnoremap \ gq)
 vnoremap \ gq
 
-" empty keys
-nnoremap S <nop>
-nnoremap ; <nop>
+" experimental uses of s
+nnoremap s 10j
+nnoremap S 10k
 
 " Set - to go to the end of the line (like $)
 " and 0 to not go to the first character
@@ -283,9 +284,6 @@ cnoremap <m-f> <S-right>
 cnoremap w!! w !sudo tee % >/dev/null<CR>
 
 " ------> Auto and plugins <------
-" automatically reload vimrc when it's saved
-au BufWritePost .vimrc so ~/.vimrc
-
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
