@@ -114,9 +114,11 @@ autocmd FileType c set noexpandtab
 autocmd BufRead,BufNewFile *.ino set ft=cpp
 
 " ------> Remappings <------
-" allow multiple indentation/deindentation in visual mode
+" multiple indentations in visual mode and single stroke in normal mode
 vnoremap < <gv
 vnoremap > >gv
+nnoremap < <<
+nnoremap > >>
 
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -133,7 +135,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Fix the w-e-b keys
+" Better w-e-b keys
 nnoremap w W
 nnoremap e E
 nnoremap b B
@@ -144,7 +146,7 @@ nnoremap Y y$
 " Use just the Q to quit
 noremap Q :q<CR>
 
-" Use K to split lines
+" Use K to split lines (credits to Steve Losh)
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
 " System clipboard
@@ -165,6 +167,8 @@ vnoremap \ gq
 " experimental uses of s
 nnoremap s 10j
 nnoremap S 10k
+vnoremap s 10j
+vnoremap S 10k
 
 " Set - to go to the end of the line (like $)
 " and 0 to not go to the first character
@@ -253,13 +257,11 @@ nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
 " Delete without adding to the yank stack
 nnoremap <silent> <leader>d "_d
 
-" Diff options
-nnoremap <leader>du :diffupdate<CR>
-nnoremap <leader>dt :diffthis<CR>
-nnoremap <leader>do :diffoff!<CR>
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 " Easily open a new vertical window
-nnoremap <leader>v :vnew<CR>
+nnoremap <leader>v :vnew<CR><C-W>L
 
 " Switch cwd to the directory of the current buffer
 nnoremap <leader>h :cd %:p:h<CR>:pwd<CR>
@@ -269,6 +271,13 @@ nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <leader>w mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+
+" Diff options
+nnoremap <leader>du :diffupdate<CR>
+nnoremap <leader>dt :diffthis<CR>
+nnoremap <leader>do :diffoff!<CR>
+nnoremap <leader>dg :diffget<CR>
+nnoremap <leader>dp :diffput<CR>
 
 " Easy edit
 nnoremap <leader>ea :e ~/.bashrc<CR>
@@ -287,7 +296,7 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-" Abbreviations for correction:
+" Abbreviations for correction and ease
 iabbrev teh the
 iabbrev adn and
 iabbrev hten then
