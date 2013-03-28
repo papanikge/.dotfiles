@@ -120,8 +120,8 @@ vnoremap > >gv
 nnoremap < <<
 nnoremap > >>
 
-" Make p in Visual mode replace the selected text with the "" register.
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+" Make pasting smarter in visual mode
+vnoremap p p:let @"=@0<CR>
 
 " Use the Goddamn HJKL keys
 nnoremap <up> <nop>
@@ -165,10 +165,9 @@ nnoremap \ gq)
 vnoremap \ gq
 
 " experimental uses of s
-nnoremap s 10j
-nnoremap S 10k
-vnoremap s 10j
-vnoremap S 10k
+nnoremap s mm^i(<ESC>$a)<ESC>`m
+nnoremap S mm^x$x`m
+vnoremap s S
 
 " Set - to go to the end of the line (like $)
 " and 0 to not go to the first character
@@ -202,7 +201,9 @@ set background=dark
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 " colorscheme solarized
 " colorscheme dante
-colorscheme badwolf
+" colorscheme badwolf
+colorscheme jellybeans
+" colorscheme badwolf
 set t_Co=256
 
 " Folding
