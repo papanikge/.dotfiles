@@ -101,7 +101,8 @@ set wildmode=list:longest
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.pdf    " binary images and pdfs
+set wildignore+=*.mp3,*.mp4,*.mkv,*.m4a,*.m3u    " music data files
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
