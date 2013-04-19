@@ -113,6 +113,7 @@ set wildignore+=*.pyc                            " Python bytecode
 autocmd FileType c set noexpandtab
 " Arduino (for c++)
 autocmd BufRead,BufNewFile *.ino set ft=cpp
+autocmd BufRead,BufNewFile *.h set ft=c
 
 " ------> Remappings <------
 " multiple indentations in visual mode and single stroke in normal mode
