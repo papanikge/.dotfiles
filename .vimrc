@@ -183,7 +183,7 @@ nnoremap [[ [{
 nnoremap ]] ]}
 
 " Search for word under cursor at the cwd (with external grep)
-nnoremap # :!grep <cword> -r -n -I --exclude-dir=.git . <CR>
+nnoremap # :Ack!<CR>
 
 " ------> Appearence <------
 " colorize the collumn
@@ -323,3 +323,6 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
+
+" Ack (with the silver searcher)
+let g:ackprg = 'ag --nogroup --nocolor --column'
