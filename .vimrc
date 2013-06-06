@@ -156,6 +156,9 @@ nnoremap gy "+y
 nnoremap gp o<ESC>"+p
 nnoremap gP O<ESC>"+p
 
+" Backspace to visual delete in oblivion
+vnoremap <BS> "_d
+
 " Fix the 'gd' shortcut
 nnoremap gd gD:noh<CR>
 
@@ -166,9 +169,9 @@ nnoremap * *N
 nnoremap \ gq)
 vnoremap \ gq
 
-" experimental uses of s
-nnoremap s mm^i(<ESC>$a)<ESC>`m
-nnoremap S mm^x$x`m
+" seeking the best use of the `s` keys
+nnoremap s viw
+nnoremap S <nop>
 vnoremap s S
 
 " Set - to go to the end of the line (like $)
@@ -216,6 +219,8 @@ au FileType python set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
+nnoremap zo zR
+nnoremap zc zM
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
