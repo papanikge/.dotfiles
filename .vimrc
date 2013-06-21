@@ -6,7 +6,7 @@ set nocompatible
 
 silent! call pathogen#runtime_append_all_bundles()
 
-" ------> Basic options <------
+" }----------------------------- Basic options ------------------------------{
 " Turn on syntax highlighting.
 syntax enable
 " Turn on file type detection.
@@ -108,7 +108,8 @@ set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
 
-" ------> Filetype spesific settings <------
+" }----------------------- Filetype specific settings -----------------------{
+
 " C (based on the linux kernel guideline)
 autocmd FileType c set noexpandtab
 " Ruby (for that weird 2 space indentation)
@@ -118,7 +119,8 @@ autocmd FileType ruby set shiftwidth=2
 autocmd BufRead,BufNewFile *.ino set ft=cpp
 autocmd BufRead,BufNewFile *.h set ft=c
 
-" ------> Remappings <------
+" }------------------------------- Remappings -------------------------------{
+
 " multiple indentations in visual mode and single stroke in normal mode
 vnoremap < <gv
 vnoremap > >gv
@@ -191,8 +193,9 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
-" ------> Appearence <------
-" colorize the collumn
+" }------------------------------- Appearance -------------------------------{
+
+" colorize the column
 set colorcolumn=80
 
 " GUI options:
@@ -211,7 +214,6 @@ set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 " colorscheme dante
 " colorscheme badwolf
 colorscheme jellybeans
-" colorscheme badwolf
 set t_Co=256
 
 " Folding
@@ -228,7 +230,8 @@ nnoremap zc zM
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" ------> Leader shortcuts <------
+" }---------------------------- Leader shortcuts ----------------------------{
+
 " Fast saving
 nnoremap <leader>s :w<CR>
 
@@ -303,7 +306,8 @@ cnoremap <m-f> <S-right>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null<CR>
 
-" ------> Auto and plugins <------
+" }---------------------------- Auto and plugins ----------------------------{
+
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
