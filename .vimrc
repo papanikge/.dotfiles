@@ -111,6 +111,9 @@ set wildignore+=*.pyc                            " Python bytecode
 " ------> Filetype spesific settings <------
 " C (based on the linux kernel guideline)
 autocmd FileType c set noexpandtab
+" Ruby (for that weird 2 space indentation)
+autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set shiftwidth=2
 " Arduino (for c++)
 autocmd BufRead,BufNewFile *.ino set ft=cpp
 autocmd BufRead,BufNewFile *.h set ft=c
