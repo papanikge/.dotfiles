@@ -164,8 +164,8 @@ nnoremap gP O<ESC>"+p
 " Backspace to visual delete in oblivion
 vnoremap <BS> "_d
 
-" Fix the 'gd' shortcut
-nnoremap gd gD:noh<CR>
+" more powerful gd shortcut
+nnoremap gd :call FindDefinition()<CR>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -336,6 +336,12 @@ let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
 autocmd WinEnter * call s:CloseUnwanted()
+
+" Ack (with the silver searcher)
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" }------------------------------- Functions --------------------------------{
+
 " close quickfix on leaving and NERDTree buffer when is the only one left
 function! s:CloseUnwanted()
     if exists("t:NERDTreeBufName")
@@ -350,5 +356,12 @@ function! s:CloseUnwanted()
     endif
 endfunction
 
-" Ack (with the silver searcher)
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" find function definition globally if there is a tags file
+function! FindDefinition()
+    try
+        silent! execute 'tag' expand('<cword>')
+    catch
+        normal gD
+        nohlsearch
+    endtry
+endfunction
