@@ -193,6 +193,10 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
+" Better tab
+nnoremap <tab> %
+vnoremap <tab> %
+
 " }------------------------------- Appearance -------------------------------{
 
 " colorize the column
