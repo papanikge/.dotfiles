@@ -1,5 +1,5 @@
 " Hacked together by George Papanikolaou.
-" Third edition, optimized for Arch Linux
+" Third edition 2013, optimized for Arch Linux
 
 " Must come first because it changes other options.
 set nocompatible
@@ -7,6 +7,7 @@ set nocompatible
 silent! call pathogen#runtime_append_all_bundles()
 
 " }----------------------------- Basic options ------------------------------{
+
 " Turn on syntax highlighting.
 syntax enable
 " Turn on file type detection.
@@ -214,9 +215,6 @@ set background=dark
 
 " Font:
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-" colorscheme solarized
-" colorscheme dante
-" colorscheme badwolf
 colorscheme jellybeans
 set t_Co=256
 
