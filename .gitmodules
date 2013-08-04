@@ -25,9 +25,6 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/tomtom/tcomment_vim
-[submodule "bundle/python"]
-	path = bundle/python
-	url = https://github.com/klen/python-mode
 [submodule "bundle/matchit"]
 	path = bundle/matchit
 	url = https://github.com/tsaleh/vim-matchit
