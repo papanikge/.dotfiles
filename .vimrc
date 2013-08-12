@@ -92,6 +92,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" Delete trailing comment leader when (J)oining lines (requires vim 7.4)
+set formatoptions+=j
+
 " Make Esc work faster
 set ttimeoutlen=50
 
