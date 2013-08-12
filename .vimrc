@@ -345,6 +345,9 @@ autocmd WinEnter * call s:CloseUnwanted()
 " Ack (with the silver searcher)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" Don't fold by default
+let g:vim_markdown_folding_disabled = 1
+
 " }------------------------------- Functions --------------------------------{
 
 " close quickfix on leaving and NERDTree buffer when is the only one left
@@ -365,6 +368,7 @@ endfunction
 function! FindDefinition()
     try
         silent! execute 'tag' expand('<cword>')
+        normal zt
     catch
         normal gD
         nohlsearch
