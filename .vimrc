@@ -247,7 +247,7 @@ nnoremap <leader>b :TagbarToggle<CR>
 nnoremap <leader>p :set paste!<CR>
 
 " No Highlighted search
-nnoremap <leader>n :nohlsearch<CR>
+nnoremap <leader><Space> :nohlsearch<CR>
 
 " Open the NERDTRee plugin
 nnoremap <leader>t :NERDTree<CR>
@@ -269,6 +269,9 @@ nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
+
+" Toggle between wrapping
+nnoremap <leader>l :set wrap!<CR>
 
 " Delete without adding to the yank stack
 nnoremap <silent> <leader>d "_d
