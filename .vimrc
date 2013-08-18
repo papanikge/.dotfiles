@@ -13,7 +13,7 @@ syntax enable
 " Turn on file type detection.
 filetype plugin indent on
 
-" Changing the leader to comma
+" Changing the leaders for easy access
 let mapleader = ","
 let maplocalleader = "|"
 
@@ -45,7 +45,7 @@ set hlsearch
 " Don't continue at top when searching
 set nowrapscan
 
-" Turn on line wrapping.
+" Don't wrap
 set nowrap
 
 " Set the terminal's title
@@ -203,7 +203,7 @@ vnoremap <tab> %
 " colorize the column
 set colorcolumn=80
 
-" GUI options:
+" GUI options
 set guioptions-=T
 set guioptions-=l
 set guioptions-=L
@@ -213,12 +213,12 @@ set guioptions-=b
 set guioptions-=m
 set background=dark
 
-" Font:
+" fonts and colors
 set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
 colorscheme jellybeans
 set t_Co=256
 
-" Folding
+" folding
 set foldenable
 set foldlevelstart=99
 set foldmethod=syntax               " syntax-based (and indent for python)
