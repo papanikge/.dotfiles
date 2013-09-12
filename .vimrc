@@ -348,6 +348,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Don't fold by default
 let g:vim_markdown_folding_disabled = 1
 
+" Default browser for haskell-mode
+let g:haddock_browser="/usr/bin/chromium"
+
 " }------------------------------- Functions --------------------------------{
 
 " close quickfix on leaving and NERDTree buffer when is the only one left
