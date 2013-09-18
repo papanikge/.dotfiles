@@ -118,7 +118,10 @@ set wildignore+=*.pyc                            " Python bytecode
 autocmd FileType c set noexpandtab
 " Arduino (for c++)
 autocmd BufRead,BufNewFile *.ino set ft=cpp
+" Header files are C, not C++ goddammit
 autocmd BufRead,BufNewFile *.h set ft=c
+" Weird 2 space indentation languages
+autocmd FileType ruby,eruby,haml,yaml,html,javascript set sw=2 sts=2
 
 " }------------------------------- Remappings -------------------------------{
 
