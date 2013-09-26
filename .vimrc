@@ -33,7 +33,8 @@ set ignorecase
 " But case-sensitive if expression contains a capital letter.
 set smartcase
 
-" Show line numbers.
+" Smart new (>7.4) hybrid way of showing numbers
+set relativenumber
 set number
 " Show cursor position.
 set ruler
