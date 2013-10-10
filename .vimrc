@@ -99,6 +99,14 @@ set formatoptions+=j
 " Make Esc work faster
 set ttimeoutlen=50
 
+if has("cscope")
+    set cscopeverbose
+    " add any cscope database in current directory
+    if filereadable("cscope.out")
+        cscope add cscope.out
+    endif
+endif
+
 " Enhanced command line completion.
 set wildmenu
 " Complete files like a shell.
@@ -201,6 +209,11 @@ nnoremap # :Ack!<CR>
 " Better tab
 nnoremap <tab> %
 vnoremap <tab> %
+
+" Cscope ease (mnemonics: caller, callee and include)
+nnoremap <C-\>r :cs find c <C-R><C-W><CR>
+nnoremap <C-\>e :cs find d <C-R><C-W><CR>
+nnoremap <C-\>i :cs find i <C-R><C-W><CR>
 
 " }------------------------------- Appearance -------------------------------{
 
