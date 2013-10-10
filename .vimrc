@@ -212,7 +212,7 @@ nnoremap gP O<ESC>"+p
 vnoremap <BS> "_d
 
 " more powerful gd shortcut
-nnoremap gd :call FindDefinition()<CR>
+nnoremap gd :silent call FindDefinition()<CR>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -388,7 +388,7 @@ endfunction
 " find function definition globally if there is a tags file
 function! FindDefinition()
     try
-        silent! execute 'tag' expand('<cword>')
+        tag
         normal zt
     catch
         normal gD
