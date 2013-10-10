@@ -132,6 +132,40 @@ autocmd BufRead,BufNewFile *.h set ft=c
 " Weird 2 space indentation languages
 autocmd FileType ruby,eruby,haml,yaml,html,javascript set sw=2 sts=2
 
+" }------------------------------- Appearance -------------------------------{
+
+" colorize the column
+set colorcolumn=80
+
+" GUI options
+set guioptions-=T
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=b
+set guioptions-=m
+set background=dark
+
+" fonts and colors
+set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
+colorscheme jellybeans
+set t_Co=256
+
+" folding
+set foldenable
+set foldlevelstart=99
+set foldmethod=syntax               " syntax-based (and indent for python)
+au FileType python set foldmethod=indent
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+nnoremap <Space> za
+vnoremap <Space> za
+nnoremap zo zR
+nnoremap zc zM
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " }------------------------------- Remappings -------------------------------{
 
 " multiple indentations in visual mode and single stroke in normal mode
@@ -210,40 +244,6 @@ nnoremap # :Ack!<CR>
 nnoremap <C-\>r :cs find c <C-R><C-W><CR>
 nnoremap <C-\>e :cs find d <C-R><C-W><CR>
 nnoremap <C-\>i :cs find i <C-R><C-W><CR>
-
-" }------------------------------- Appearance -------------------------------{
-
-" colorize the column
-set colorcolumn=80
-
-" GUI options
-set guioptions-=T
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-set guioptions-=b
-set guioptions-=m
-set background=dark
-
-" fonts and colors
-set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-colorscheme jellybeans
-set t_Co=256
-
-" folding
-set foldenable
-set foldlevelstart=99
-set foldmethod=syntax               " syntax-based (and indent for python)
-au FileType python set foldmethod=indent
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-nnoremap <Space> za
-vnoremap <Space> za
-nnoremap zo zR
-nnoremap zc zM
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }---------------------------- Leader shortcuts ----------------------------{
 
