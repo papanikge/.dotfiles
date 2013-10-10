@@ -137,20 +137,19 @@ autocmd FileType ruby,eruby,haml,yaml,html,javascript set sw=2 sts=2
 " colorize the column
 set colorcolumn=80
 
-" GUI options
-set guioptions-=T
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-set guioptions-=b
-set guioptions-=m
-set background=dark
-
-" fonts and colors
-set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-colorscheme jellybeans
-set t_Co=256
+if has("gui_running")
+    colorscheme tomorrow-night
+    set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=b
+    set guioptions-=m
+else
+    colorscheme jellybeans
+endif
 
 " folding
 set foldenable
