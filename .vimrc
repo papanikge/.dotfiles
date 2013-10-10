@@ -34,7 +34,9 @@ set ignorecase
 set smartcase
 
 " Smart new (>7.4) hybrid way of showing numbers
-set relativenumber
+if v:version >= 704
+    set relativenumber
+endif
 set number
 " Show cursor position.
 set ruler
@@ -79,17 +81,15 @@ set history=100
 " Hidden characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
-" Lines left when moving vertically
+" Line margin when moving vertically
 set so=2
 
 " Show the status line all the time
 set laststatus=2
 
-" Global tab width.
+" Tabs. With spaces
 set tabstop=4
-" And again, related.
 set shiftwidth=4
-" Use spaces instead of tabs
 set expandtab
 set smarttab
 
@@ -155,7 +155,7 @@ nnoremap b B
 " Fix the Y key
 nnoremap Y y$
 
-" Use just the Q to quit
+" Just use Q to quit
 noremap Q :q<CR>
 
 " Use K to split lines (credits to Steve Losh)
@@ -267,9 +267,6 @@ nnoremap <leader>m :marks<CR>
 
 " Show invisible characters
 nnoremap <leader>c :set list!<CR>
-
-" Capitalize the whole document
-nnoremap <leader>C :%s/\<./\u&/g<CR>:noh<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
