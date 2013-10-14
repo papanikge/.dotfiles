@@ -124,13 +124,13 @@ set wildignore+=*.pyc                            " Python bytecode
 " }----------------------- Filetype specific settings -----------------------{
 
 " C (based on the linux kernel guideline)
-autocmd FileType c set noexpandtab
+autocmd FileType c setlocal noexpandtab
 " Arduino (for c++)
-autocmd BufRead,BufNewFile *.ino set ft=cpp
+autocmd BufRead,BufNewFile *.ino setlocal ft=cpp
 " Header files are C, not C++ goddammit
-autocmd BufRead,BufNewFile *.h set ft=c
+autocmd BufRead,BufNewFile *.h setlocal ft=c
 " Weird 2 space indentation languages
-autocmd FileType ruby,eruby,haml,yaml,html,javascript set sw=2 sts=2
+autocmd FileType ruby,eruby,haml,yaml,html,javascript setlocal sw=2 sts=2
 
 " }------------------------------- Appearance -------------------------------{
 
@@ -155,7 +155,7 @@ endif
 set foldenable
 set foldlevelstart=99
 set foldmethod=syntax               " syntax-based (and indent for python)
-au FileType python set foldmethod=indent
+au FileType python setlocal foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
