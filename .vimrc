@@ -35,7 +35,7 @@ set smartcase
 
 " Smart new (>7.4) hybrid way of showing numbers
 if v:version >= 704
-    set relativenumber
+  set relativenumber
 endif
 set number
 " Show cursor position.
@@ -100,11 +100,11 @@ set formatoptions+=j
 set ttimeoutlen=50
 
 if has("cscope")
-    set cscopeverbose
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cscope add cscope.out
-    endif
+  set cscopeverbose
+  " add any cscope database in current directory
+  if filereadable("cscope.out")
+    cscope add cscope.out
+  endif
 endif
 
 " Enhanced command line completion.
@@ -130,7 +130,7 @@ autocmd BufRead,BufNewFile *.ino setlocal ft=cpp
 " Header files are C, not C++ goddammit
 autocmd BufRead,BufNewFile *.h setlocal ft=c
 " Weird 2 space indentation languages
-autocmd FileType ruby,eruby,haml,yaml,html,javascript setlocal sw=2 sts=2
+autocmd FileType ruby,eruby,haml,yaml,html,javascript,vim setlocal sw=2 sts=2
 
 " }------------------------------- Appearance -------------------------------{
 
@@ -138,17 +138,17 @@ autocmd FileType ruby,eruby,haml,yaml,html,javascript setlocal sw=2 sts=2
 set colorcolumn=80
 
 if has("gui_running")
-    colorscheme tomorrow-night
-    set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
-    set guioptions-=T
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=b
-    set guioptions-=m
+  colorscheme tomorrow-night
+  set guifont=Inconsolata-dz\ for\ Powerline\ Medium\ 10
+  set guioptions-=T
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=b
+  set guioptions-=m
 else
-    colorscheme jellybeans
+  colorscheme jellybeans
 endif
 
 " folding
@@ -372,25 +372,25 @@ let g:haddock_browser="/usr/bin/chromium"
 
 " close quickfix on leaving and NERDTree buffer when is the only one left
 function! s:CloseUnwanted()
-    if exists("t:NERDTreeBufName")
-        if bufwinnr(t:NERDTreeBufName) != -1
-            if winnr("$") == 1
-                q
-            endif
-        endif
-    endif
-    if getbufvar(winbufnr(winnr("#")), "&buftype") == "quickfix"
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
         q
+      endif
     endif
+  endif
+  if getbufvar(winbufnr(winnr("#")), "&buftype") == "quickfix"
+    q
+  endif
 endfunction
 
 " find function definition globally if there is a tags file
 function! FindDefinition()
-    try
-        tag
-        normal zt
-    catch
-        normal gD
-        nohlsearch
-    endtry
+  try
+    tag
+    normal zt
+  catch
+    normal gD
+    nohlsearch
+  endtry
 endfunction
