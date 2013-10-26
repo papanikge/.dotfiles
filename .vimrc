@@ -357,7 +357,7 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
-autocmd WinEnter * call s:CloseUnwanted()
+autocmd WinEnter * call CloseUnwanted()
 
 " Ack (with the silver searcher)
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -371,7 +371,7 @@ let g:haddock_browser="/usr/bin/chromium"
 " }------------------------------- Functions --------------------------------{
 
 " close quickfix on leaving and NERDTree buffer when is the only one left
-function! s:CloseUnwanted()
+function! CloseUnwanted()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
       if winnr("$") == 1
@@ -380,7 +380,8 @@ function! s:CloseUnwanted()
     endif
   endif
   if getbufvar(winbufnr(winnr("#")), "&buftype") == "quickfix"
-    q
+    wincmd p
+    close
   endif
 endfunction
 
