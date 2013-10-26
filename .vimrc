@@ -102,6 +102,9 @@ set formatoptions+=j
 " Make Esc work faster
 set ttimeoutlen=50
 
+" Look up the tree for tags file
+set tags=./tags;/
+
 if has("cscope")
   set cscopeverbose
   " add any cscope database in current directory
