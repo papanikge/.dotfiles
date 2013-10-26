@@ -74,6 +74,9 @@ set nobackup
 " And again.
 set nowritebackup
 
+" I'm not sure about this
+set noswapfile
+
 " History and undo levels
 set undolevels=400
 set history=100
