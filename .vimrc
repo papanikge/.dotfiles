@@ -222,7 +222,7 @@ vnoremap \ gq
 
 " seeking the best use of the `s` keys
 nnoremap s viw
-nnoremap S <nop>
+nnoremap S :call SelectBlock()<CR>
 vnoremap s S
 
 " Set - to go to the end of the line (like $)
@@ -394,4 +394,26 @@ function! FindDefinition()
     normal gD
     nohlsearch
   endtry
+endfunction
+
+" select block based on indentation
+function! SelectBlock()
+  let wanted_indentation = indent(line("."))
+  let pos = line(".")
+  let lastl = line("$")
+  " go to the beggining of the indentation level
+  while pos > 0 && indent(pos) >= wanted_indentation || indent(pos) == 0
+    normal k
+    let pos = line(".")
+  endwhile
+  " start capturing
+  normal j
+  normal V
+  let pos = line(".")
+  " go to the end
+  while pos <= lastl && indent(pos) >= wanted_indentation || indent(pos) == 0
+    normal j
+    let pos = line(".")
+  endwhile
+  normal k
 endfunction
