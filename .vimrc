@@ -179,8 +179,7 @@ vnoremap > >gv
 nnoremap < <<
 nnoremap > >>
 
-" Make pasting smarter
-nnoremap p p==
+" Make pasting smarter in visual mode
 vnoremap p p:let @"=@0<CR>
 
 " Use the Goddamn HJKL keys
