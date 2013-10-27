@@ -262,8 +262,8 @@ nnoremap <leader>a ggVG
 " Toggle TagBar
 nnoremap <leader>b :TagbarToggle<CR>
 
-" Toggle paste mode
-nnoremap <leader>p :set paste!<CR>
+" Select pasted text
+nnoremap <leader>p `[v`]
 
 " No Highlighted search
 nnoremap <leader><Space> :nohlsearch<CR>
@@ -371,6 +371,9 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Don't fold by default
 let g:vim_markdown_folding_disabled = 1
+
+" Default browser
+let g:netrw_browsex_viewer= "chromium"
 
 " Default browser for haskell-mode
 let g:haddock_browser="/usr/bin/chromium"
