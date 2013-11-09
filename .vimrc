@@ -280,7 +280,7 @@ nnoremap <leader>r :registers<CR>
 nnoremap <leader>m :marks<CR>
 
 " Show invisible characters
-nnoremap <leader>c :set list!<CR>
+nnoremap <leader>c :set list!<CR>:IndentLinesToggle<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
@@ -376,6 +376,9 @@ let g:netrw_browsex_viewer= "chromium"
 
 " Default browser for haskell-mode
 let g:haddock_browser="/usr/bin/chromium"
+
+" Don't show the indent lines by default
+let g:indentLine_enabled = 0
 
 " }------------------------------- Functions --------------------------------{
 

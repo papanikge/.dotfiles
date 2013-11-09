@@ -37,9 +37,6 @@
 [submodule "bundle/endwise"]
 	path = bundle/endwise
 	url = https://github.com/tpope/vim-endwise
-[submodule "bundle/indent-guides"]
-	path = bundle/indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired
@@ -64,3 +61,6 @@
 [submodule "bundle/indent-object"]
 	path = bundle/indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
