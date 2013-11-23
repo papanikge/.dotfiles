@@ -331,6 +331,9 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
+" Mail
+au BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
+
 " Abbreviations for correction and ease
 iabbrev teh the
 iabbrev adn and
