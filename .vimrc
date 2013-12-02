@@ -317,6 +317,8 @@ nnoremap <leader>dp :diffput<CR>
 " Easy edit
 nnoremap <leader>ea :e ~/.bashrc<CR>
 nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
+nnoremap <leader>eg :e ~/.gitconfig<CR>
+nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
