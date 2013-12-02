@@ -161,12 +161,13 @@ endif
 set foldenable
 set foldlevelstart=99
 set foldmethod=syntax               " syntax-based (and indent for python)
-au FileType python setlocal foldmethod=indent
+au FileType python,haskell setlocal foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
 nnoremap zo zR
 nnoremap zc zM
+nnoremap zO zCzO
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
