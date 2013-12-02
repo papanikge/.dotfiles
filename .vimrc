@@ -105,14 +105,6 @@ set ttimeoutlen=50
 " Look up the tree for tags file
 set tags=./tags;/
 
-if has("cscope")
-  set cscopeverbose
-  " add any cscope database in current directory
-  if filereadable("cscope.out")
-    cscope add cscope.out
-  endif
-endif
-
 " Enhanced command line completion.
 set wildmenu
 " Complete files like a shell.
@@ -218,7 +210,7 @@ nnoremap gP O<ESC>"+p
 vnoremap <BS> "_d
 
 " more powerful gd shortcut
-nnoremap gd :silent call FindDefinition()<CR>
+nnoremap gd :call FindDefinition()<CR>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -337,6 +329,9 @@ au VimResized * exe "normal! \<c-w>="
 " Mail
 au BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
 
+" Every time
+au BufEnter * call LoadCscopeFile()
+
 " Abbreviations for correction and ease
 iabbrev teh the
 iabbrev adn and
@@ -406,10 +401,25 @@ endfunction
 " find function definition globally if there is a tags file
 function! FindDefinition()
   try
-    tag
-    normal zt
+    cscope find g <cword>
   catch
-    normal gD
-    nohlsearch
+    try
+      tag
+      normal zt
+    catch
+      normal gD
+      nohlsearch
+    endtry
   endtry
+endfunction
+
+" add any cscope database in the current directory
+function! LoadCscopeFile()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
 endfunction
