@@ -221,7 +221,6 @@ vnoremap \ gq
 
 " seeking the best use of the `s` keys
 nnoremap s viw
-nnoremap S <nop>
 vnoremap s S
 
 " Set - to go to the end of the line (like $)
@@ -238,10 +237,12 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
-" Cscope ease (mnemonics: caller, callee and include)
-nnoremap <C-\>r :cs find c <C-R><C-W><CR>
-nnoremap <C-\>e :cs find d <C-R><C-W><CR>
-nnoremap <C-\>i :cs find i <C-R><C-W><CR>
+" Cscope ease (mnemonics: definition, caller, callee and include)
+nnoremap Sd :cscope find g <cword><CR>
+nnoremap Sr :cscope find c <cword><CR>
+nnoremap Se :cscope find d <cword><CR>
+nnoremap Si :cscope find i <C-R>%<CR><CR>
+nnoremap Ss :cscope show<CR>
 
 " }---------------------------- Leader shortcuts ----------------------------{
 
