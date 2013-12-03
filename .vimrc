@@ -220,8 +220,7 @@ nnoremap \ gq)
 vnoremap \ gq
 
 " seeking the best use of the `s` keys
-nnoremap s viw
-vnoremap s S
+nnoremap s viW
 
 " Set - to go to the end of the line (like $)
 " and 0 to not go to the first character
