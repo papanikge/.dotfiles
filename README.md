@@ -9,7 +9,6 @@ contact me @ g3orge.app(at)gmail(dot)com
 ###In case you want them:
 ```
 cd ~
-git clone <url>
-git submodule update --init
+git clone --recursive <url>
 ln -s .vim/.vimrc .
 ```
