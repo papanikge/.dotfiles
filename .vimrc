@@ -122,7 +122,7 @@ set wildignore+=*.pyc                            " Python bytecode
 " }----------------------- Filetype specific settings -----------------------{
 
 " C (based on the linux kernel guideline)
-autocmd FileType c setlocal noexpandtab
+autocmd FileType c setlocal noexpandtab tabstop=8 shiftwidth=8
 " Arduino (for c++)
 autocmd BufRead,BufNewFile *.ino setlocal ft=cpp
 " Header files are C, not C++ goddammit
