@@ -236,6 +236,9 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
+" Use ? for substitution. I never use it anyway
+nnoremap ? :%s/<C-R><C-W>//g<left><left>
+
 " Cscope ease (mnemonics: definition, caller, callee and include)
 nnoremap Sd :cscope find g <cword><CR>
 nnoremap Sr :cscope find c <cword><CR>
