@@ -1,0 +1,133 @@
+#PREAMBLE
+#newcommand
+snippet nc
+	\newcommand{\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
+#usepackage
+snippet up
+	\usepackage[${1:options}]{${2:package}} ${0}
+#newunicodechar
+snippet nuc
+	\newunicodechar{${1}}{${2:\ensuremath}${3:tex-substitute}}} ${0}
+#DeclareMathOperator
+snippet dmo
+	\DeclareMathOperator{${1}}{${2}} ${0}
+
+#DOCUMENT
+snippet thm
+	\begin[${1:author}]{${2:thm}}
+	${0}
+	\end{$2}
+snippet center
+	\begin{center}
+		${0}
+	\end{center}
+# Equation
+snippet eq*
+	\begin{equation*}
+		${0}
+	\end{equation*}
+# Equation array
+snippet eqnarray
+	\begin{eqnarray}
+		${0}
+	\end{eqnarray}
+# Itemize
+snippet itemize
+	\begin{itemize}
+		\item ${0}
+	\end{itemize}
+snippet ni
+	\noindent
+	${0}
+#References
+snippet index
+	\index{${1:index}} ${0}
+#Citations
+snippet citen
+	\cite{$1} ${0}
+# bibtex commands
+snippet citep
+	\citep{$1} ${0}
+snippet citet
+	\citet{$1} ${0}
+snippet cite
+	\cite[${1}]{${2}} ${0}
+snippet fcite
+	\footcite[${1}]{${2}}${0}
+#Formating text: italic, bold, underline, small capital, emphase ..
+snippet it
+	\textit{${0:text}}
+snippet bf
+	\textbf{${0:text}}
+snippet under
+	\underline{${0:text}}
+snippet emp
+	\emph{${0:text}}
+snippet sc
+	\textsc{${0:text}}
+#Choosing font
+snippet sf
+	\textsf{${0:text}}
+snippet rm
+	\textrm{${0:text}}
+snippet tt
+	\texttt{${0:text}}
+#misc
+snippet ft
+	\footnote{${0:text}}
+snippet fig
+	\begin{figure}
+	\begin{center}
+	    \includegraphics[scale=${1}]{Figures/${2}}
+	\end{center}
+	\caption{${3}}
+	\label{fig:${4}}
+	\end{figure}
+	${0}
+snippet tikz
+	\begin{figure}
+	\begin{center}
+	\begin{tikzpicture}[scale=${1:1}]
+		${2}
+	\end{tikzpicture}
+	\end{center}
+	\caption{${3}}
+	\label{fig:${4}}
+	\end{figure}
+	${0}
+#math
+snippet stackrel
+	\stackrel{${1:above}}{${2:below}} ${0}
+snippet frac
+	\frac{${1:num}}{${2:denom}} ${0}
+snippet sum
+	\sum^{${1:n}}_{${2:i=1}} ${0}
+snippet lim
+	\lim_{${1:x \to +\infty}} ${0}
+snippet frame
+	\begin{frame}[<+->]
+		\frametitle{${1:title}}
+
+		${0}
+	\end{frame}
+snippet block
+	\begin{block}{${1:title}}
+	${0}
+	\end{block}
+snippet alert
+	\begin{alertblock}{${1:title}}
+	${0}
+	\end{alertblock}
+snippet example
+	\begin{exampleblock}{${1:title}}
+	${0}
+	\end{exampleblock}
+snippet col2
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			${1}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			${0}
+		\end{column}
+	\end{columns}
