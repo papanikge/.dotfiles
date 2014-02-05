@@ -384,6 +384,9 @@ let g:haddock_browser="/usr/bin/chromium"
 " Don't show the indent lines by default
 let g:indentLine_enabled = 0
 
+" Tagbar show only public entries. (Toggle with 'h')
+let g:tagbar_hide_nonpublic = 1
+
 " }------------------------------- Functions --------------------------------{
 
 " close quickfix on leaving and NERDTree buffer when is the only one left
