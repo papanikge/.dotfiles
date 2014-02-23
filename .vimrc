@@ -128,7 +128,7 @@ autocmd BufRead,BufNewFile *.ino setlocal ft=cpp
 " Header files are C, not C++ goddammit
 autocmd BufRead,BufNewFile *.h setlocal ft=c
 " Weird 2 space indentation languages
-autocmd FileType ruby,eruby,haml,yaml,html,javascript,vim setlocal sw=2 sts=2
+autocmd FileType ruby,eruby,haml,yaml,html,css,javascript,vim setlocal sw=2 sts=2
 
 " }------------------------------- Appearance -------------------------------{
 
