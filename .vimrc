@@ -119,17 +119,6 @@ set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
 
-" }----------------------- Filetype specific settings -----------------------{
-
-" C (based on the linux kernel guideline)
-autocmd FileType c setlocal noexpandtab tabstop=8 shiftwidth=8
-" Arduino (for c++)
-autocmd BufRead,BufNewFile *.ino setlocal ft=cpp
-" Header files are C, not C++ goddammit
-autocmd BufRead,BufNewFile *.h setlocal ft=c
-" Weird 2 space indentation languages
-autocmd FileType ruby,eruby,haml,yaml,html,css,javascript,vim setlocal sw=2 sts=2
-
 " }------------------------------- Appearance -------------------------------{
 
 " colorize the column

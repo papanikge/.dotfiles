@@ -67,3 +67,6 @@
 [submodule "bundle/sexp"]
 	path = bundle/sexp
 	url = https://github.com/guns/vim-sexp
+[submodule "bundle/sleuth"]
+	path = bundle/sleuth
+	url = https://github.com/tpope/vim-sleuth/
