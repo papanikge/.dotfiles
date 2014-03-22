@@ -367,9 +367,6 @@ let g:vim_markdown_folding_disabled = 1
 " Default browser
 let g:netrw_browsex_viewer= "chromium"
 
-" Default browser for haskell-mode
-let g:haddock_browser="/usr/bin/chromium"
-
 " Don't show the indent lines by default
 let g:indentLine_enabled = 0
 
