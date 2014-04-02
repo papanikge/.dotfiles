@@ -33,9 +33,10 @@ set ignorecase
 " But case-sensitive if expression contains a capital letter.
 set smartcase
 
-" Smart new (>7.4) hybrid way of showing numbers
+" New (>7.4) vim features. Hybrid number mode and smart line joining
 if v:version >= 704
   set relativenumber
+  set formatoptions+=j
 endif
 set number
 " Show cursor position.
@@ -95,9 +96,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-
-" Delete trailing comment leader when (J)oining lines (requires vim 7.4)
-set formatoptions+=j
 
 " Make Esc work faster
 set ttimeoutlen=50
