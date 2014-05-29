@@ -322,6 +322,11 @@ autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
 " Every time
 autocmd BufEnter * call LoadCscopeFile()
 
+" Use pandoc as a formatter when editing html
+let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+autocmd FileType html let &formatprg=pandoc_pipeline
+
 " Abbreviations for correction and ease
 iabbrev teh the
 iabbrev adn and
