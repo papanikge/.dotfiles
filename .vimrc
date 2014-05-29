@@ -64,8 +64,8 @@ set ttyfast
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Set auto-intend
-set ai
+" Be a little smart about indenting vim
+set autoindent
 
 " No beeping.
 set visualbell
@@ -140,7 +140,7 @@ endif
 set foldenable
 set foldlevelstart=99
 set foldmethod=syntax               " syntax-based (and indent for python)
-au FileType python,haskell setlocal foldmethod=indent
+autocmd FileType python,haskell setlocal foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
@@ -223,7 +223,7 @@ nnoremap ]] ]}
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
-" Use ? for substitution. I never use it anyway
+" Use ? for substitution. I never use it to search backwards anyway
 nnoremap ? :%s/<C-R><C-W>//g<left><left>
 
 " Cscope ease (mnemonics: definition, caller, callee and include)
@@ -314,13 +314,13 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " }---------------------------- Auto and plugins ----------------------------{
 
 " Resize splits when the window is resized
-au VimResized * exe "normal! \<c-w>="
+autocmd VimResized * exe "normal! \<c-w>="
 
 " Mail
-au BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
+autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
 
 " Every time
-au BufEnter * call LoadCscopeFile()
+autocmd BufEnter * call LoadCscopeFile()
 
 " Abbreviations for correction and ease
 iabbrev teh the
