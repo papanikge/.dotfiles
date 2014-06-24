@@ -124,7 +124,7 @@ set colorcolumn=80
 
 if has("gui_running")
   colorscheme tomorrow-night
-  set guifont=Menlo\ for\ Powerline\ 10
+  set guifont=Menlo\ for\ Powerline\ 9
   set guioptions-=T
   set guioptions-=l
   set guioptions-=L
