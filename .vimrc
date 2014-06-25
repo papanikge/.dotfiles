@@ -327,6 +327,10 @@ let pandoc_pipeline  = "pandoc --from=html --to=markdown"
 let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
 autocmd FileType html let &formatprg=pandoc_pipeline
 
+" Enable rainbow parentheses for lisp-like languages
+autocmd FileType lisp,clojure,scheme RainbowParenthesesActivate
+autocmd Syntax lisp,clojure,scheme RainbowParenthesesLoadRound
+
 " Abbreviations for correction and ease
 iabbrev teh the
 iabbrev adn and

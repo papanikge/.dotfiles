@@ -61,3 +61,12 @@
 [submodule "bundle/sleuth"]
 	path = bundle/sleuth
 	url = https://github.com/tpope/vim-sleuth/
+[submodule "bundle/gnupg"]
+	path = bundle/gnupg
+	url = https://github.com/jamessan/vim-gnupg/
+[submodule "bundle/rainbow-parentheses"]
+	path = bundle/rainbow-parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim
+[submodule "bundle/argumentative"]
+	path = bundle/argumentative
+	url = https://github.com/PeterRincker/vim-argumentative
