@@ -318,6 +318,7 @@ autocmd VimResized * exe "normal! \<c-w>="
 
 " Mail
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
+autocmd Filetype mail setlocal spell
 
 " Every time
 autocmd BufEnter * call LoadCscopeFile()
