@@ -206,11 +206,8 @@ nnoremap * *N
 nnoremap \ gq)
 vnoremap \ gq
 
-" seeking the best use of the `s` keys
-nnoremap s viW
-
-" Set - to go to the end of the line (like $)
-" and 0 to not go to the first character
+" Why the hell would you have ^,$ for first, last characters?
+" The remapping of '-' breaks expand-region shrink action, but meh
 noremap - $
 noremap 0 ^
 noremap ^ 0
@@ -225,13 +222,6 @@ nnoremap # :Ack!<CR>
 
 " Use ? for substitution. I never use it to search backwards anyway
 nnoremap ? :%s/<C-R><C-W>//g<left><left>
-
-" Cscope ease (mnemonics: definition, caller, callee and include)
-nnoremap Sd :cscope find g <cword><CR>
-nnoremap Sr :cscope find c <cword><CR>
-nnoremap Se :cscope find d <cword><CR>
-nnoremap Si :cscope find i <C-R>%<CR><CR>
-nnoremap Ss :cscope show<CR>
 
 " }---------------------------- Leader shortcuts ----------------------------{
 

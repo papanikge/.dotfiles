@@ -70,3 +70,9 @@
 [submodule "bundle/argumentative"]
 	path = bundle/argumentative
 	url = https://github.com/PeterRincker/vim-argumentative
+[submodule "bundle/expand-region"]
+	path = bundle/expand-region
+	url = https://github.com/terryma/vim-expand-region
+[submodule "bundle/sneak"]
+	path = bundle/sneak
+	url = https://github.com/justinmk/vim-sneak
