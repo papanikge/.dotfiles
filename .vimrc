@@ -1,36 +1,33 @@
 " Hacked together by George Papanikolaou.
-" Third edition 2013, optimized for Arch Linux
+" Third-ish version 2013-4, optimized for Linux
 
-" Must come first because it changes other options.
+" First, move to no-old-vi-compatible mode and activate bundles
 set nocompatible
-
 execute pathogen#infect()
 
 " }----------------------------- Basic options ------------------------------{
 
-" Turn on syntax highlighting.
+" Turn on syntax highlighting, and filetype plugin detection
 syntax enable
-" Turn on file type detection.
 filetype plugin indent on
 
 " Changing the leaders for easy access
 let mapleader = ","
 let maplocalleader = "|"
 
-" Display incomplete commands.
-set showcmd
-" Display the mode you're in.
+" Always display mode & keys that I press as I press them
 set showmode
+set showcmd
 
-" Intuitive backspacing.
+" Intuitive backspacing
 set backspace=indent,eol,start
 
-" Handle multiple buffers better.
+" Handle multiple buffers better
 set hidden
 
-" Case-insensitive searching.
+" Case-insensitive searching
 set ignorecase
-" But case-sensitive if expression contains a capital letter.
+" But case-sensitive if expression contains a capital letter
 set smartcase
 
 " New (>7.4) vim features. Hybrid number mode and smart line joining
@@ -39,10 +36,10 @@ if v:version >= 704
   set formatoptions+=j
 endif
 set number
-" Show cursor position.
+" Show cursor position
 set ruler
 
-" Highlight matches as you type.
+" Highlight matches as you type
 set incsearch
 set hlsearch
 
@@ -70,9 +67,8 @@ set autoindent
 " No beeping.
 set visualbell
 
-" Don't make a backup before overwriting a file.
+" Don't make a backup before overwriting a file
 set nobackup
-" And again.
 set nowritebackup
 
 " I'm not sure about this
@@ -103,11 +99,12 @@ set ttimeoutlen=50
 " Look up the tree for tags file
 set tags=./tags;/
 
-" Enhanced command line completion.
-set wildmenu
-" Complete files like a shell.
-set wildmode=list:longest
+" Spelling languages
+set spelllang=en,el
 
+" Enhanced command line completion, like a shell
+set wildmenu
+set wildmode=list:longest
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.pdf    " binary images and pdfs
@@ -153,11 +150,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }------------------------------- Remappings -------------------------------{
 
-" multiple indentations in visual mode and single stroke in normal mode
+" Multiple indentations in visual mode and single stroke in normal mode
+" removed << remappings in normal mode because they were useless because of
+" the different < mappings. (e.g. <, to shift function arguments)
 vnoremap < <gv
 vnoremap > >gv
-nnoremap < <<
-nnoremap > >>
 
 " Make pasting smarter in visual mode
 vnoremap p p:let @"=@0<CR>
@@ -188,7 +185,7 @@ noremap Q :q<CR>
 " Use K to split lines (credits to Steve Losh)
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
-" System clipboard
+" System clipboard (linux tested only)
 nnoremap gy "+y
 nnoremap gp o<ESC>"+p
 nnoremap gP O<ESC>"+p
@@ -234,7 +231,7 @@ nnoremap <leader>a ggVG
 " Toggle TagBar
 nnoremap <leader>b :TagbarToggle<CR>
 
-" Select pasted text
+" Select (last?) pasted text
 nnoremap <leader>p `[v`]
 
 " No Highlighted search
@@ -261,20 +258,14 @@ nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
 " Toggle between wrapping
 nnoremap <leader>l :set wrap!<CR>
 
-" Delete without adding to the yank stack
-nnoremap <silent> <leader>d "_d
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
 " Easily open a new vertical window
 nnoremap <leader>v :vnew<CR><C-W>L
 
-" Switch cwd to the directory of the current buffer
+" Switch cwd to the directory of the current buffer (mnemonic: here)
 nnoremap <leader>h :cd %:p:h<CR>:pwd<CR>
-
-" Launch the 'text' section of my dropbox
-nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 
 " Remove the 'Windows' ^M - when the encodings gets messed up
 noremap <leader>w mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
@@ -286,11 +277,12 @@ nnoremap <leader>do :diffoff!<CR>
 nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dp :diffput<CR>
 
-" Easy edit
+" Easy edit, useless because of ctrl-p but I'm used to them
 nnoremap <leader>ea :e ~/.bashrc<CR>
 nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
+nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
@@ -303,24 +295,27 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 
 " }---------------------------- Auto and plugins ----------------------------{
 
+" Commands to be ran on every buffer every time
+autocmd BufEnter * call LoadCscopeFile()
+
 " Resize splits when the window is resized
 autocmd VimResized * exe "normal! \<c-w>="
 
 " Mail
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
-autocmd Filetype mail setlocal spell
 
-" Every time
-autocmd BufEnter * call LoadCscopeFile()
+" Enable spelling to specific text filetypes
+autocmd Syntax mail,mkd setlocal spell
 
 " Use pandoc as a formatter when editing html
 let pandoc_pipeline  = "pandoc --from=html --to=markdown"
 let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
 autocmd FileType html let &formatprg=pandoc_pipeline
 
-" Enable rainbow parentheses for lisp-like languages
-autocmd FileType lisp,clojure,scheme RainbowParenthesesActivate
+" Enable rainbow parentheses for lisp-like languages and <> for c++'s templates
+autocmd FileType lisp,clojure,scheme,cpp RainbowParenthesesActivate
 autocmd Syntax lisp,clojure,scheme RainbowParenthesesLoadRound
+autocmd Syntax cpp RainbowParenthesesLoadChevrons
 
 " Abbreviations for correction and ease
 iabbrev teh the
