@@ -4,5 +4,7 @@
 # George 'papanikge' Papanikolaou 2014
 #
 
-pacman -S vim python ruby gpg atool weechat mutt xz gcc make gdb cscope cmake
-automake z the-silver-searcher tree ffmpeg valgrind offlineimap msmtp
+sudo pacman -S vim python ruby gnupg atool weechat mutt xz gcc make gdb cscope \
+cmake automake the_silver_searcher tree valgrind offlineimap msmtp zip unzip \
+htop
+# ffmpeg chromium-browser dropbox
