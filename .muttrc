@@ -82,7 +82,7 @@ set reply_regexp     = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 # Sendmail (with msmtp) -------------------------------------------------------
 set from             = "papanikge@ceid.upatras.gr"
-set sendmail         = "~/code/bin/msmtpq" # or just: /usr/bin/msmtp -a CEID
+set sendmail         = "~/.dotfiles/bin/msmtpq" # or just: /usr/bin/msmtp -a CEID
 set sendmail_wait    = -1
 set record           = +Sent
 

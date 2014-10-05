@@ -21,10 +21,10 @@
     yesterday = log --since '1 day ago' --oneline
     word      = diff --word-diff
     fml       = reset --hard
-    bt        = !~/code/bin/git-trail.sh
-    nuke      = !~/code/bin/git-nuke.sh
+    bt        = !~/.dotfiles/bin/git-trail.sh
+    nuke      = !~/.dotfiles/bin/git-nuke.sh
 [sendemail]
-    smtpserver = ~/code/bin/msmtpq
+    smtpserver = ~/.dotfiles/bin/msmtpq
 [help]
     autocorrect = 1
 [branch]

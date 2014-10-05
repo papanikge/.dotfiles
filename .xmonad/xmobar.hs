@@ -1,10 +1,6 @@
 -- papanikge's xmobar config file
 -- check the .xmonad/xmonad.hs file for more
 
--- Or maybe for dual screens:
--- position = Static { xpos = 1920, ypos = 0, width = 1800, height = 16 }
--- , Run Battery ["-t","Battery: <left>%"] 10
-
 Config { font = "xft:Sans-8:bold"
        , bgColor = "black"
        , fgColor = "grey"
@@ -16,14 +12,11 @@ Config { font = "xft:Sans-8:bold"
                                    "-l", "red", "-m", "blue", "-h", "green"]
                                    100
                     , Run Date "%a, %b %_d %Y %H:%M " "date" 10
-                    -- , Run Com "ncmpcpp" ["--now-playing"] "music" 10
-                    , Run Com "/home/g3orge/code/bin/getvolume.sh" [] "volume" 20
-                    , Run Com "/home/g3orge/code/bin/getip.sh" [] "network" 10
+                    , Run Com "~/.dotfiles/bin/getvolume.sh" [] "volume" 20
                     , Run Com "/bin/bash" ["-c", "find /home/g3orge/Mail/CEID/CEIDPublicMail.students-all.STUDENTS2010/new /home/g3orge/Mail/CEID/CEIDPublicMail.students-all/new /home/g3orge/Mail/CEID/INBOX/new -type f | wc -l"] "mail" 100
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       -- , OLD CAUSE MOTHER FUCKING NCMCPP CHANGED EVERYTHING template = "%StdinReader% }{ <fc=#989898>%music%</fc> ][ <fc=#c0362c><icon=/home/g3orge/.xmonad/mail.xbm/> %mail%</fc> ][ %memory% ][ <icon=/home/g3orge/.xmonad/vol.xbm/> <fc=#6699cc>%volume%</fc> ][ %network% ][ %battery% ][ <fc=#ee9a00>%date%</fc>"
-       , template = "%StdinReader% }{ [ <fc=#c0362c><icon=/home/g3orge/.xmonad/mail.xbm/> %mail%</fc> ][ %memory% ][ <icon=/home/g3orge/.xmonad/vol.xbm/> <fc=#6699cc>%volume%</fc> ][ %network% ][ %battery% ][ <fc=#ee9a00>%date%</fc>"
+       , template = "%StdinReader% }{ [ <fc=#c0362c><icon=/home/g3orge/.xmonad/mail.xbm/> %mail%</fc> ][ %memory% ][ <icon=/home/g3orge/.xmonad/vol.xbm/> <fc=#6699cc>%volume%</fc> ][ %battery% ][ <fc=#ee9a00>%date%</fc>"
        }

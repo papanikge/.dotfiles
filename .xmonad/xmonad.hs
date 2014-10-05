@@ -79,14 +79,14 @@ main = do
       , ((0, 0x1008FF4B), spawn "gvim")
       -------- Keyboard --------
       -- XF86KbdBrightnessDown
-      , ((0, 0x1008FF06), spawn "/home/g3orge/code/bin/spotify-control.sh play")
+      , ((0, 0x1008FF06), spawn "~/.dotfiles/bin/spotify-control.sh play")
       -- XF86KbdBrightnessUp
-      , ((0, 0x1008FF05), spawn "/home/g3orge/code/bin/change_lang.sh")
+      , ((0, 0x1008FF05), spawn "~/.dotfiles/bin/change_lang.sh")
       -------- Monitor ---------
       -- XF86MonBrightnessDown
-      , ((0, 0x1008FF03), spawn "/home/g3orge/code/bin/down.sh")
+      , ((0, 0x1008FF03), spawn "~/.dotfiles/bin/brightness-down.sh")
       -- XF86MonBrightnessUp
-      , ((0, 0x1008FF02), spawn "/home/g3orge/code/bin/up.sh")
+      , ((0, 0x1008FF02), spawn "~/.dotfiles/bin/brightness-up.sh")
       --------- Audio ----------
       -- XF86AudioPrev
       , ((0, 0x1008FF16), spawn "ncmpcpp prev")
@@ -101,7 +101,7 @@ main = do
       -- XF86AudioRaiseVolume
       , ((0, 0x1008FF13), spawn "amixer set Master 5%+ unmute")
       -- XF86Eject
-      , ((0, 0x1008FF2C), spawn "/home/g3orge/code/bin/blur-lockscreen.sh")
+      , ((0, 0x1008FF2C), spawn "~/.dotfiles/bin/blur-lockscreen.sh")
 
       -- mod + return --> terminal
       , ((mod4Mask, xK_Return), spawn myTerminal)

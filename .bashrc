@@ -14,6 +14,8 @@ if [[ `uname -s` == 'Darwin' ]]; then
 fi
 # ...adding rubygems and cabal tools
 PATH=$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin:~/.cabal/bin
+# ...and my own bin folder full of script goodies
+PATH=$PATH:~/.dotfiles/bin
 
 # General
 export EDITOR=vim
@@ -29,11 +31,11 @@ fi
 
 # enable z before PROMPT_COMMAND modifications
 export PROMPT_COMMAND=
-source ~/code/bin/z.sh
+source ~/.dotfiles/bin/z.sh
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Completions
-source ~/code/bin/.git-completion.sh
+source ~/.dotfiles/bin/.git-completion.sh
 complete -cf which
 complete -cf watch
 complete -cf sudo
@@ -266,8 +268,5 @@ alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --
 # network
 alias serve="python -m http.server 8080"
 # other tools
-alias m="~/code/m.sh/m"
-alias wr="~/code/bin/wr.rb"
-alias alert="~/code/bin/alert.rb"                        # only works for linux
 alias mirror="wget --no-clobber --random-wait -krpE -e robots=off"
 alias ssh-password='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no'

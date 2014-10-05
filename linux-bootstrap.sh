@@ -5,4 +5,4 @@
 #
 
 pacman -S vim python ruby gpg atool weechat mutt xz gcc make gdb cscope cmake
-automake z the-silver-searcher tree ffmpeg valgrind offlineimap
+automake z the-silver-searcher tree ffmpeg valgrind offlineimap msmtp
