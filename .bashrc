@@ -187,24 +187,29 @@ _prompt_git () {
   state=$(git status --porcelain 2>/dev/null)
   # I have "-n" in GREP_OPTIONS so I need that last cut command. Maybe I should remove it...
   branch=$(git branch --no-color | fgrep "*" | cut -d' ' -f2)
-  prompt="$(tput sgr0)on $(tput setaf 11)git:"
+  prompt="$(tput sgr0)on $(tput setaf 11)"
 
-  prompt=${prompt}${branch#\* }
+  # Checking for detached state
+  if [[ ${branch:0:1} == "(" ]]; then
+	prompt="${prompt}(detached HEAD)"
+  else
+	prompt=${prompt}${branch}
 
-  if $(echo "$state" | egrep '^UU ' &>/dev/null); then
-    prompt="${prompt}!"
-  fi
+	if $(echo "$state" | egrep '^UU ' &>/dev/null); then
+	  prompt="${prompt}!"
+	fi
 
-  if $(echo "$state" | egrep '^.[MD] ' &>/dev/null); then
-    prompt="${prompt}+"
-  fi
+	if $(echo "$state" | egrep '^.[MD] ' &>/dev/null); then
+	  prompt="${prompt}+"
+	fi
 
-  if $(echo "$state" | egrep '^\?\? ' &>/dev/null); then
-    prompt="${prompt}?"
-  fi
+	if $(echo "$state" | egrep '^\?\? ' &>/dev/null); then
+	  prompt="${prompt}?"
+	fi
 
-  if $(echo "$state" | egrep '^[AMDR]. ' &>/dev/null); then
-    prompt="${prompt}*"
+	if $(echo "$state" | egrep '^[AMDR]. ' &>/dev/null); then
+	  prompt="${prompt}*"
+	fi
   fi
 
   echo -n "${prompt} "
