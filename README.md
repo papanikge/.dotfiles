@@ -1,14 +1,13 @@
 ##What
-These are my vim configuration files. Some people call them dotfiles. I don't like that.  
-Of course they are not intended for public use but you can take a look or something
+If you don't know what dotfiles are, you shouldn't be here.   
+I've put many hours of work to this repo.  
+Of course it's not intended for public use but you can take a look or something.
 
 ##Who
-George 'papanikge' Papanikolaou ©  
+George 'papanikge' Papanikolaou  
 contact me @ g3orge.app(at)gmail(dot)com
 
 ###In case you want them:
 ```
-cd ~
-git clone --recursive <url>
-ln -s .vim/.vimrc .
+./bootstrap.sh # creates all the symlinks and pulls submodules 
 ```
