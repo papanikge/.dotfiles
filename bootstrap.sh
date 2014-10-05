@@ -11,9 +11,9 @@ rm ../.bash_profile
 
 # ok, let's go with some basic actions and installations
 if [[ `uname -s` == 'Darwin' ]]; then
-  ./os-x-bootstrap.sh
+  ./os-x-packages.sh
 else
-  ./linux-bootstrap.sh
+  ./linux-packages.sh
 fi
 
 git submodule update --init
