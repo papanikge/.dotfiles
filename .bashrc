@@ -62,7 +62,7 @@ if [[ `uname -s` == 'Darwin' ]]; then
   alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
   # (OSX) Change working directory to the top-most Finder window location (short for "cdfinder")
   cdf() {
-	  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
   }
   export DOCKER_HOST=tcp://192.168.59.103:2375
 else
@@ -92,8 +92,8 @@ fi
 
 # create and go to a directory in one cmd
 mcd () {
-    mkdir -p $1
-    cd $1
+  mkdir -p $1
+  cd $1
 }
 
 # send output to stderr
@@ -103,37 +103,37 @@ err() {
 
 # history helper
 h () {
-    history | fgrep -i $1 | tail
+  history | fgrep -i $1 | tail
 }
 
 # flexible find in cwd
 f () {
-    find . -iname "*$1*" 2>/dev/null
+  find . -iname "*$1*" 2>/dev/null
 }
 
 # count all the files in a directory
 cf () {
-    find $1 -name "*" -type f | wc -l
+  find $1 -name "*" -type f | wc -l
 }
 
 # repeat commands on file change in local directory
 repeat () {
-    echo "to be implemented"
+  echo "to be implemented"
 }
 
 # restart the network
 reip () {
-    sudo ip link set wlan0 down
-    echo "Access Granted"
-    sleep 2
-    sudo ip link set wlan0 up
+  sudo ip link set wlan0 down
+  echo "Access Granted"
+  sleep 2
+  sudo ip link set wlan0 up
 }
 
 # google from the command line
 google () {
-    local q
-    q=$(echo $* | tr ' ' '+')
-    chromium https://google.com/search?q=$q
+  local q
+  q=$(echo $* | tr ' ' '+')
+  chromium https://google.com/search?q=$q
 }
 
 # graphviz is weird
@@ -143,80 +143,80 @@ draw () {
 
 # Simple calculator (thx @mathiasbynens)
 calc() {
-	local result="";
-	result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
-	#                       └─ default (when `--mathlib` is used) is 20
-	#
-	if [[ "$result" == *.* ]]; then
-		# improve the output for decimal numbers
-		printf "$result" |
-		sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
-		    -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
-		    -e 's/0*$//;s/\.$//';  # remove trailing zeros
-	else
-		printf "$result";
-	fi;
-	printf "\n";
+  local result="";
+  result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
+  #                       └─ default (when `--mathlib` is used) is 20
+  #
+  if [[ "$result" == *.* ]]; then
+    # improve the output for decimal numbers
+    printf "$result" |
+    sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+      -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+      -e 's/0*$//;s/\.$//';  # remove trailing zeros
+  else
+    printf "$result";
+  fi
+  printf "\n";
 }
 
-function g() {
-	if [ $# -eq 0 ]; then
-		gvim . 2>/dev/null;
-	else
-		gvim "$@" 2>/dev/null;
-	fi;
+g() {
+  if [ $# -eq 0 ]; then
+    gvim . 2>/dev/null;
+  else
+    gvim "$@" 2>/dev/null;
+  fi
 }
 
 # }--------------------------------- PROMPT ----------------------------------{
 
 _prompt_color () {
-    if [[ $? = 0 ]]; then
-        echo "$(tput setaf 2)"
-    else
-        echo "$(tput setaf 1)"
-    fi
+  if [[ $? = 0 ]]; then
+    echo "$(tput setaf 2)"
+  else
+    echo "$(tput setaf 1)"
+  fi
 }
 
 _prompt_git () {
-    # shall we continue?
-    if [[ ! -d .git ]]; then
-        [[ -d .hg ]] && echo "$(tput setaf 3)(hg) "
-        return
-    fi
+  # shall we continue?
+  if [[ ! -d .git ]]; then
+    [[ -d .hg ]] && echo "$(tput setaf 3)(hg) "
+    return
+  fi
 
-    local state branch prompt
+  local state branch prompt
 
-    state=$(git status --porcelain 2>/dev/null)
-    # I have "-n" in GREP_OPTIONS so I need that last cut command. Maybe I should remove it...
-    branch=$(git branch --no-color | fgrep "*" | cut -d' ' -f2)
-    prompt="$(tput sgr0)on $(tput setaf 11)git:"
+  state=$(git status --porcelain 2>/dev/null)
+  # I have "-n" in GREP_OPTIONS so I need that last cut command. Maybe I should remove it...
+  branch=$(git branch --no-color | fgrep "*" | cut -d' ' -f2)
+  prompt="$(tput sgr0)on $(tput setaf 11)git:"
 
-    prompt=${prompt}${branch#\* }
+  prompt=${prompt}${branch#\* }
 
-    if $(echo "$state" | egrep '^UU ' &>/dev/null); then
-        prompt="${prompt}!"
-    fi
+  if $(echo "$state" | egrep '^UU ' &>/dev/null); then
+    prompt="${prompt}!"
+  fi
 
-    if $(echo "$state" | egrep '^.[MD] ' &>/dev/null); then
-        prompt="${prompt}+"
-    fi
+  if $(echo "$state" | egrep '^.[MD] ' &>/dev/null); then
+    prompt="${prompt}+"
+  fi
 
-    if $(echo "$state" | egrep '^\?\? ' &>/dev/null); then
-        prompt="${prompt}?"
-    fi
+  if $(echo "$state" | egrep '^\?\? ' &>/dev/null); then
+    prompt="${prompt}?"
+  fi
 
-    if $(echo "$state" | egrep '^[AMDR]. ' &>/dev/null); then
-        prompt="${prompt}*"
-    fi
+  if $(echo "$state" | egrep '^[AMDR]. ' &>/dev/null); then
+    prompt="${prompt}*"
+  fi
 
-    echo -n "${prompt} "
+  echo -n "${prompt} "
 }
 
 _prompt_env () {
-    [[ -n "$VIRTUAL_ENV" ]] && echo "$(tput setaf 5)[virtualenv]"
-    [[ -d cabal-dev ]] && echo "$(tput setaf 5)[cabal-dev]"
-    [[ -f cabal.sandbox.config ]] && echo "$(tput setaf 5)[cabal-sandbox]"
-    [[ -f *.gemspec || -f .ruby-version ]] && echo "$(tput setaf 5)[$(ruby --version | cut -d' ' -f1,2)]"
+  [[ -n "$VIRTUAL_ENV" ]] && echo "$(tput setaf 5)[virtualenv]"
+  [[ -d cabal-dev ]] && echo "$(tput setaf 5)[cabal-dev]"
+  [[ -f cabal.sandbox.config ]] && echo "$(tput setaf 5)[cabal-sandbox]"
+  [[ -f *.gemspec || -f .ruby-version ]] && echo "$(tput setaf 5)[$(ruby --version | cut -d' ' -f1,2)]"
 }
 
 export PS1='\n$(_prompt_color)\u $(tput sgr0)at $(tput setaf 13)\H $(tput sgr0)in $(tput setaf 4)\w $(_prompt_git)$(_prompt_env) $(tput sgr0)\n→ '
@@ -249,8 +249,12 @@ alias arch="ssh -p 2222 papanikge@127.0.0.1"
 alias up="VBoxManage startvm Palmyra --type headless"
 alias down="VBoxManage controlvm Palmyra poweroff"
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+if [[ `uname -s` == 'Darwin' ]]; then
+  alias localip="ipconfig getifaddr en1"
+else
+  alias localip="ifconfig"
+fi
 # vim in the cli should not load bells and whistles
 alias vim='vim -c "colo default" --noplugin'
 # command line pastebin using sprunge
