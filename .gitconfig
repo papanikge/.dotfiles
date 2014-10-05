@@ -1,0 +1,33 @@
+[user]
+    name  = George 'papanikge' Papanikolaou
+    email = g3orge.app@gmail.com
+[github]
+    user = papanikge
+[color]
+    ui = true
+[core]
+    editor  = vim --noplugin
+[push]
+    default = upstream
+[grep]
+    lineNumber = true
+[alias]
+    zip       = archive --output latest.zip HEAD
+    pullr     = pull --recurse-submodules
+    news      = diff --stat HEAD@{1}..HEAD
+    tree      = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --
+    serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
+    root      = rev-parse --show-toplevel
+    yesterday = log --since '1 day ago' --oneline
+    word      = diff --word-diff
+    fml       = reset --hard
+    bt        = !~/code/bin/git-trail.sh
+    nuke      = !~/code/bin/git-nuke.sh
+[sendemail]
+    smtpserver = ~/code/bin/msmtpq
+[help]
+    autocorrect = 1
+[branch]
+    autosetuprebase = always
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

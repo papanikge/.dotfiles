@@ -1,0 +1,11 @@
+# For use with a folder-hook
+
+# go back to defaults CEID dafault (with offlineimap)
+
+# color status cyan default
+# we need these in case of returning from gmail hook, to set them back
+
+set mbox_type = Maildir
+set folder    = /home/g3orge/Mail/CEID
+set spoolfile = /home/g3orge/Mail/CEID/INBOX
+set postponed = /home/g3orge/Mail/CEID/postponed/

@@ -1,0 +1,30 @@
+! Keyboard modifications...
+! George 'papanikge' Papanikolaou 2014
+!
+! update/activate with:
+! xmodmap ~/.Xmodmap
+
+keycode 134 = Mode_switch NoSymbol Mode_switch
+clear mod5
+add mod5 = ISO_Level3_Shift
+
+! euro sign in dollar key
+! keycode 13 = e E EuroSign
+
+! german
+keycode 30 = u U udiaeresis Udiaeresis
+keycode 32 = o O odiaeresis Odiaeresis
+keycode 38 = a A adiaeresis Adiaeresis
+keycode 39 = s S ssharp S
+! spanish
+keycode 57 = n N ntilde Ntilde
+keycode 31 = i I iacute Iacute
+! e in that weird useless key next to the left shift
+keycode 94 = e E eacute Eacute
+
+! Trying to remap Caps_Lock to Ctrl
+remove Lock      = Caps_Lock
+remove Control   = Control_L
+keysym Caps_Lock = Control_L
+add    Lock      = Caps_Lock
+add    Control   = Control_L

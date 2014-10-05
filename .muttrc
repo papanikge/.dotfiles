@@ -1,0 +1,131 @@
+# George 'papanikge' Papanikolaou mutt configuration file              13/11/13
+# Based on the Arch wiki and Steve Losh article
+# updated a bit for the .dotfiles repo on 05/10/2014
+
+# Account & Maildir settings --------------------------------------------------
+set mbox_type = Maildir
+set folder    = /home/g3orge/Mail/CEID
+set spoolfile = /home/g3orge/Mail/CEID/INBOX
+set postponed = /home/g3orge/Mail/CEID/postponed/
+
+# Paths -----------------------------------------------------------------------
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set tmpdir           = ~/.mutt/temp          # for drafts etc
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set signature        = ~/.mutt/signature     # my signature file
+set mailcap_path     = ~/.mutt/mailcap       # attachments (need to fix the script)
+
+# General ---------------------------------------------------------------------
+set editor   = "vim --noplugin"
+set mail_check        = 0     # minimum time between scans
+set timeout           = 3     # idle time before scanning
+set beep_new                  # bell on new mails
+set pipe_decode               # strip headers and eval mimes when piping
+set reverse_alias             # show names from alias file in index
+set thorough_search           # strip headers and eval mimes before searching
+set thread_received           # sort threads by date received, not sent
+set delete                    # don't ask, just do
+set quit                      # don't ask, just do!
+unset confirmappend           # don't ask, just do!!
+unset mark_old                # read/new is good enough
+unset wait_key                # shut up, mutt
+unset move                    # gmail does that
+source ~/.mutt/badwolf.muttrc # for colors
+
+# Cryptography. Thanks Mr. Snowden. -------------------------------------------
+source ~/.mutt/gpg.rc         # From mutt defaults
+set pgp_autosign              # I don't know
+set pgp_replyencrypt
+set pgp_replysign
+set pgp_verify_sig
+set pgp_use_gpg_agent = yes
+set pgp_sign_as = B5AFB728
+set pgp_timeout = 3600
+set crypt_autosign = yes
+set crypt_replyencrypt = yes
+
+# Try to fix deletion problems ------------------------------------------------
+set score_threshold_delete=0
+unscore *
+score '~A' +1                 # Scoring all mails +1
+
+# Status Bar ------------------------------------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options --------------------------------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Pager View Options ----------------------------------------------------------
+set pager_context     = 5  # number of context lines to show
+set pager_index_lines = 10 # number of index lines to show
+set pager_stop             # don't go to next message automatically
+set tilde                  # show tildes like in vim
+set menu_scroll            # scroll in menus
+set quote_regexp           = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+unset markers              # no ugly plus signs
+alternative_order          text/plain text/enriched text/html
+
+# Index View Options ----------------------------------------------------------
+set sort             = threads # like gmail
+set sort_aux         = reverse-last-date-received
+set uncollapse_jump          # don't collapse on an unread message
+set sort_re                  # thread based on regex
+set alias_format     = "%4n %t %-20a %r"
+set date_format      = "%d/%m/%y at %I:%M"
+set index_format     = "[%Z]  %D  %-20.20F  %s"
+set reply_regexp     = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Sendmail (with msmtp) -------------------------------------------------------
+set from             = "papanikge@ceid.upatras.gr"
+set sendmail         = "~/code/bin/msmtpq" # or just: /usr/bin/msmtp -a CEID
+set sendmail_wait    = -1
+set record           = +Sent
+
+# Composing mail --------------------------------------------------------------
+set askcc            # always ask for CC:
+set edit_headers     # show headers when composing
+set fast_reply       # skip to compose when replying
+set forward_quote    # include message in forwards
+set include          # include message in replies
+set envelope_from    # which from?
+set reverse_name     # reply as who it was sent to
+set sig_dashes       # dashes before sig
+set fcc_attach       # save attachments with the body
+set forward_decode   # decode when forwarding
+set reply_to         # reply to Reply to: field
+set realname         = "George Papanikolaou"
+set forward_format   = "Fwd: %s"
+set attribution      = "On %d, %n wrote:"
+unset mime_forward   # forward attachments as part of body
+
+# Keyboard shortcuts ----------------------------------------------------------
+bind pager q  exit
+bind pager i  toggle-quoted
+bind pager /  search
+bind pager j  next-line
+bind pager k  previous-line
+bind pager gg top
+bind pager G  bottom
+bind pager N  search-opposite
+bind pager R  group-reply
+bind attach <return> view-mailcap # View attachments properly. (??)
+
+bind index i  noop
+bind index gg first-entry
+bind index G  last-entry
+bind index U  next-unread
+bind index N  search-opposite
+bind index R  group-reply
+bind index <space>  collapse-thread
+
+# also, ^R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+# switch mailboxes
+macro index gm "<change-folder>+CEIDPublicMail.students-all.STUDENTS2010\n"
+macro index ga "<change-folder>+CEIDPublicMail.students-all\n"
+macro index gi "<change-folder>+INBOX\n"

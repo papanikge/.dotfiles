@@ -1,0 +1,40 @@
+[global]
+    font = Cousine 10
+    format = "%a: %s %b"
+
+    alignment = right
+    sort = yes
+    ignore_newline = yes
+    word_wrap = no
+    allow_markup = yes
+    bounce_freq = 0
+
+    geometry = "x0+0+0"
+
+    transparency = 0
+    idle_threshold = 20
+    monitor = 0
+    follow = keyboard
+    line_height = 0
+    separator_height = 2;
+    separator_color = auto
+    padding = 1
+    horizontal_padding = 9
+
+[shortcuts]
+    close_all = mod4+x
+
+[urgency_low]
+    background = "#404040"
+    foreground = "#CCCCCC"
+    timeout = 3
+
+[urgency_normal]
+    background = "#859900"
+    foreground = "#DDDDDD"
+    timeout = 5
+
+[urgency_critical]
+    background = "#dc322f"
+    foreground = "#DDDDDD"
+    timeout = 0

@@ -1,0 +1,6 @@
+# fix the white bar below gvim windows
+style "vimfix" {
+  bg[NORMAL] = "#151515"
+}
+widget "vim-main-window.*GtkForm" style "vimfix"
+gtk-font-name = "DejaVu Sans 10"
