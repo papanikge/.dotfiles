@@ -68,11 +68,7 @@ if [[ `uname -s` == 'Darwin' ]]; then
 else
   export PLATFORM=linux
   export CLICOLOR=1
-  synclient TapButton1=0
-  synclient TapButton2=0
-  synclient TapButton3=0
-  synclient PalmDetect=1
-  alias afk="echo 'not yet implemented'"# TODO afk locking for linux
+  alias afk='echo "not yet implemented"'
   alias open="xdg-open"
   alias feh="feh -d -F"
   # pacman helpers

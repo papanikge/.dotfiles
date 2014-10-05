@@ -5,6 +5,10 @@
 # bootstraping script for a new system
 #
 
+# let's remove the previous versions first
+rm ../.bashrc
+rm ../.bash_profile
+
 # ok, let's go with some basic actions and installations
 if [[ `uname -s` == 'Darwin' ]]; then
   ./os-x-bootstrap.sh
@@ -45,10 +49,3 @@ if [[ `uname -s` == 'Linux' ]]; then
   ln -s .dotfiles/.xinitrc .
   ln -s .dotfiles/.xmonad .
 fi
-
-
-
-CHECK FOR PASSWORDS
-.weechat
-.msmtprc
-.offlineimap
