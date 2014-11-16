@@ -15,5 +15,6 @@
 .weechat/xfer
 .weechat/logs
 .weechat/irc.conf
+.weechat/weechat.log
 .offlineimaprc
 .msmtp-ceid.gpg

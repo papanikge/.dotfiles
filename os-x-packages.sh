@@ -29,7 +29,7 @@ brew install findutils
 brew install bash
 # ...and some other goodies
 brew install the_silver_searcher macvim git tree ffmpeg graphicsmagick python
-atool weechat boot2docker wget xz gcc cscope cmake z gpg
+atool weechat boot2docker wget xz gcc cscope cmake z gpg ctags
 
 # Install homebrew-cask
 brew tap phinze/homebrew-cask
