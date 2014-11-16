@@ -1,0 +1,56 @@
+_prompt_color () {
+  if [[ $? = 0 ]]; then
+    echo "$(tput setaf 2)"
+  else
+    echo "$(tput setaf 1)"
+  fi
+}
+
+_prompt_git () {
+  # shall we continue?
+  if [[ ! -d .git ]]; then
+    [[ -d .hg ]] && echo "$(tput setaf 3)(hg) "
+    return
+  fi
+
+  local state branch prompt
+
+  state=$(git status --porcelain 2>/dev/null)
+  # I have "-n" in GREP_OPTIONS so I need that last cut command. Maybe I should remove it...
+  branch=$(git branch --no-color | fgrep "*" | cut -d' ' -f2)
+  prompt="$(tput sgr0)on $(tput setaf 11)"
+
+  # Checking for detached state
+  if [[ ${branch:0:1} == "(" ]]; then
+	prompt="${prompt}(detached HEAD)"
+  else
+	prompt=${prompt}${branch}
+
+	if $(echo "$state" | egrep '^UU ' &>/dev/null); then
+	  prompt="${prompt}!"
+	fi
+
+	if $(echo "$state" | egrep '^.[MD] ' &>/dev/null); then
+	  prompt="${prompt}+"
+	fi
+
+	if $(echo "$state" | egrep '^\?\? ' &>/dev/null); then
+	  prompt="${prompt}?"
+	fi
+
+	if $(echo "$state" | egrep '^[AMDR]. ' &>/dev/null); then
+	  prompt="${prompt}*"
+	fi
+  fi
+
+  echo -n "${prompt} "
+}
+
+_prompt_env () {
+  [[ -n "$VIRTUAL_ENV" ]] && echo "$(tput setaf 5)[virtualenv]"
+  [[ -d cabal-dev ]] && echo "$(tput setaf 5)[cabal-dev]"
+  [[ -f cabal.sandbox.config ]] && echo "$(tput setaf 5)[cabal-sandbox]"
+  [[ -f *.gemspec || -f .ruby-version ]] && echo "$(tput setaf 5)[$(ruby --version | cut -d' ' -f1,2)]"
+}
+
+export PS1='\n$(_prompt_color)\u $(tput sgr0)at $(tput setaf 13)\H $(tput sgr0)in $(tput setaf 4)\w $(_prompt_git)$(_prompt_env) $(tput sgr0)\n→ '
