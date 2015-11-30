@@ -1,5 +1,5 @@
-" Hacked together by George Papanikolaou.
-" Third-ish version 2013-4, optimized for Linux
+" Hacked together by George 'papanikge' Papanikolaou.
+" Third-ish version 2013-5, optimized for Linux
 
 " First, move to no-old-vi-compatible mode and activate bundles
 set nocompatible
@@ -63,7 +63,7 @@ set ttyfast
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Be a little smart about indenting vim
+" Be a little smart about indenting, vim
 set autoindent
 
 " No beeping.
@@ -72,9 +72,7 @@ set visualbell
 " Don't make a backup before overwriting a file
 set nobackup
 set nowritebackup
-
-" I'm not sure about this
-set noswapfile
+set noswapfile " I'm not sure about this
 
 " History and undo levels
 set undolevels=400
@@ -84,7 +82,7 @@ set history=100
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
 " Line margin when moving vertically
-set so=2
+set scrolloff=2
 
 " Show the status line all the time
 set laststatus=2
@@ -283,9 +281,10 @@ nnoremap <leader>do :diffoff!<CR>
 nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dp :diffput<CR>
 
-" Easy edit, useless because of ctrl-p but I'm used to them
+" Easy edit. Useless because of ctrl-p but I'm used to them
 nnoremap <leader>ea :e ~/.bashrc<CR>
-nnoremap <leader>ev :e ~/.vim/.vimrc<CR>
+nnoremap <leader>ez :e ~/.zshrc<CR>
+nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
 nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
