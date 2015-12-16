@@ -33,7 +33,6 @@ fi
 export PROMPT_COMMAND=
 source ~/.dotfiles/bin/z.sh
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-export HISTFILE="${HOME}/.history/$(date -u +%Y/%m/%d.%H.%M.%S)_${HOSTNAME_SHORT}_$$"
 
 # Completions
 source ~/.dotfiles/bin/.git-completion.sh

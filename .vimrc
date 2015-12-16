@@ -282,8 +282,7 @@ nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dp :diffput<CR>
 
 " Easy edit. Useless because of ctrl-p but I'm used to them
-nnoremap <leader>ea :e ~/.bashrc<CR>
-nnoremap <leader>ez :e ~/.zshrc<CR>
+nnoremap <leader>eb :e ~/.bashrc<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
