@@ -116,7 +116,7 @@ set wildignore+=*.pyc                            " Python bytecode
 
 " }------------------------------- Appearance -------------------------------{
 
-" colorize the column
+" Colorize the column
 set colorcolumn=80
 
 if has("gui_running")
@@ -137,7 +137,7 @@ else
   colorscheme jellybeans
 endif
 
-" folding
+" Folding
 set foldenable
 set foldlevelstart=99
 set foldmethod=syntax               " syntax-based (and indent for python)
@@ -197,7 +197,7 @@ nnoremap gP O<ESC>"+p
 " Backspace to visual delete in oblivion
 vnoremap <BS> "_d
 
-" more powerful gd shortcut
+" More powerful gd shortcut
 nnoremap gd :call FindDefinition()<CR>
 
 " Stay in place when hitting *
@@ -213,7 +213,7 @@ noremap - $
 noremap 0 ^
 noremap ^ 0
 
-" make the [{ keys useful
+" Make the [{ keys useful
 " go to begging/end of current block
 nnoremap [[ [{
 nnoremap ]] ]}
@@ -365,7 +365,7 @@ let g:tagbar_hide_nonpublic = 1
 
 " }------------------------------- Functions --------------------------------{
 
-" close quickfix on leaving and NERDTree buffer when is the only one left
+" Close quickfix on leaving and NERDTree buffer when is the only one left
 function! CloseUnwanted()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
@@ -380,7 +380,7 @@ function! CloseUnwanted()
   endif
 endfunction
 
-" find function definition globally if there is a tags file
+" Find function definition globally if there is a tags file
 function! FindDefinition()
   try
     cscope find g <cword>
@@ -395,7 +395,7 @@ function! FindDefinition()
   endtry
 endfunction
 
-" add any cscope database in the current directory
+" Add any cscope database in the current directory
 function! LoadCscopeFile()
   let db = findfile("cscope.out", ".;")
   if (!empty(db))
