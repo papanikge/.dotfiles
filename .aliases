@@ -47,3 +47,5 @@ alias serve="python -m http.server 8080"
 # other tools
 alias mirror="wget --no-clobber --random-wait -krpE -e robots=off"
 alias ssh-password='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no'
+# C formatter
+alias clang-format="clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}\" -i"
