@@ -283,6 +283,7 @@ nnoremap <leader>dp :diffput<CR>
 
 " Easy edit. Useless because of ctrl-p but I'm used to them
 nnoremap <leader>eb :e ~/.bashrc<CR>
+nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
