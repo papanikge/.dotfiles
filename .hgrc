@@ -1,0 +1,29 @@
+[ui]
+username = George Papanikolaou <papanikge@ceid.upatras.gr>
+editor = vim --noplugin
+commitsubrepos = False
+
+[pager]
+pager = LESS='FRX' less
+
+[extensions]
+pager =
+color =
+fetch =
+shelve =
+record =
+histedit =
+graphlog =
+
+[alias]
+killitwithfire = revert --no-backup --all
+
+[diff]
+git = True
+unified = 5
+
+[email]
+from = George Papanikolaou <papanikge@ceid.upatras.gr>
+
+[bookmarks]
+track.current = True
