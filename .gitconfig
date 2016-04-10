@@ -13,7 +13,7 @@
     lineNumber = true
 [alias]
     zip       = archive --output latest.zip HEAD
-    pullr     = pull --recurse-submodules
+    pullr     = submodule foreach git pull
     news      = diff --stat HEAD@{1}..HEAD
     tree      = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
@@ -27,5 +27,3 @@
     autocorrect = 1
 [branch]
     autosetuprebase = always
-[url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
