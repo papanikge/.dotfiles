@@ -10,13 +10,16 @@ pager = LESS='FRX' less
 pager =
 color =
 fetch =
+strip =
 shelve =
 record =
 histedit =
 graphlog =
+patchbomb =
 
 [alias]
 killitwithfire = revert --no-backup --all
+undo = strip --keep -r .
 
 [diff]
 git = True
