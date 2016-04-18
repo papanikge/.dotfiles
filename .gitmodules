@@ -76,3 +76,6 @@
 [submodule "bundle/sneak"]
 	path = .vim/bundle/sneak
 	url = https://github.com/justinmk/vim-sneak
+[submodule ".vim/bundle/airline-themes"]
+	path = .vim/bundle/airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
