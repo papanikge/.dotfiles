@@ -120,7 +120,7 @@ set wildignore+=*.pyc                            " Python bytecode
 set colorcolumn=80
 
 if has("gui_running")
-  colorscheme jellybeans
+  colorscheme tomorrow-night
   if os == "Linux"
     set guifont=Menlo\ for\ Powerline\ 9
   else
