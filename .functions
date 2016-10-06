@@ -19,7 +19,7 @@ f () {
   find . -iname "*$1*" 2>/dev/null
 }
 
-# count all the files in a directory
+# count all the files in a directory down to "leaves" (traverse all)
 cf () {
   find $1 -name "*" -type f | wc -l
 }
