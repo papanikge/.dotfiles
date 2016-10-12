@@ -79,3 +79,9 @@
 [submodule ".vim/bundle/airline-themes"]
 	path = .vim/bundle/airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+[submodule ".vim/bundle/polyglot"]
+	path = .vim/bundle/polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule ".vim/bundle/gitgutter"]
+	path = .vim/bundle/gitgutter
+	url = https://github.com/airblade/vim-gitgutter
