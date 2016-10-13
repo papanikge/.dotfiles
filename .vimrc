@@ -34,7 +34,6 @@ set smartcase
 
 " New (>7.4) vim features. Hybrid number mode and smart line joining
 if v:version >= 704
-  set relativenumber
   set formatoptions+=j
 endif
 set number
@@ -80,6 +79,7 @@ set history=100
 
 " Hidden characters
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set list
 
 " Line margin when moving vertically
 set scrolloff=2
@@ -120,11 +120,11 @@ set wildignore+=*.pyc                            " Python bytecode
 set colorcolumn=80
 
 if has("gui_running")
-  colorscheme tomorrow-night
+  colorscheme onedark
   if os == "Linux"
     set guifont=Menlo\ for\ Powerline\ 9
   else
-    set guifont=Inconsolata\ for\ Powerline:h14
+    set guifont=Inconsolata\ for\ Powerline:h13
   endif
   set guioptions-=T
   set guioptions-=l
@@ -198,7 +198,7 @@ nnoremap gP O<ESC>"+p
 vnoremap <BS> "_d
 
 " More powerful gd shortcut
-nnoremap gd :call FindDefinition()<CR>
+nnoremap gd <C-]>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -298,6 +298,27 @@ cnoremap <m-f> <S-right>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null<CR>
 
+" Make tabs easier
+if has("gui_macvim")
+  " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
+  " the right side. Ctrl-Shift-Tab goes the other way.
+  noremap <C-Tab> :tabnext<CR>
+  noremap <C-S-Tab> :tabprev<CR>
+
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+  noremap <D-9> :tabn 9<CR>
+  " Command-0 goes to the last tab
+  noremap <D-0> :tablast<CR>
+endif
+
 " }---------------------------- Auto and plugins ----------------------------{
 
 " Commands to be ran on every buffer every time
@@ -358,9 +379,6 @@ let g:vim_markdown_folding_disabled = 1
 " Default browser
 let g:netrw_browsex_viewer= "chromium"
 
-" Don't show the indent lines by default
-let g:indentLine_enabled = 0
-
 " Tagbar show only public entries. (Toggle with 'h')
 let g:tagbar_hide_nonpublic = 1
 
@@ -379,21 +397,6 @@ function! CloseUnwanted()
     wincmd p
     close
   endif
-endfunction
-
-" Find function definition globally if there is a tags file
-function! FindDefinition()
-  try
-    cscope find g <cword>
-  catch
-    try
-      tag
-      normal zt
-    catch
-      normal gD
-      nohlsearch
-    endtry
-  endtry
 endfunction
 
 " Add any cscope database in the current directory
