@@ -1,6 +1,6 @@
 [user]
-    name  = George 'papanikge' Papanikolaou
-    email = g3orge.app@gmail.com
+    name  = George Papanikolaou
+    email = gpapanikolaou@skroutz.gr
 [github]
     user = papanikge
 [color]
@@ -19,7 +19,10 @@
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
     root      = rev-parse --show-toplevel
     yesterday = log --since '1 day ago' --oneline
-    word      = diff --word-diff
+    d         = diff
+    dc        = diff --cached
+    dw        = diff --word-diff
+    dn        = diff --name-only
     fml       = reset --hard
 [sendemail]
     smtpserver = ~/.dotfiles/bin/msmtpq
@@ -28,4 +31,4 @@
 [branch]
     autosetuprebase = always
 [url "git@github.skroutz.gr:"]
-	insteadOf = skroutz:
+    insteadOf = skroutz:

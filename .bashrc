@@ -12,10 +12,6 @@ if [[ `uname -s` == 'Darwin' ]]; then
   PATH=/usr/local/bin:$PATH
   MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 fi
-# ...adding rubygems and cabal tools
-PATH=$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin:~/.cabal/bin
-# ...and my own bin folder full of script goodies
-PATH=$PATH:~/.dotfiles/bin
 
 # General
 export EDITOR=vim
@@ -67,6 +63,7 @@ if [[ `uname -s` == 'Darwin' ]]; then
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
   }
   export DOCKER_HOST=tcp://192.168.59.103:2375
+  ulimit -n 1024
 else
   export PLATFORM=linux
   export CLICOLOR=1
