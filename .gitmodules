@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/gitgutter"]
 	path = .vim/bundle/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".vim/bundle/rails"]
+	path = .vim/bundle/rails
+	url = https://github.com/tpope/vim-rails
