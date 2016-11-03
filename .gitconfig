@@ -15,7 +15,7 @@
     zip       = archive --output latest.zip HEAD
     pullr     = submodule foreach git pull
     news      = diff --stat HEAD@{1}..HEAD
-    tree      = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --
+    tree      = !git log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' -- | head
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
     root      = rev-parse --show-toplevel
     yesterday = log --since '1 day ago' --oneline
