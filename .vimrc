@@ -161,7 +161,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Make pasting smarter in visual mode
-vnoremap p p:let @"=@0<CR>
+vnoremap p "_dP
 
 " Use the Goddamn HJKL keys
 nnoremap <up> <nop>

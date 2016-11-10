@@ -12,6 +12,7 @@ alias g="gvim ."
 alias bu="bundle"
 alias be="bundle exec"
 alias pan="ssh wowbagger@panopticon"
+alias stg="ssh wowbagger@vms.skroutz.gr"
 alias dirdiff="diff -b -r -w"
 alias gdb="gdb -q" # TODO: figure out find how to add this to .gdbinit
 alias dmesg="dmesg --color --ctime"
