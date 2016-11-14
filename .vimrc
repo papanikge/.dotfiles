@@ -163,12 +163,6 @@ vnoremap > >gv
 " Make pasting smarter in visual mode
 vnoremap p "_dP
 
-" Use the Goddamn HJKL keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -198,7 +192,7 @@ nnoremap gP O<ESC>"+p
 vnoremap <BS> "_d
 
 " More powerful gd shortcut
-nnoremap gd <C-]>
+nnoremap gD <C-]>
 
 " Stay in place when hitting *
 nnoremap * *N
