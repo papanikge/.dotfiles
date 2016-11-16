@@ -97,3 +97,6 @@
 [submodule ".vim/bundle/utilsnips"]
 	path = .vim/bundle/utilsnips
 	url = https://github.com/SirVer/ultisnips
+[submodule ".vim/bundle/snippets"]
+	path = .vim/bundle/snippets
+	url = https://github.com/honza/vim-snippets
