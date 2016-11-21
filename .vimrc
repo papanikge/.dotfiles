@@ -178,7 +178,7 @@ nnoremap b B
 nnoremap Y y$
 
 " Just use Q to quit
-noremap Q :q<CR>
+noremap Q :bd<CR>
 
 " Use K to split lines (credits to Steve Losh)
 nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
@@ -346,6 +346,10 @@ cabbrev h vert bo help
 " Powerline with the light-weight airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#branch#displayed_head_limit = 8
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Ctrl-P
 let g:ctrlp_extensions = ['tag']
