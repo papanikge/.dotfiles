@@ -55,9 +55,6 @@
 [submodule "bundle/indentLine"]
 	path = .vim/bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine
-[submodule "bundle/sexp"]
-	path = .vim/bundle/sexp
-	url = https://github.com/guns/vim-sexp
 [submodule "bundle/sleuth"]
 	path = .vim/bundle/sleuth
 	url = https://github.com/tpope/vim-sleuth/
