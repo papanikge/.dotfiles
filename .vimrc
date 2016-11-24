@@ -124,7 +124,7 @@ if has("gui_running")
   if os == "Linux"
     set guifont=Menlo\ for\ Powerline\ 9
   else
-    set guifont=Inconsolata\ for\ Powerline:h13
+    set guifont=Inconsolata\ for\ Powerline:h14
   endif
   set guioptions-=T
   set guioptions-=l
@@ -140,8 +140,6 @@ endif
 " Folding
 set foldenable
 set foldlevelstart=99
-set foldmethod=syntax               " syntax-based (and indent for python)
-autocmd FileType python,haskell setlocal foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <Space> za
 vnoremap <Space> za
@@ -296,8 +294,8 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 if has("gui_macvim")
   " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
   " the right side. Ctrl-Shift-Tab goes the other way.
-  noremap <C-Tab> :tabnext<CR>
-  noremap <C-S-Tab> :tabprev<CR>
+  noremap <C-Tab> :bnext<CR>
+  noremap <C-S-Tab> :bprev<CR>
 
   " Switch to specific tab numbers with Command-number
   noremap <D-1> :tabn 1<CR>
