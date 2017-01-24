@@ -97,7 +97,7 @@ set smarttab
 set ttimeoutlen=50
 
 " Look up the tree for tags file
-set tags=./tags;/
+set tags=/Users/papanikge/yogurt/.tags
 
 " Spelling languages
 set spelllang=en,el
@@ -120,7 +120,7 @@ set wildignore+=*.pyc                            " Python bytecode
 set colorcolumn=80
 
 if has("gui_running")
-  colorscheme onedark
+  colorscheme jellybeans
   if os == "Linux"
     set guifont=Menlo\ for\ Powerline\ 9
   else
@@ -136,16 +136,6 @@ if has("gui_running")
 else
   colorscheme jellybeans
 endif
-
-" Folding
-set foldenable
-set foldlevelstart=99
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-nnoremap <Space> za
-vnoremap <Space> za
-nnoremap zo zR
-nnoremap zc zM
-nnoremap zO zCzO
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -178,8 +168,12 @@ nnoremap Y y$
 " Just use Q to quit
 noremap Q :bd<CR>
 
-" Use K to split lines (credits to Steve Losh)
-nnoremap K i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
+" remap join-n-split for usefulness
+nnoremap H J
+nnoremap J 10j
+nnoremap K 10k
+" Use L to split lines (credits to Steve Losh)
+nnoremap L i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
 " System clipboard (linux tested only)
 nnoremap gy "+y
@@ -377,6 +371,9 @@ let g:netrw_browsex_viewer= "chromium"
 
 " Tagbar show only public entries. (Toggle with 'h')
 let g:tagbar_hide_nonpublic = 1
+
+" Don't fucking hide things from me god dammit
+let g:vim_markdown_conceal = 0
 
 " }------------------------------- Functions --------------------------------{
 
