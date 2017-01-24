@@ -44,7 +44,7 @@ complete -cf man
 shopt -s histappend
 shopt -s cdspell
 export HISTCONTROL=ignoreboth
-export HISTSIZE=10000
+export HISTSIZE=20000
 export HISTIGNORE='ls:ll:la:[fb]g:clear:history:h'
 export HISTTIMEFORMAT='%F %T '
 

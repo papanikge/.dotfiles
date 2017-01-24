@@ -24,6 +24,7 @@
     dw        = diff --word-diff
     dn        = diff --name-only
     fml       = reset --hard
+    edit      = !git rebase -i $(git merge-base head master)
 [sendemail]
     smtpserver = ~/.dotfiles/bin/msmtpq
 [help]
@@ -32,3 +33,5 @@
     autosetuprebase = always
 [url "git@github.skroutz.gr:"]
     insteadOf = skroutz:
+[rebase]
+    autosquash = true

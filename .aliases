@@ -9,29 +9,38 @@ alias c="chromium"
 alias du="du -hs"
 alias df="df -hT"
 alias g="gvim ."
-alias bu="bundle"
-alias be="bundle exec"
-alias pan="ssh wowbagger@panopticon"
-alias stg="ssh wowbagger@vms.skroutz.gr"
 alias dirdiff="diff -b -r -w"
 alias gdb="gdb -q" # TODO: figure out find how to add this to .gdbinit
 alias dmesg="dmesg --color --ctime"
+alias bu="bundle"
+alias be="bundle exec"
+alias rs="bundle exec rspec"
+
 # Better version of rsync for humans
 alias hcp="rsync -WavP --human-readable --progress"
+
 # VMs
 alias vu="pushd ~/yogurt-test-box/ && vagrant up && popd"
 alias vh="pushd ~/yogurt-test-box/ && vagrant halt && popd"
 alias qemu="sudo qemu-system-x86_64 -enable-kvm -redir tcp:2222::22 -vga std"
 alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=2,sockets=1 -vga vmware"
+
 # git stuff
 alias gst="git status -sb"
 alias gbr="git branch"
+alias gf="git-find-branch" # fuzzy. thanks @avgerinos
 alias gco="git checkout"
+
 # ssh & vm stuff
 alias ceid="ssh papanikge@diogenis.ceid.upatras.gr"
-alias linux="ssh -p 2222 papanikge@127.0.0.1"
-alias lup="VBoxManage startvm Palmyra --type headless"
-alias ldown="VBoxManage controlvm Palmyra poweroff"
+
+# for skroutz
+alias pan="ssh wowbagger@panopticon"
+alias panopticon_scrooge="ssh wowbagger@panopticon.scrooge.skroutz.gr"
+alias stg="ssh wowbagger@vms.skroutz.gr"
+alias earth="ssh wowbagger@app.earth.st.skroutz.gr"
+alias earthscrooge2="ssh wowbagger@app.earthscrooge2.st.skroutz.gr"
+
 # IP addresses
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 if [[ `uname -s` == 'Darwin' ]]; then
@@ -39,22 +48,29 @@ if [[ `uname -s` == 'Darwin' ]]; then
 else
   alias localip="ifconfig"
 fi
+
 # vim in the cli should not load bells and whistles
 alias vim='vim -c "colo default" --noplugin'
+
 # command line pastebin using sprunge
 alias pastebin="curl -F 'sprunge=<-' http://sprunge.us"
+
 # python helpers
 alias nose="nosetests3"
 alias activate='source $(find . -name activate)'
+
 # valgrind helpers
 alias vmem="valgrind --tool=cachegrind"
 alias vthreads="valgrind --tool=helgrind --verbose"
 alias vcalls="valgrind --tool=callgrind --branch-sim=yes --cacheuse=yes --verbose"
 alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --num-callers=20 --track-fds=yes"
+
 # network
 alias serve="python -m http.server 8080"
+
 # other tools
 alias mirror="wget --no-clobber --random-wait -krpE -e robots=off"
 alias ssh-password='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no'
+
 # C formatter
 alias clang-format="clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}\" -i"
