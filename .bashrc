@@ -55,6 +55,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
 
+# Docker (for mac)
+eval $(docker-machine env)
+
 # }------------------------------- PLATFORMS ---------------------------------{
 
 if [[ `uname -s` == 'Darwin' ]]; then
