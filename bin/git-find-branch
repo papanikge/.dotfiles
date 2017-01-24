@@ -1,0 +1,15 @@
+#!/bin/sh
+# Author: Aggelos Avgerinos <evaggelos.avgerinos@gmail.com>
+# Hacked by: papanikge
+
+if [ -z $2 ]; then
+  remote=origin
+else
+  remote=$2
+fi
+
+if [ -z $1 ]; then
+  `git branch | grep -v HEAD | sed "s/$remote\///" | pick | xargs git checkout`
+else
+  `git branch -a | grep $1 | grep -v HEAD | sed "s/$remote\///" | pick | xargs git checkout`
+fi
