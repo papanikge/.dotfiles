@@ -149,7 +149,7 @@ function set_prompt_symbol () {
 }
 
 # Determine active Python virtualenv details.
-function set_virtualenv () {
+function _set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
       PYTHON_VIRTUALENV=""
   else
@@ -161,6 +161,12 @@ function _ruby_version() {
   echo "$(tput setaf 8)[$(ruby --version | cut -d' ' -f1,2)]"
 }
 
+function _set_screen () {
+  if test -z "$STY" ; then
+    echo "[$STY] "
+  fi
+}
+
 # Set the full bash prompt.
 function set_bash_prompt () {
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
@@ -168,7 +174,10 @@ function set_bash_prompt () {
   set_prompt_symbol $?
 
   # Set the PYTHON_VIRTUALENV variable.
-  set_virtualenv
+  _set_virtualenv
+
+  # Am I in a screen?
+  # _set_screen
 
   # Set the BRANCH variable.
   if is_git_repository ; then
