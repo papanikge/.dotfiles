@@ -20,8 +20,8 @@ alias rs="bundle exec rspec"
 alias hcp="rsync -WavP --human-readable --progress"
 
 # VMs
-alias vu="pushd ~/yogurt-test-box/ && vagrant up && popd"
-alias vh="pushd ~/yogurt-test-box/ && vagrant halt && popd"
+alias vu="pushd ~/skroutz/yogurt-test-box/ && vagrant up && popd"
+alias vh="pushd ~/skroutz/yogurt-test-box/ && vagrant halt && popd"
 alias qemu="sudo qemu-system-x86_64 -enable-kvm -redir tcp:2222::22 -vga std"
 alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=2,sockets=1 -vga vmware"
 
