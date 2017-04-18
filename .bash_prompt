@@ -1,29 +1,4 @@
-#!/bin/bash
-#
-# DESCRIPTION:
-#
-#   Set the bash prompt according to:
-#    * the active virtualenv
-#    * the branch/status of the current Git, Mercurial or Subversion repository
-#    * the return value of the previous command
-#    * the fact you just came from Windows and are used to having newlines in
-#      your prompts.
-#
-# USAGE:
-#
-#   1. Save this file as ~/.bash_prompt
-#   2. Add the following line to the end of your ~/.bashrc or ~/.bash_profile:
-#        . ~/.bash_prompt
-#
-# LINEAGE:
-#
-#   Based on work by woods
-#
-#   	https://gist.github.com/31967
-#
-#   and jcook793
-#
-#	https://gist.github.com/2394150
+# Based on work by woods https://gist.github.com/31967
 
 # The various escape codes that we can use to color our prompt.
         RED="\[\033[0;31m\]"
@@ -149,35 +124,31 @@ function set_prompt_symbol () {
 }
 
 # Determine active Python virtualenv details.
-function _set_virtualenv () {
-  if test -z "$VIRTUAL_ENV" ; then
-      PYTHON_VIRTUALENV=""
+function _set_env () {
+  if [[ $TERM == "screen" ]]; then
+    SCREEN="$(echo $STY | cut -d "." -f 2)"
+    DIR_ENV="${RED}[screen: $SCREEN] "
   else
-      PYTHON_VIRTUALENV="${BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+    if test -z "$VIRTUAL_ENV" ; then
+        DIR_ENV=""
+    else
+        DIR_ENV="${BLUE}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+    fi
   fi
 }
 
 function _ruby_version() {
-  echo "$(tput setaf 8)[$(ruby --version | cut -d' ' -f1,2)]"
-}
-
-function _set_screen () {
-  if test -z "$STY" ; then
-    echo "[$STY] "
-  fi
+  echo "$(tput setaf 0)[$(ruby --version | cut -d' ' -f1,2)]" # use to be 8
 }
 
 # Set the full bash prompt.
-function set_bash_prompt () {
+function _set_bash_prompt () {
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
   # return value of the last command.
   set_prompt_symbol $?
 
   # Set the PYTHON_VIRTUALENV variable.
-  _set_virtualenv
-
-  # Am I in a screen?
-  # _set_screen
+  _set_env
 
   # Set the BRANCH variable.
   if is_git_repository ; then
@@ -191,9 +162,9 @@ function set_bash_prompt () {
   fi
 
   # Set the bash prompt variable.
-  PS1="${PROMPT_SYMBOL} ${COLOR_NONE}in ${PYTHON_VIRTUALENV}${GREEN}${BLUE}\w${COLOR_NONE} ${BRANCH}$(_ruby_version)
+  PS1="${PROMPT_SYMBOL} ${COLOR_NONE}in ${DIR_ENV}${BLUE}\w${COLOR_NONE} ${BRANCH}$(_ruby_version)
 ${COLOR_NONE}\$ "
 }
 
 # Tell bash to execute this function just before displaying its prompt.
-PROMPT_COMMAND=set_bash_prompt
+PROMPT_COMMAND=_set_bash_prompt
