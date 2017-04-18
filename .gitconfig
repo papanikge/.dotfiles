@@ -13,6 +13,7 @@
     lineNumber = true
 [alias]
     co        = checkout
+    br        = branch
     zip       = archive --output latest.zip HEAD
     pullsub   = submodule foreach git pull
     news      = diff --stat HEAD@{1}..HEAD

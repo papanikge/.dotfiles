@@ -50,9 +50,6 @@ set nowrapscan
 " Don't wrap
 set nowrap
 
-" Set the terminal's title
-set title
-
 " Don't redraw while executing macros
 set lazyredraw
 
@@ -113,6 +110,9 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
+
+" truecolor support
+set termguicolors
 
 " }------------------------------- Appearance -------------------------------{
 
@@ -374,6 +374,9 @@ let g:tagbar_hide_nonpublic = 1
 
 " Don't fucking hide things from me god dammit
 let g:vim_markdown_conceal = 0
+
+" Case insensitive sneak
+let g:sneak#use_ic_scs = 1
 
 " }------------------------------- Functions --------------------------------{
 

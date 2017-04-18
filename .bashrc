@@ -3,9 +3,7 @@
 # Bash shell configuration. Supposed to work on both mac and linux
 #
 
-#
-# PATH modifications
-#
+# Basic PATH modifications
 if [[ `uname -s` == 'Darwin' ]]; then
   # god damn it apple
   PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
@@ -27,11 +25,6 @@ if [[ $(echo $BASH_VERSION | cut -d. -f1) -ge 4 ]]; then
   shopt -s nullglob
 fi
 
-# enable z before PROMPT_COMMAND modifications
-export PROMPT_COMMAND=
-source ~/.dotfiles/bin/z.sh
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
 # Completions
 source ~/.dotfiles/bin/.git-completion.sh
 complete -cf which
@@ -44,34 +37,29 @@ complete -cf man
 shopt -s histappend
 shopt -s cdspell
 export HISTCONTROL=ignoreboth
-export HISTSIZE=20000
+export HISTSIZE=30000
 export HISTIGNORE='ls:ll:la:[fb]g:clear:history:h'
 export HISTTIMEFORMAT='%F %T '
 
 # Don't mess with my prompt, virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# Perl CPAN (for local lib)
-PERL_MB_OPT="--install_base \"~/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=~/perl5"; export PERL_MM_OPT;
-
 # Docker (for mac)
-eval $(docker-machine env)
+if [[ `uname -s` == 'Darwin' ]]; then
+  eval $(docker-machine env)
+fi
+
+# Jupyter/ipython/itermplot
+export MPLBACKEND="module://itermplot"
+export ITERMPLOT=rv
 
 # }------------------------------- PLATFORMS ---------------------------------{
 
 if [[ `uname -s` == 'Darwin' ]]; then
   command -v sha1sum > /dev/null || alias sha1sum="shasum"
-  alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-  # (OSX) Change working directory to the top-most Finder window location (short for "cdfinder")
-  cdf() {
-    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-  }
   ulimit -n 1024
 else
-  export PLATFORM=linux
   export CLICOLOR=1
-  alias afk='echo "not yet implemented"'
   alias open="xdg-open"
   alias feh="feh -d -F"
   # pacman helpers
@@ -81,10 +69,6 @@ else
   # screen management
   alias dualm="xrandr --output LVDS1 --auto --output DP1 --auto --right-of LVDS1"
   alias singlem="xrandr --output LVDS1 --primary --auto --output DP1 --off"
-  # I miss this OSX command. Thank you reddit.
-  say () {
-    mplayer -really-quiet "http://translate.google.com/translate_tts?tl=en&q=$*";
-  }
 fi
 
 # }------------------------------- FUNCTIONS ---------------------------------{
@@ -94,6 +78,10 @@ source ~/.functions
 # }--------------------------------- PROMPT ----------------------------------{
 
 source ~/.bash_prompt
+
+# enable z after PROMPT_COMMAND modifications
+export PROMPT_COMMAND="$PROMPT_COMMAND ; history -a;"
+source ~/.dotfiles/bin/z.sh
 
 # }-------------------------------- ALIASES ----------------------------------{
 
