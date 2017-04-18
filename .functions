@@ -61,3 +61,33 @@ calc() {
   fi
   printf "\n";
 }
+
+# skroutz helpers
+mercury () {
+  cd /Users/papanikge/skroutz/mercury
+  bundle exec rails server -p 1337
+}
+
+yogurt () {
+  YOGURT_FLAVOR=skroutz YOGURT_DATABASE=helmet bundle exec rails server --pid $YOGURT_PATH/tmp/pids/skroutz.pid -p 3000
+}
+
+yogurt_alve () {
+  YOGURT_FLAVOR=alve YOGURT_DATABASE=alve_production bundle exec rails server --pid $YOGURT_PATH/tmp/pids/alve.pid -p 3001
+}
+
+yogurt_scrooge () {
+  YOGURT_FLAVOR=scrooge YOGURT_DATABASE=scrooge_production bundle exec rails server --pid $YOGURT_PATH/tmp/pids/scrooge.pid -p 3002
+}
+
+skroutz_console () {
+  YOGURT_FLAVOR=skroutz YOGURT_DATABASE=helmet bundle exec rails console
+}
+
+alve_console () {
+  YOGURT_FLAVOR=alve YOGURT_DATABASE=alve_production bundle exec rails console
+}
+
+scrooge_console () {
+  YOGURT_FLAVOR=scrooge YOGURT_DATABASE=scrooge_production bundle exec rails console
+}

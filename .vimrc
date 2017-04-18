@@ -94,7 +94,7 @@ set smarttab
 set ttimeoutlen=50
 
 " Look up the tree for tags file
-set tags=/Users/papanikge/yogurt/.tags
+set tags=/Users/papanikge/skroutz/yogurt/.tags
 
 " Spelling languages
 set spelllang=en,el

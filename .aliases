@@ -38,9 +38,11 @@ alias ceid="ssh papanikge@diogenis.ceid.upatras.gr"
 # for skroutz
 alias pan="ssh wowbagger@panopticon"
 alias panopticon_scrooge="ssh wowbagger@panopticon.scrooge.skroutz.gr"
+alias panopticon_alve="ssh wowbagger@panopticon.alve.skroutz.gr"
 alias stg="ssh wowbagger@vms.skroutz.gr"
 alias earth="ssh wowbagger@app.earth.st.skroutz.gr"
 alias earthscrooge2="ssh wowbagger@app.earthscrooge2.st.skroutz.gr"
+alias earthalve2="ssh wowbagger@app.earthalve2.st.skroutz.gr"
 
 # IP addresses
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
