@@ -1,6 +1,6 @@
 # Better defaults
 alias ls="ls --color"
-alias ll="clear && ls -lG"
+alias ll="clear && ls -lhGS"
 alias la="ls -A"
 alias ls1="find . -name *"
 alias cfgrep='grep -v "^[[:space:]]*($|#)"' # for config files
@@ -16,7 +16,7 @@ alias dmesg="dmesg --color --ctime"
 # Bundler
 alias bu="bundle"
 alias be="bundle exec"
-alias rs="bundle exec rspec --color"
+alias rs="bundle exec rspec --color --drb --drb-port 8989 --format progress"
 
 # Better version of rsync for humans
 alias hcp="rsync -WavP --human-readable --progress"
@@ -32,17 +32,12 @@ alias gst="git status -sb"
 alias gbr="git branch"
 alias gf="git-find-branch" # fuzzy. thanks @avgerinos
 
-# ssh & vm stuff
-alias ceid="ssh papanikge@diogenis.ceid.upatras.gr"
-
 # for skroutz
+alias stg="ssh wowbagger@vms.skroutz.gr"
 alias pan="ssh wowbagger@panopticon"
 alias panopticon_scrooge="ssh wowbagger@panopticon.scrooge.skroutz.gr"
 alias panopticon_alve="ssh wowbagger@panopticon.alve.skroutz.gr"
-alias stg="ssh wowbagger@vms.skroutz.gr"
-alias earth="ssh wowbagger@app.earth.st.skroutz.gr"
-alias earthscrooge2="ssh wowbagger@app.earthscrooge2.st.skroutz.gr"
-alias earthalve2="ssh wowbagger@app.earthalve2.st.skroutz.gr"
+alias bufodb="mysql -u root -p -h bufo3.hq.skroutz.gr -P 25620 helmet -p"
 
 # IP addresses
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -73,3 +68,10 @@ alias ssh-password='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no
 
 # C formatter
 alias clang-format="clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}\" -i"
+
+# bytes formatter
+alias bytes="numfmt --to=iec"
+
+# docker
+alias last-container="docker ps -l -q"
+alias last-image="docker image ls -q | head -1"
