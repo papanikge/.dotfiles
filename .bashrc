@@ -26,12 +26,18 @@ if [[ $(echo $BASH_VERSION | cut -d. -f1) -ge 4 ]]; then
 fi
 
 # Completions
-source ~/.dotfiles/bin/.git-completion.sh
-complete -cf which
-complete -cf watch
-complete -cf sudo
-complete -cf type
-complete -cf man
+if [[ `uname -s` == 'Darwin' ]]; then
+  for file in /usr/local/etc/bash_completion.d/*; do
+    source $file;
+  done
+  complete -cf which
+  complete -cf watch
+  complete -cf sudo
+  complete -cf type
+  complete -cf man
+else
+  source ~/.dotfiles/bin/.git-completion.sh
+fi
 
 # Bash history modifications
 shopt -s histappend
