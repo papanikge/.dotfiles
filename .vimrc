@@ -93,8 +93,9 @@ set smarttab
 " Make Esc work faster
 set ttimeoutlen=50
 
-" Look up the tree for tags file
-set tags=/Users/papanikge/skroutz/yogurt/.tags
+" Look up the tree for tags file, but first look here for a .tags
+" Fuck this syntax
+set tags=.tags,./tags;/
 
 " Spelling languages
 set spelllang=en,el
