@@ -11,108 +11,6 @@ LIGHT_GREEN="\[\033[0;32m\]"
  LIGHT_GRAY="\[\033[0;37m\]"
  COLOR_NONE="\[\e[0m\]"
 
-# Detect whether the current directory is a git repository.
-function is_git_repository {
-  git branch > /dev/null 2>&1
-}
-
-# Detect whether the current directory is a Mercurial repository.
-function is_mercurial_repository {
-  branch=$(hg branch 2>/dev/null)
-  if [ -n "${branch}" ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-
-# Detect whether the current directory is a Subversion repository.
-function is_subversion_repository {
-  test -d .svn
-}
-
-# Determine the branch/state information for this git repository.
-function set_git_branch {
-  # Capture the output of the "git status" command.
-  git_status="$(git status 2> /dev/null)"
-
-  # Set color based on clean/staged/dirty.
-  if [[ ${git_status} =~ "working tree clean" ]]; then
-    state="${GREEN}"
-  elif [[ ${git_status} =~ "Changes to be committed" ]]; then
-    state="${RED}"
-  else
-    state="${YELLOW}"
-  fi
-
-  # Set arrow icon based on status against remote.
-  remote_pattern="Your branch is (.*) of"
-  if [[ ${git_status} =~ ${remote_pattern} ]]; then
-    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-      remote=" ↑"
-    else
-      remote=" ↓"
-    fi
-  else
-    remote=""
-  fi
-  diverge_pattern="Your branch and (.*) have diverged"
-  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-    remote=" ↕"
-  fi
-
-  # Get the name of the branch.
-  branch_pattern="^On branch ([^${IFS}]*)"
-  if [[ ${git_status} =~ ${branch_pattern} ]]; then
-    branch=${BASH_REMATCH[1]}
-  fi
-
-  # Set the final branch string.
-  BRANCH="on ${state}(git)${branch}${remote}${COLOR_NONE} "
-}
-
-# Determine the branch/state information for this Mercurial repository.
-function set_mercurial_branch {
-  # Get the name of the branch.
-  branch=$(hg branch 2>/dev/null)
-  # Default state
-  state="${GREEN}"
-
-  if [ -n "${branch}" ]; then
-    branch="${branch}"
-
-    # Capture the output of the "hg status" command.
-    hg_status="$(hg status | wc -l)"
-
-    # Set color based on clean/staged/dirty.
-    if [ "${hg_status}" -ne "0" ]; then
-      state="${RED}"
-    fi
-  fi
-
-  # Set the final branch string.
-  BRANCH="on ${state}(hg)${branch}${COLOR_NONE} "
-}
-
-# Determine the branch informatioin for this Subversion repository. No support
-# for svn status, since that needs to hit the remote repository.
-function set_subversion_branch {
-  # Capture the output of the "svn info" command
-  svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
-
-  # Get the name of the branch.
-  branch_pattern="^URL: .*/(branches|tags)/([^/]+)"
-  trunk_pattern="^URL: .*/trunk(/.*)?$"
-  if [[ ${svn_info} =~ $branch_pattern ]]; then
-    branch=${BASH_REMATCH[2]}
-  elif [[ ${svn_info} =~ $trunk_pattern ]]; then
-    branch='trunk'
-  fi
-
-  # Set the final branch string.
-  BRANCH="on (svn)${branch} "
-}
-
 # Return the prompt symbol to use, colorized based on the return value of the
 # previous command.
 function set_prompt_symbol () {
@@ -141,30 +39,9 @@ function _ruby_version() {
   echo "$(tput setaf 0)[$(ruby --version | cut -d' ' -f1,2)]" # use to be 8
 }
 
-# Set the full bash prompt.
-function _set_bash_prompt () {
-  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
-  # return value of the last command.
-  set_prompt_symbol $?
-
-  # Set the PYTHON_VIRTUALENV variable.
-  _set_env
-
-  # Set the BRANCH variable.
-  if is_git_repository ; then
-    set_git_branch
-  elif is_subversion_repository ; then
-    set_subversion_branch
-  elif is_mercurial_repository ; then
-    set_mercurial_branch
-  else
-    BRANCH=''
-  fi
-
-  # Set the bash prompt variable.
-  PS1="${PROMPT_SYMBOL} ${COLOR_NONE}in ${DIR_ENV}${BLUE}\w${COLOR_NONE} ${BRANCH}$(_ruby_version)
-${COLOR_NONE}\$ "
-}
-
 # Tell bash to execute this function just before displaying its prompt.
-PROMPT_COMMAND=_set_bash_prompt
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWUPSTREAM="auto"
+export PROMPT_COMMAND='set_prompt_symbol $?; _set_env; history -a; __git_ps1 "${PROMPT_SYMBOL} ${COLOR_NONE}in ${DIR_ENV}$(tput setaf 05)\h: ${BLUE}\w${COLOR_NONE}" " $(_ruby_version)${COLOR_NONE} \n$ "'
