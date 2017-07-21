@@ -79,7 +79,10 @@ fi
 
 # }------------------------------- FUNCTIONS ---------------------------------{
 
-source ~/.functions
+# Skroutz specific
+export YOGURT_PATH="/Users/papanikge/skroutz/yogurt/"
+export DISABLE_SPRING=true
+source ~/.skroutz-helpers
 
 # }--------------------------------- PROMPT ----------------------------------{
 
@@ -110,5 +113,12 @@ if [[ `uname -s` == 'Darwin' ]]; then
   export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 fi
 
-# Skroutz specific
-export YOGURT_PATH="/Users/papanikge/skroutz/yogurt/"
+# history helper
+h () {
+  history | fgrep -i $1 | tail
+}
+
+# flexible find in cwd
+f () {
+  find . -iname "*$1*" 2>/dev/null
+}

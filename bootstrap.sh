@@ -31,7 +31,7 @@ ln -s .dotfiles/.mutt .
 ln -s .dotfiles/.muttrc .
 ln -s .dotfiles/.bashrc .
 ln -s .dotfiles/.bash_prompt .
-ln -s .dotfiles/.functions .
+ln -s .dotfiles/.skroutz-helpers .
 ln -s .dotfiles/.aliases .
 ln -s .dotfiles/.bash_profile .
 ln -s .dotfiles/.zshrc .
