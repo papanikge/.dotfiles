@@ -5,7 +5,6 @@ alias la="ls -A"
 alias ls1="find . -name *"
 alias cfgrep='grep -v "^[[:space:]]*($|#)"' # for config files
 alias p="pgrep -l"
-alias c="chromium"
 alias du="du -hs"
 alias df="df -hT"
 alias g="gvim ."
@@ -34,21 +33,7 @@ alias gf="git-find-branch" # fuzzy. thanks @avgerinos
 
 # for skroutz
 alias stg="ssh wowbagger@vms.skroutz.gr"
-alias pan="ssh wowbagger@panopticon"
-alias panopticon_scrooge="ssh wowbagger@panopticon.scrooge.skroutz.gr"
-alias panopticon_alve="ssh wowbagger@panopticon.alve.skroutz.gr"
-alias bufodb="mysql -u root -p -h bufo3.hq.skroutz.gr -P 25620 helmet -p"
-
-# IP addresses
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-if [[ `uname -s` == 'Darwin' ]]; then
-  alias localip="ipconfig getifaddr en1"
-else
-  alias localip="ifconfig"
-fi
-
-# command line pastebin using sprunge
-alias pastebin="curl -F 'sprunge=<-' http://sprunge.us"
+alias bufodb="mysql -u root -p -h bufo3.hq.skroutz.gr -P 25620 marvin_production -p"
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -59,19 +44,6 @@ alias vthreads="valgrind --tool=helgrind --verbose"
 alias vcalls="valgrind --tool=callgrind --branch-sim=yes --cacheuse=yes --verbose"
 alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --num-callers=20 --track-fds=yes"
 
-# network
-alias serve="python -m http.server 8080"
-
-# other tools
-alias mirror="wget --no-clobber --random-wait -krpE -e robots=off"
-alias ssh-password='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no'
-
-# C formatter
-alias clang-format="clang-format -style=\"{BasedOnStyle: llvm, IndentWidth: 4, AllowShortFunctionsOnASingleLine: None, KeepEmptyLinesAtTheStartOfBlocks: false}\" -i"
-
-# bytes formatter
-alias bytes="numfmt --to=iec"
-
-# docker
+# docker, maybe dli, dlc(?)
 alias last-container="docker ps -l -q"
 alias last-image="docker image ls -q | head -1"

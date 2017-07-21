@@ -16,8 +16,9 @@ export EDITOR=vim
 export PAGER="less -iw"
 export MANPAGER=$PAGER
 
-# Ruby
+# env handlers
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 # Globbing settings, try to emulate zsh. Maybe I should switch to it.
 if [[ $(echo $BASH_VERSION | cut -d. -f1) -ge 4 ]]; then
