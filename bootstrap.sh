@@ -1,29 +1,12 @@
-#!/bin/bash
-
-#
-# George 'papanikge' Papanikolaou 2014
-# bootstraping script for a new system
-#
-
 # let's remove the previous versions first
 rm ../.bashrc
 rm ../.bash_profile
 
-# ok, let's go with some basic actions and installations
-if [[ `uname -s` == 'Darwin' ]]; then
-  ./os-x-packages.sh
-else
-  ./linux-packages.sh
-fi
+# [Obsoletes] password-sensitive files
+# scp papanikge@diogenis.ceid.upatras.gr:.irc.conf .weechat/irc.conf
+# scp papanikge@diogenis.ceid.upatras.gr:.offlineimaprc .offlineimaprc
+# scp papanikge@diogenis.ceid.upatras.gr:.msmtp-ceid.gpg .msmtp-ceid.gpg
 
-git submodule update --init
-
-# pull password-sensitive files
-scp papanikge@diogenis.ceid.upatras.gr:.irc.conf .weechat/irc.conf
-scp papanikge@diogenis.ceid.upatras.gr:.offlineimaprc .offlineimaprc
-scp papanikge@diogenis.ceid.upatras.gr:.msmtp-ceid.gpg .msmtp-ceid.gpg
-
-# let's connect them
 cd
 ln -s .dotfiles/.vim .
 ln -s .dotfiles/.vimrc .
