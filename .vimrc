@@ -26,14 +26,15 @@ Plug 'tpope/vim-rails',   { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-ragtag',  { 'for': 'eruby' }
 Plug 'tpope/vim-unimpaired'
+Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'kien/rainbow_parentheses.vim', { 'on': 'RainbowParenthesesActivate' }
 Plug 'scrooloose/nerdtree',          { 'on': 'NERDTreeToggle' }
 Plug 'mbbill/undotree',              { 'on': 'UndotreeToggle' }
+" Plug 'michaeljsmith/vim-indent-object'
 " Plug 'PeterRincker/vim-argumentative'
 " Plug 'terryma/vim-expand-region'
 " Plug 'junegunn/vim-easy-align'
@@ -115,7 +116,7 @@ set scrolloff=2
 " Show the status line all the time
 set laststatus=2
 
-" Tabs. With spaces
+" Tabs. With spaces. vim-sleuth takes care of more intricate settings
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -252,9 +253,6 @@ nnoremap ? :%s/<C-R><C-W>//g<left><left>
 " Select all
 nnoremap <leader>a ggVG
 
-" Toggle TagBar
-nnoremap <leader>b :TagbarToggle<CR>
-
 " Select (last?) pasted text
 nnoremap <leader>p `[v`]
 
@@ -304,7 +302,6 @@ nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
-nnoremap <leader>x :cd ~/Dropbox/text<CR>:NERDTreeToggle<CR>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
@@ -319,25 +316,17 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 if has("gui_macvim")
   " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
   " the right side. Ctrl-Shift-Tab goes the other way.
-  noremap <C-Tab> :bnext<CR>
-  noremap <C-S-Tab> :bprev<CR>
+  noremap <C-Tab> :echo "use ]b"<CR>
+  noremap <C-S-Tab> :echo "use [b"<CR>
 endif
 
 " }---------------------------- Auto and plugins ----------------------------{
-
-" Commands to be ran on every buffer every time
-autocmd BufEnter * call LoadCscopeFile()
 
 " Mail
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
 
 " Enable spelling to specific text filetypes
 autocmd Syntax mail,mkd setlocal spell
-
-" Use pandoc as a formatter when editing html
-let pandoc_pipeline  = "pandoc --from=html --to=markdown"
-let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
-autocmd FileType html let &formatprg=pandoc_pipeline
 
 " Enable rainbow parentheses for lisp-like languages and <> for c++'s templates
 autocmd FileType lisp,clojure,scheme,cpp RainbowParenthesesActivate
@@ -378,50 +367,9 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
-autocmd WinEnter * call CloseUnwanted()
 
 " Ack (with the silver searcher)
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Don't fold by default
-let g:vim_markdown_folding_disabled = 1
-
-" Default browser
-let g:netrw_browsex_viewer= "chromium"
-
-" Tagbar show only public entries. (Toggle with 'h')
-let g:tagbar_hide_nonpublic = 1
-
-" Don't fucking hide things from me god dammit
-let g:vim_markdown_conceal = 0
-
 " Case insensitive sneak
 let g:sneak#use_ic_scs = 1
-
-" }------------------------------- Functions --------------------------------{
-
-" Close quickfix on leaving and NERDTree buffer when is the only one left
-function! CloseUnwanted()
-  if exists("t:NERDTreeBufName")
-    if bufwinnr(t:NERDTreeBufName) != -1
-      if winnr("$") == 1
-        q
-      endif
-    endif
-  endif
-  if getbufvar(winbufnr(winnr("#")), "&buftype") == "quickfix"
-    wincmd p
-    close
-  endif
-endfunction
-
-" Add any cscope database in the current directory
-function! LoadCscopeFile()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-  endif
-endfunction
