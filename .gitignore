@@ -1,5 +1,6 @@
 *.swp
 *.cache
+.vim/plugged
 .mutt/cache*
 .mutt/queue*
 .mutt/temp*

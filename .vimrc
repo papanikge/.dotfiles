@@ -1,11 +1,44 @@
+"
 " Hacked together by George 'papanikge' Papanikolaou.
 " Third-ish version 2013-5, optimized for Linux
+" Changing from crappy pathogen (to avoid submodules) to vim-plug. 07/2017
+"
 
-" First, move to no-old-vi-compatible mode and activate bundles
+" First, move to no-old-vi-compatible mode
 set nocompatible
-execute pathogen#infect()
 
 let os = substitute(system('uname'), "\n", "", "")
+
+" }-------------------------------- Plugins ---------------------------------{
+"
+call plug#begin('~/.vim/plugged')
+
+Plug 'kien/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth/'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-rails',   { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+Plug 'tpope/vim-ragtag',  { 'for': 'eruby' }
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sheerun/vim-polyglot'
+Plug 'Yggdroot/indentLine'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'kien/rainbow_parentheses.vim', { 'on': 'RainbowParenthesesActivate' }
+Plug 'scrooloose/nerdtree',          { 'on': 'NERDTreeToggle' }
+Plug 'mbbill/undotree',              { 'on': 'UndotreeToggle' }
+" Plug 'PeterRincker/vim-argumentative'
+" Plug 'terryma/vim-expand-region'
+" Plug 'junegunn/vim-easy-align'
+
+call plug#end()
 
 " }----------------------------- Basic options ------------------------------{
 
@@ -231,8 +264,8 @@ nnoremap <leader><Space> :nohlsearch<CR>
 " Open the NERDTRee plugin
 nnoremap <leader>t :NERDTree<CR>
 
-" Why am I just learning about Gundo?
-nnoremap <leader>g :NERDTreeClose<CR>:GundoToggle<CR>
+" changing from Gundo to undotree due to ext deps
+nnoremap <leader>g :UndotreeToggle<CR>
 
 " Show registers
 nnoremap <leader>r :registers<CR>
