@@ -51,11 +51,6 @@ export HISTTIMEFORMAT='%F %T '
 # Don't mess with my prompt, virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# Docker (for mac)
-if [[ `uname -s` == 'Darwin' ]]; then
-  eval $(docker-machine env)
-fi
-
 # Jupyter/ipython/itermplot
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
