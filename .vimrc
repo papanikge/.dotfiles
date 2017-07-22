@@ -32,11 +32,9 @@ set ignorecase
 " But case-sensitive if expression contains a capital letter
 set smartcase
 
-" New (>7.4) vim features. Hybrid number mode and smart line joining
-if v:version >= 704
-  set formatoptions+=j
-endif
 set number
+" smart line joining
+set formatoptions+=j
 " Show cursor position
 set ruler
 
@@ -171,15 +169,20 @@ noremap Q :bd<CR>
 
 " remap join-n-split for usefulness
 nnoremap H J
+
 nnoremap J 10j
 nnoremap K 10k
-" Use L to split lines (credits to Steve Losh)
-nnoremap L i<CR><ESC>^mwgk:silent! s/\v +$//<CR>:noh<CR>`w
 
-" System clipboard (linux tested only)
-nnoremap gy "+y
-nnoremap gp o<ESC>"+p
-nnoremap gP O<ESC>"+p
+" System clipboard
+if os == "Linux"
+  nnoremap gy "+y
+  nnoremap gp o<ESC>"+p
+  nnoremap gP O<ESC>"+p
+else
+  nnoremap gy "*y
+  nnoremap gp o<ESC>"*p
+  nnoremap gP O<ESC>"*p
+endif
 
 " Backspace to visual delete in oblivion
 vnoremap <BS> "_d
@@ -190,7 +193,7 @@ nnoremap gD <C-]>
 " Stay in place when hitting *
 nnoremap * *N
 
-" format sentence or visual selection
+" format the sentence or the visual selection
 nnoremap \ gq)
 vnoremap \ gq
 
@@ -212,9 +215,6 @@ nnoremap # :Ack!<CR>
 nnoremap ? :%s/<C-R><C-W>//g<left><left>
 
 " }---------------------------- Leader shortcuts ----------------------------{
-
-" Fast saving
-nnoremap <leader>s :w<CR>
 
 " Select all
 nnoremap <leader>a ggVG
@@ -245,9 +245,6 @@ nnoremap <leader>c :set list!<CR>:IndentLinesToggle<CR>
 
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
-
-" Toggle between wrapping
-nnoremap <leader>l :set wrap!<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -291,28 +288,12 @@ if has("gui_macvim")
   " the right side. Ctrl-Shift-Tab goes the other way.
   noremap <C-Tab> :bnext<CR>
   noremap <C-S-Tab> :bprev<CR>
-
-  " Switch to specific tab numbers with Command-number
-  noremap <D-1> :tabn 1<CR>
-  noremap <D-2> :tabn 2<CR>
-  noremap <D-3> :tabn 3<CR>
-  noremap <D-4> :tabn 4<CR>
-  noremap <D-5> :tabn 5<CR>
-  noremap <D-6> :tabn 6<CR>
-  noremap <D-7> :tabn 7<CR>
-  noremap <D-8> :tabn 8<CR>
-  noremap <D-9> :tabn 9<CR>
-  " Command-0 goes to the last tab
-  noremap <D-0> :tablast<CR>
 endif
 
 " }---------------------------- Auto and plugins ----------------------------{
 
 " Commands to be ran on every buffer every time
 autocmd BufEnter * call LoadCscopeFile()
-
-" Resize splits when the window is resized
-autocmd VimResized * exe "normal! \<c-w>="
 
 " Mail
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
@@ -337,7 +318,12 @@ iabbrev hten then
 cabbrev h vert bo help
 
 " Powerline with the light-weight airline
-let g:airline_powerline_fonts = 1
+if has("gui_macvim")
+  let g:airline_powerline_fonts = 1
+else
+  let g:airline_left_sep = ' '
+  let g:airline_right_sep = ' '
+endif
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#branch#displayed_head_limit = 8
 let g:airline#extensions#tabline#enabled = 1
