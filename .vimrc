@@ -37,7 +37,7 @@ Plug 'mbbill/undotree',              { 'on': 'UndotreeToggle' }
 " Plug 'michaeljsmith/vim-indent-object'
 " Plug 'PeterRincker/vim-argumentative'
 " Plug 'terryma/vim-expand-region'
-" Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 
 call plug#end()
 

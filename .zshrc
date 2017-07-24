@@ -36,7 +36,6 @@ if [[ `uname -s` == 'Darwin' ]]; then
 fi
 
 # Custom shit
-export DOCKER_HOST=tcp://192.168.59.103:2375
 source ~/.aliases
 source ~/.skroutz-helpers
 
