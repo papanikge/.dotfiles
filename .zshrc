@@ -6,7 +6,8 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="papanikge"
-plugins=(git sudo screen python docker brew ruby bundler rake vagrant redis-cli cabal z)
+plugins=(git sudo screen python docker brew ruby bundler rake vagrant \
+  redis-cli cabal z colored-man-pages)
 # remove 'bu' aliases if you have bundler
 
 # Activate oh-my-zsh.
@@ -18,7 +19,6 @@ HISTFILE=~/.zsh-history
 HISTSIZE=10000
 SAVEHIST=50000
 HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd)"
-setopt appendhistory
 bindkey -e
 
 # General
@@ -52,18 +52,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Jupyter/ipython/itermplot
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
-
-# enable color in man pages
-if [[ `uname -s` == 'Darwin' ]]; then
-  export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-  export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-  export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-  export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-  export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-  export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-  export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-  export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-fi
 
 # Skroutz specific
 export YOGURT_PATH="/Users/papanikge/skroutz/yogurt/"
