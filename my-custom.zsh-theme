@@ -1,7 +1,9 @@
 #
-# Lemniscate
-# Custom zsh theme 19/07/2017 based on af-magic.zsh-theme from oh-my-zsh
+# Custom theme 19/07/2017 from af-magic.zsh-theme
 #
+
+# based on:
+# https://github.com/andyfleming/oh-my-zsh/blob/master/themes/af-magic.zsh-theme
 
 # color vars
 eval my_gray='$FG[237]'
@@ -12,7 +14,6 @@ local return_code="%(?..%{$fg[red]%} %? ↵%{$reset_color%})"
 
 # We need it in a different local variable surrounded by single quotes in
 # order to update in every invocation and not cache.
-# It needs a 'right_status' shell function.
 local interpreter_version='$(right_status)'
 
 # primary prompt
