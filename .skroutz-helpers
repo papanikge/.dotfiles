@@ -36,3 +36,5 @@ scrooge_console () {
   cd /Users/papanikge/skroutz/yogurt
   YOGURT_FLAVOR=scrooge YOGURT_DATABASE=scrooge_production bundle exec rails console
 }
+
+alias jobreplay="ssh -t wowbagger@sentry.skroutz.gr replay-"
