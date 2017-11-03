@@ -13,7 +13,6 @@ let os = substitute(system('uname'), "\n", "", "")
 "
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-git'
@@ -30,13 +29,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
-Plug 'kien/rainbow_parentheses.vim', { 'on': 'RainbowParenthesesActivate' }
-Plug 'scrooloose/nerdtree',          { 'on': 'NERDTreeToggle' }
+Plug 'kien/rainbow_parentheses.vim', { 'for': ['clojure', 'lisp', 'cpp'] }
+Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',              { 'on': 'UndotreeToggle' }
-" Plug 'michaeljsmith/vim-indent-object'
-" Plug 'PeterRincker/vim-argumentative'
-" Plug 'terryma/vim-expand-region'
-" Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+Plug 'diepm/vim-rest-console', { 'for': 'rest' }
+Plug 'michaeljsmith/vim-indent-object'
+Plug '/usr/local/opt/fzf' " thru homebrew
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -146,6 +145,8 @@ set wildignore+=*.pyc                            " Python bytecode
 " truecolor support
 set termguicolors
 
+set mouse=a
+
 " }------------------------------- Appearance -------------------------------{
 
 " Colorize the column
@@ -208,11 +209,11 @@ nnoremap K 10k
 
 " System clipboard
 if os == "Linux"
-  nnoremap gy "+y
+  vnoremap gy "+y
   nnoremap gp o<ESC>"+p
   nnoremap gP O<ESC>"+p
 else
-  nnoremap gy "*y
+  vnoremap gy "*y
   nnoremap gp o<ESC>"*p
   nnoremap gP O<ESC>"*p
 endif
@@ -276,9 +277,6 @@ nnoremap <leader>c :set list!<CR>:IndentLinesToggle<CR>
 " Remove trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e<CR>:nohlsearch<CR>
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
 " Easily open a new vertical window
 nnoremap <leader>v :vnew<CR><C-W>L
 
@@ -297,6 +295,7 @@ nnoremap <leader>dp :diffput<CR>
 
 " Easy edit. Useless because of ctrl-p but I'm used to them
 nnoremap <leader>eb :e ~/.bashrc<CR>
+nnoremap <leader>ez :e ~/.zshrc<CR>
 nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
@@ -311,26 +310,11 @@ cnoremap <m-f> <S-right>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null<CR>
 
-" Make tabs easier
-if has("gui_macvim")
-  " Press Ctrl-Tab to switch between open tabs (like browser tabs) to
-  " the right side. Ctrl-Shift-Tab goes the other way.
-  noremap <C-Tab> :echo "use ]b"<CR>
-  noremap <C-S-Tab> :echo "use [b"<CR>
-endif
-
 " }---------------------------- Auto and plugins ----------------------------{
 
-" Mail
-autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72
-
-" Enable spelling to specific text filetypes
-autocmd Syntax mail,mkd setlocal spell
-
-" Enable rainbow parentheses for lisp-like languages and <> for c++'s templates
-autocmd FileType lisp,clojure,scheme,cpp RainbowParenthesesActivate
-autocmd Syntax lisp,clojure,scheme RainbowParenthesesLoadRound
-autocmd Syntax cpp RainbowParenthesesLoadChevrons
+autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72 " Mail
+autocmd Syntax mail,mkd setlocal spell " Enable spelling to specific text filetypes
+autocmd Syntax clojure,lisp RainbowParenthesesActivate,RainbowParenthesesLoadRound
 
 " Abbreviations for correction and ease
 iabbrev teh the
@@ -339,26 +323,12 @@ iabbrev hten then
 cabbrev h vert bo help
 
 " Powerline with the light-weight airline
-if has("gui_macvim")
-  let g:airline_powerline_fonts = 1
-else
-  let g:airline_left_sep = ' '
-  let g:airline_right_sep = ' '
-endif
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#branch#displayed_head_limit = 8
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-
-" Ctrl-P
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_switch_buffer = 2
-let g:ctrlp_max_height = 10
-let g:ctrlp_max_depth = 5
-let g:ctrlp_clear_cache_on_exit = 0
-nnoremap <c-t> :CtrlPTag<CR>
-nnoremap <c-u> :CtrlPMRU<CR>
 
 " NERD_Tree
 let NERDTreeMinimalUI = 1
@@ -372,3 +342,26 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Case insensitive sneak
 let g:sneak#use_ic_scs = 1
+
+" FZF is the new champ
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_command_prefix = 'FZF'
+nnoremap <c-p> :FZFFiles<CR>
+nnoremap <c-t> :FZFTags<CR>
+nnoremap gd    :FZFBTags<CR>
+nnoremap <c-u> :FZFHistory<CR>
+nnoremap <leader><leader> :FZFBuffers<CR>
