@@ -3,7 +3,6 @@ alias ls="ls --color"
 alias ll="clear && ls -lhGS"
 alias la="ls -A"
 alias ls1="find . -name *"
-alias cfgrep='grep -v "^[[:space:]]*($|#)"' # for config files
 alias p="pgrep -l"
 alias du="du -hs"
 alias df="df -hT"
@@ -14,22 +13,20 @@ alias dmesg="dmesg --color --ctime"
 
 # Bundler
 alias bu="bundle"
-alias be="bundle exec"
 alias rs="bundle exec rspec --color --drb --drb-port 8989 --format progress"
 
 # Better version of rsync for humans
 alias hcp="rsync -WavP --human-readable --progress"
 
 # VMs
-alias vu="pushd ~/skroutz/yogurt-test-box/ && vagrant up && popd"
-alias vh="pushd ~/skroutz/yogurt-test-box/ && vagrant halt && popd"
+alias yu="pushd ~/skroutz/yogurt-test-box/ && docker-compose up -d && popd"
+alias yd="pushd ~/skroutz/yogurt-test-box/ && docker-compose down && popd"
 alias qemu="sudo qemu-system-x86_64 -enable-kvm -redir tcp:2222::22 -vga std"
 alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=2,sockets=1 -vga vmware"
 
 # git stuff
 alias gst="git status -sb"
 alias gbr="git branch"
-alias gf="git-find-branch" # fuzzy. thanks @avgerinos
 
 # for skroutz
 alias stg="ssh wowbagger@vms.skroutz.gr"
@@ -47,3 +44,4 @@ alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --
 # docker, maybe dli, dlc(?)
 alias last-container="docker ps -l -q"
 alias last-image="docker image ls -q | head -1"
+alias dka="docker kill $(docker ps -q)"
