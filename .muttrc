@@ -1,64 +1,69 @@
-# George 'papanikge' Papanikolaou mutt configuration file              13/11/13
-# Based on the Arch wiki and Steve Losh article
+#
+# George 'papanikge' Papanikolaou mutt conf
+#
 # updated a bit for the .dotfiles repo on 05/10/2014
+# 3.0 version for neomutt on 03/10/2017
+#
 
-# Account & Maildir settings --------------------------------------------------
-set mbox_type = Maildir
-set folder    = /home/g3orge/Mail/CEID
-set spoolfile = /home/g3orge/Mail/CEID/INBOX
-set postponed = /home/g3orge/Mail/CEID/postponed/
+# Account ---------------------------------------------------------------------
 
-# Paths -----------------------------------------------------------------------
-set header_cache     = ~/.mutt/cache/headers # where to store headers
-set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
-set tmpdir           = ~/.mutt/temp          # for drafts etc
-set certificate_file = ~/.mutt/certificates  # where to store certs
-set signature        = ~/.mutt/signature     # my signature file
-set mailcap_path     = ~/.mutt/mailcap       # attachments (need to fix the script)
+set folder      = "imaps://mailer.skroutz.gr/"
+set imap_user   = "gpapanikolaou@skroutz.gr"
+# set imap_pass # need to set up gpg
+set from        = "gpapanikolaou@skroutz.gr"
+set spoolfile   = +INBOX
+set postponed   = +Drafts
+set record      = +Sent
+set trash       = +Trash
+mailboxes       = +INBOX #+Sent !/thestrangeloop !/trello !/cron !/commits
+
+set tmpdir      = "~/.mutt/temp"
+set signature   = "~/.mutt/signature"
+
+set imap_keepalive = 30
+set mail_check = 60
+unset imap_passive
+unset use_ipv6
+
+# Use this to show fetch everything that there is on the server
+# It also makes every mailbox visible in the sidebar
+set imap_check_subscribed
+set imap_list_subscribed
+# You probably need a tool to fetch mail to have these:
+# set header_cache     = "~/.mutt/cache/headers/"
+# set message_cachedir = "~/.mutt/cache/bodies/"
 
 # General ---------------------------------------------------------------------
 set editor   = "vim --noplugin"
-set mail_check        = 0     # minimum time between scans
-set timeout           = 3     # idle time before scanning
-set beep_new                  # bell on new mails
-set pipe_decode               # strip headers and eval mimes when piping
-set reverse_alias             # show names from alias file in index
-set thorough_search           # strip headers and eval mimes before searching
-set thread_received           # sort threads by date received, not sent
-set delete                    # don't ask, just do
-set quit                      # don't ask, just do!
-unset confirmappend           # don't ask, just do!!
-unset mark_old                # read/new is good enough
-unset wait_key                # shut up, mutt
-unset move                    # gmail does that
-source ~/.mutt/badwolf.muttrc # for colors
+set beep_new           # bell on new mails
+set pipe_decode        # strip headers and eval mimes when piping
+set reverse_alias      # show names from alias file in index
+set thorough_search    # strip headers and eval mimes before searching
+set thread_received    # sort threads by date received, not sent
+set quit
+set ascii_chars
+set allow_8bit
+unset confirmappend
+unset mark_old         # read/new is good enough
+unset wait_key         # shut up, mutt
+unset move
+source ~/.mutt/badwolf.muttrc
 
 # Cryptography. Thanks Mr. Snowden. -------------------------------------------
-source ~/.mutt/gpg.rc         # From mutt defaults
-set pgp_autosign              # I don't know
-set pgp_replyencrypt
-set pgp_replysign
-set pgp_verify_sig
-set pgp_use_gpg_agent = yes
-set pgp_sign_as = B5AFB728
-set pgp_timeout = 3600
-set crypt_autosign = yes
-set crypt_replyencrypt = yes
-
-# Try to fix deletion problems ------------------------------------------------
-set score_threshold_delete=0
-unscore *
-score '~A' +1                 # Scoring all mails +1
-
-# Status Bar ------------------------------------------------------------------
-set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# source "gpg -dq ~/.mutt/passwords.gpg |"
+# source ~/.mutt/gpg.rc         # From mutt defaults ###### CHECK THIS/THESE
+# unset pgp_autosign
+# unset pgp_verify_sig
+# set pgp_timeout = 3600
+# set pgp_use_gpg_agent = yes
 
 # Header Options --------------------------------------------------------------
-ignore *                                # ignore all headers
-unignore from: to: cc: date: subject:   # show only these
-unhdr_order *                           # some distros order things by default
-hdr_order from: to: cc: date: subject:  # and in this order
+# as in firewall configuration, we first ignore all headers.
+# Then, we unignore headers we want to be displayed.
+ignore *
+unignore from: to: cc: date: subject: Date Reply-To X-Mailer User-Agent Bcc
+unhdr_order *
+hdr_order from: to: cc: date: subject:
 
 # Pager View Options ----------------------------------------------------------
 set pager_context     = 5  # number of context lines to show
@@ -73,18 +78,12 @@ alternative_order          text/plain text/enriched text/html
 # Index View Options ----------------------------------------------------------
 set sort             = threads # like gmail
 set sort_aux         = reverse-last-date-received
-set uncollapse_jump          # don't collapse on an unread message
-set sort_re                  # thread based on regex
+set uncollapse_jump  # don't collapse on an unread message
+set sort_re          # thread based on regex
 set alias_format     = "%4n %t %-20a %r"
 set date_format      = "%d/%m/%y at %I:%M"
 set index_format     = "[%Z]  %D  %-20.20F  %s"
 set reply_regexp     = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-
-# Sendmail (with msmtp) -------------------------------------------------------
-set from             = "papanikge@ceid.upatras.gr"
-set sendmail         = "~/.dotfiles/bin/msmtpq" # or just: /usr/bin/msmtp -a CEID
-set sendmail_wait    = -1
-set record           = +Sent
 
 # Composing mail --------------------------------------------------------------
 set askcc            # always ask for CC:
@@ -97,7 +96,6 @@ set reverse_name     # reply as who it was sent to
 set sig_dashes       # dashes before sig
 set fcc_attach       # save attachments with the body
 set forward_decode   # decode when forwarding
-set reply_to         # reply to Reply to: field
 set realname         = "George Papanikolaou"
 set forward_format   = "Fwd: %s"
 set attribution      = "On %d, %n wrote:"
@@ -109,6 +107,7 @@ bind pager i  toggle-quoted
 bind pager /  search
 bind pager j  next-line
 bind pager k  previous-line
+bind pager g  noop
 bind pager gg top
 bind pager G  bottom
 bind pager N  search-opposite
@@ -116,16 +115,32 @@ bind pager R  group-reply
 bind attach <return> view-mailcap # View attachments properly. (??)
 
 bind index i  noop
+bind index g  noop
 bind index gg first-entry
 bind index G  last-entry
 bind index U  next-unread
 bind index N  search-opposite
 bind index R  group-reply
+bind index y imap-fetch-mail
 bind index <space>  collapse-thread
 
-# also, ^R to mark all as read
+bind index,pager @ compose-to-sender
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
-# switch mailboxes
-macro index gm "<change-folder>+CEIDPublicMail.students-all.STUDENTS2010\n"
-macro index ga "<change-folder>+CEIDPublicMail.students-all\n"
-macro index gi "<change-folder>+INBOX\n"
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro pager S "<save-message>=Spam<enter>" "mark as Spam (skroutz)"
+
+# Sidebar ---------------------------------------------------------------------
+set sidebar_visible
+set sidebar_width = 35
+set sidebar_short_path
+set sidebar_indent_string = '  '
+set sidebar_divider_char = "| "
+set sidebar_folder_indent
+set mail_check_stats
+
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+set sidebar_sort_method = 'path'
+
+bind index,pager \Ck sidebar-prev
+bind index,pager \Cj sidebar-next
+bind index,pager \Ci sidebar-open
