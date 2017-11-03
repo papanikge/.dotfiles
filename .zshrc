@@ -23,15 +23,15 @@ bindkey -e
 
 # General
 export EDITOR=vim
-export PAGER="less -iw"
+export PAGER="less -iw -F -X"
 export MANPAGER=$PAGER
-export GREP_OPTIONS="--color=auto -n"
+export GREP_OPTIONS="--color=auto"
 
 if [[ `uname -s` == 'Darwin' ]]; then
   # god damn it apple
   PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
   PATH=/usr/local/bin:$PATH
-  PATH=$PATH:~/.dotfiles/bin
+  PATH=$PATH:~/.dotfiles/bin:~/.local/bin
   MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 fi
 
@@ -76,4 +76,22 @@ h() {
 # flexible find in cwd
 f() {
   find . -iname "*$1*" 2>/dev/null
+}
+
+# git recent edit files editor
+vd() {
+  if [[ -z `git diff --name-only` ]]; then
+    vim `git diff --name-only @ @~`
+  else
+    vim `git diff --name-only`
+  fi
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+gfb() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
