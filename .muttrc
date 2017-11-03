@@ -9,7 +9,7 @@
 
 set folder      = "imaps://mailer.skroutz.gr/"
 set imap_user   = "gpapanikolaou@skroutz.gr"
-# set imap_pass # need to set up gpg
+# set imap_pass # need to set up gpg with: source "gpg -dq ~/.mutt/passwords.gpg |"
 set from        = "gpapanikolaou@skroutz.gr"
 set spoolfile   = +INBOX
 set postponed   = +Drafts
