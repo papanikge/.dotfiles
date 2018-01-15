@@ -10,6 +10,7 @@ alias g="gvim ."
 alias dirdiff="diff -b -r -w"
 alias gdb="gdb -q" # TODO: figure out find how to add this to .gdbinit
 alias dmesg="dmesg --color --ctime"
+alias fd="fd -H"
 
 # Bundler
 alias bu="bundle"
@@ -30,7 +31,9 @@ alias gbr="git branch"
 
 # for skroutz
 alias stg="ssh wowbagger@vms.skroutz.gr"
-alias bufodb="mysql -u root -p -h bufo3.hq.skroutz.gr -P 25620 marvin_production -p"
+alias bufodb="mysql -u root -p -h papanikge.bufo.skroutz.gr marvin_production"
+alias bufo-redis="redis-cli -h papanikge.bufo.skroutz.gr"
+alias bufo-mongo="mongo papanikge.bufo.skroutz.gr:27017"
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -45,3 +48,6 @@ alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --
 alias last-container="docker ps -l -q"
 alias last-image="docker image ls -q | head -1"
 alias dka="docker kill $(docker ps -q)"
+
+# global
+alias -g no="--name-only"
