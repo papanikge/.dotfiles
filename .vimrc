@@ -20,22 +20,32 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rails',   { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-ragtag',  { 'for': 'eruby' }
-Plug 'tpope/vim-unimpaired'
+Plug 'fatih/vim-go',      { 'for': 'go' }
+Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
+Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
-Plug 'kien/rainbow_parentheses.vim', { 'for': ['clojure', 'lisp', 'cpp'] }
-Plug 'scrooloose/nerdtree'
-Plug 'mbbill/undotree',              { 'on': 'UndotreeToggle' }
-Plug 'diepm/vim-rest-console', { 'for': 'rest' }
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'scrooloose/nerdtree',     { 'on': 'NERDTree' }
+Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
+Plug 'diepm/vim-rest-console',  { 'for': 'rest' }
 Plug '/usr/local/opt/fzf' " thru homebrew
 Plug 'junegunn/fzf.vim'
+
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'sjl/vitality.vim' " force autoread on terminal vim. (amerlyq/vim-focus-autocmd for linux)
+
+" colors
+Plug 'mhartington/oceanic-next'
+Plug 'cocopon/iceberg.vim'
+Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
@@ -147,18 +157,21 @@ set termguicolors
 
 set mouse=a
 
+" make vim use systemclipboard
+if os == "Linux"
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+endif
+
 " }------------------------------- Appearance -------------------------------{
 
 " Colorize the column
 set colorcolumn=80
 
+colorscheme OceanicNext
+
 if has("gui_running")
-  colorscheme jellybeans
-  if os == "Linux"
-    set guifont=Menlo\ for\ Powerline\ 9
-  else
-    set guifont=Inconsolata\ for\ Powerline:h14
-  endif
   set guioptions-=T
   set guioptions-=l
   set guioptions-=L
@@ -166,8 +179,6 @@ if has("gui_running")
   set guioptions-=R
   set guioptions-=b
   set guioptions-=m
-else
-  colorscheme jellybeans
 endif
 
 " Highlight VCS conflict markers
@@ -201,11 +212,14 @@ nnoremap Y y$
 " Just use Q to quit
 noremap Q :bd<CR>
 
-" remap join-n-split for usefulness
+" remap basic keys (because I want to use J,K in a diff way)
+" carefull: these should of course be in order
+nnoremap T H
 nnoremap H J
-
-nnoremap J 10j
-nnoremap K 10k
+nnoremap J 15j
+" overwrite vim-fireplace's K (doc) first
+autocmd Syntax clojure nnoremap M K
+nnoremap K 15k
 
 " System clipboard
 if os == "Linux"
@@ -220,9 +234,6 @@ endif
 
 " Backspace to visual delete in oblivion
 vnoremap <BS> "_d
-
-" More powerful gd shortcut
-nnoremap gD <C-]>
 
 " Stay in place when hitting *
 nnoremap * *N
@@ -313,8 +324,8 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " }---------------------------- Auto and plugins ----------------------------{
 
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72 " Mail
+autocmd FocusGained,BufEnter * :checktime " force autoread on terminal vim
 autocmd Syntax mail,mkd setlocal spell " Enable spelling to specific text filetypes
-autocmd Syntax clojure,lisp RainbowParenthesesActivate,RainbowParenthesesLoadRound
 
 " Abbreviations for correction and ease
 iabbrev teh the
@@ -359,9 +370,14 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-let g:fzf_command_prefix = 'FZF'
-nnoremap <c-p> :FZFFiles<CR>
-nnoremap <c-t> :FZFTags<CR>
-nnoremap gd    :FZFBTags<CR>
-nnoremap <c-u> :FZFHistory<CR>
-nnoremap <leader><leader> :FZFBuffers<CR>
+let g:fzf_command_prefix = 'F'
+nnoremap <c-p> :FFiles<CR>
+nnoremap <c-t> :FTags<CR>
+nnoremap gt    :FBTags<CR>
+nnoremap <c-m> :FGFiles?<CR>
+nnoremap <c-u> :FHistory<CR>
+nnoremap <c-c> :FBCommits!<CR>
+nnoremap <leader>b :FBuffers<CR>
+
+" enable build-in matchit pluggin
+runtime macros/matchit.vim
