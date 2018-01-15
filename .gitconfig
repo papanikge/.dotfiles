@@ -17,7 +17,7 @@
     zip       = archive --output latest.zip HEAD
     pullsub   = submodule foreach git pull
     news      = diff --stat HEAD@{1}..HEAD
-    head      = !git log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' -- | head
+    head      = !git log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --max-count=15 --
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
     root      = rev-parse --show-toplevel
     yesterday = log --since '1 day ago' --oneline
@@ -30,8 +30,6 @@
     smtpserver = ~/.dotfiles/bin/msmtpq
 [help]
     autocorrect = 1
-[branch]
-    autosetuprebase = always
 [url "git@github.skroutz.gr:"]
     insteadOf = skroutz:
 [rebase]
