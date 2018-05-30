@@ -6,9 +6,8 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="papanikge"
-plugins=(git sudo screen python docker brew ruby bundler rake vagrant \
-  redis-cli cabal z colored-man-pages)
-# remove 'bu' aliases if you have bundler
+plugins=(sudo screen python docker brew ruby rake vagrant redis-cli cabal z \
+  colored-man-pages fzf-docker) # fzf-docker is not build-in
 
 # Activate oh-my-zsh.
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -16,7 +15,7 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 HISTFILE=~/.zsh-history
-HISTSIZE=10000
+HISTSIZE=50000
 SAVEHIST=50000
 HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd)"
 bindkey -e
@@ -51,8 +50,12 @@ eval "$(pyenv init -)"
 export GOPATH=$HOME/playground/go
 export GOBIN=$GOPATH/bin
 
-# enable fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.zsh
+# Enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Enable Google Cloud SDK
+PATH=$PATH:/Users/papanikge/.google-cloud-sdk/bin
+CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
 
 # Don't mess with my prompt, virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -81,44 +84,26 @@ h() {
   history | fgrep -i $1 | tail
 }
 
-# git recent edit files editor
-vd() {
-  if [[ -z `git diff --name-only` ]]; then
-    vim `git diff --name-only @ @~`
-  else
-    vim `git diff --name-only`
-  fi
+##
+#
+# FZF - The Holiest of Holies
+#
+##
+export FZF_COMPLETION_TRIGGER=','
+
+# Helpers first
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
 }
 
-# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-gfb() {
-  local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-################## FZF KEY BINDING FOR GIT #################### EXPERIMENTAL
-
-# Will return non-zero status if the current directory is not managed by git
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
-_tags_gt() {
-  # "Nothing to see here, move along"
-  is_in_git_repo || return
-
-  # Pass the list of the tags to fzf-tmux
-  # - "{}" in preview option is the placeholder for the highlighted entry
-  # - Preview window can display ANSI colors, so we enable --color=always
-  # - We can terminate `git show` once we have $LINES lines
-  git tag --sort -version:refname |
-    fzf-tmux --multi --preview-window right:70% \
-             --preview 'git show --color=always {} | head -'$LINES
-}
-
+# Show hashes with control-g-h (like tig)
 _hashes_gh() {
   is_in_git_repo || return
 
@@ -128,24 +113,59 @@ _hashes_gh() {
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
   grep -o "[a-f0-9]\{7,\}"
 }
-
-# A helper function to join multi-line output from fzf
-join-lines() {
-  local item
-  while read item; do
-    echo -n "${(q)item} "
-  done
-}
-
-fzf-gt-widget() LBUFFER+=$(_tags_gt | join-lines)
 fzf-gh-widget() LBUFFER+=$(_hashes_gh | join-lines)
-zle -N fzf-gt-widget
 zle -N fzf-gh-widget
-bindkey '^g^t' fzf-gt-widget
 bindkey '^g^h' fzf-gh-widget
 
-# also
-alias ftig="_hashes_gh"
+########### more - mine
+
+_docker_images() {
+  docker image ls |
+  fzf-tmux --ansi --no-sort --reverse \
+    --preview '' |
+  cut -d' ' -f3
+}
+fzf-di-widget() LBUFFER+=$(_docker_images | join-lines)
+zle -N fzf-di-widget
+bindkey '^g^i' fzf-di-widget
 
 # FZF WITH PREVIEW (Try highlight, then fall back to cat)
-export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && \
+                        echo {} is a binary file || \
+                        (highlight -O ansi -l {} || cat {}) 2> /dev/null | \
+                        head -500"'
+
+# lastpass
+pass() {
+  lpass show lucidchart.com >/dev/null
+  lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
+
+# Tmux manager
+tm() {
+  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+  if [ $1 ]; then
+    tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+  fi
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux $change -t "$session" || echo "No sessions found."
+}
+
+# git find - general purpose checkout tool
+gfa() {
+  local tags local_branches remote_branches target
+  tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+
+  local_branches=$(git branch | grep -v HEAD | sed "s/.* //" |
+    awk '{print "\x1b[32;1mbranch\x1b[m\t" $1}') || return
+
+  remote_branches=$(git branch --remotes | grep -v HEAD |
+    sed "s/.* //" | sed "s#remotes/[^/]*/##" |
+    awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') || return
+
+  target=$((echo "$tags"; echo "$local_branches"; echo "$remote_branches") |
+    fzf --no-hscroll --no-multi --delimiter="\t" -n 2 --ansi \
+    --preview="git diff --color=always $(echo {+2..} | sed 's/$/..master/' ) | head -500") || return
+
+  # ${target} has origin/ in front. we use or # for prefix of // for substring
+  git checkout $(echo "${target//origin\/}" | awk '{print $2}')
+}
