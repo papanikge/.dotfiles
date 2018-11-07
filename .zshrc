@@ -49,6 +49,7 @@ eval "$(pyenv init -)"
 # Go
 export GOPATH=$HOME/playground/go
 export GOBIN=$GOPATH/bin
+PATH=$PATH:$GOBIN
 
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
