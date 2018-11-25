@@ -8,32 +8,25 @@ alias du="du -hs"
 alias df="df -hT"
 alias g="gvim ."
 alias dirdiff="diff -b -r -w"
-alias gdb="gdb -q" # TODO: figure out find how to add this to .gdbinit
+alias gdb="gdb -q"
 alias dmesg="dmesg --color --ctime"
 alias fd="fd -H"
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+# Time
+alias today="date +%Y-%m-%d"
 
 # Bundler
 alias bu="bundle"
+alias be="bundle exec"
 alias rs="bundle exec rspec --color --drb --drb-port 8989 --format progress"
 
-# Better version of rsync for humans
-alias hcp="rsync -WavP --human-readable --progress"
-
 # VMs
-alias yu="pushd ~/skroutz/yogurt-test-box/ && docker-compose up -d && popd"
-alias yd="pushd ~/skroutz/yogurt-test-box/ && docker-compose down && popd"
 alias qemu="sudo qemu-system-x86_64 -enable-kvm -redir tcp:2222::22 -vga std"
 alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=2,sockets=1 -vga vmware"
 
-# git stuff
+# most basic git stuff that I'm used to
 alias gst="git status -sb"
-alias gbr="git branch"
-
-# for skroutz
-alias stg="ssh wowbagger@vms.skroutz.gr"
-alias bufodb="mysql -u root -p -h papanikge.bufo.skroutz.gr marvin_production"
-alias bufo-redis="redis-cli -h papanikge.bufo.skroutz.gr"
-alias bufo-mongo="mongo papanikge.bufo.skroutz.gr:27017"
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -44,10 +37,35 @@ alias vthreads="valgrind --tool=helgrind --verbose"
 alias vcalls="valgrind --tool=callgrind --branch-sim=yes --cacheuse=yes --verbose"
 alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --num-callers=20 --track-fds=yes"
 
-# docker, maybe dli, dlc(?)
-alias last-container="docker ps -l -q"
-alias last-image="docker image ls -q | head -1"
+# docker
 alias dka="docker kill $(docker ps -q)"
+alias dc="docker-compose"
 
-# global
+# globals (zsh only)
 alias -g no="--name-only"
+alias -g lc='$(docker ps -l -q)'
+alias -g li='$(docker image ls -q | head -1)'
+
+#
+# Some of the following are mostly cheat sheets for future reference
+#
+
+# Tcpdump helpers (mostly for remind purposes)
+alias capture-user-agents="sudo tcpdump -nn -A -s1500 -l | grep \"User-Agent:\""
+alias capture-get-requests="sudo tcpdump -s0 -A -vv 'tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420'"
+alias capture-plaintext-passwords="sudo tcpdump port http or port ftp or port smtp or port imap or port pop3 or port telnet -l -A | egrep -i -B5 'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user '"
+alias capture-dns="sudo tcpdump -s0 port 53"
+
+# use like: capture host apple.com or port 8080...
+alias capture"sudo tcpdump -s0 -XX -nn -i eth0"
+
+# Nmap
+alias scan-local-net="nmap -vvv -sn -sL 192.168.1.0/16"
+alias disk-stat="bwm-ng -i ioservice"
+
+alias aes-encrypt="gpg --cipher-algo AES256 -c"
+alias aes-decrypt="gpg --decrypt"
+
+alias disable-puppet="sudo puppet agent -t --disable"
+alias external-ip='curl ipinfo.io/ip'
+alias genpass="openssl rand -base64 20"
