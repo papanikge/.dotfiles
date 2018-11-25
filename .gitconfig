@@ -17,20 +17,29 @@
     zip       = archive --output latest.zip HEAD
     pullsub   = submodule foreach git pull
     news      = diff --stat HEAD@{1}..HEAD
-    head      = !git log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --max-count=15 --
+    head      = log --graph --no-decorate --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --max-count=15 --
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
     root      = rev-parse --show-toplevel
     yesterday = log --since '1 day ago' --oneline
+    files     = log --oneline --graph --color --abbrev-commit --name-status --no-decorate
     dc        = diff --cached
     dw        = diff --word-diff
     dn        = diff --name-only
     fml       = reset --hard
     edit      = !git rebase -i $(git merge-base head master)
+    day       = "!__git_day() { git log --name-status --after=\"$1 0:00\" --before=\"$1 23:59\";}; __git_day"
+    find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
 [sendemail]
     smtpserver = ~/.dotfiles/bin/msmtpq
 [help]
     autocorrect = 1
-[url "git@github.skroutz.gr:"]
-    insteadOf = skroutz:
 [rebase]
     autosquash = true
+[diff]
+    algorithm = histogram
+[url "git@github.skroutz.gr:"]
+    insteadOf = skroutz:
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
