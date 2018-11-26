@@ -21,9 +21,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-rails',   { 'for': 'ruby' }
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'fatih/vim-go',      { 'for': 'go' }
+Plug 'tpope/vim-rails',                            { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec',                       { 'for': 'ruby' }
+Plug 'tpope/vim-endwise',                          { 'for': 'ruby' }
+Plug 'fatih/vim-go',                               { 'for': 'go' }
 Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
 Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
@@ -33,19 +34,20 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/nerdtree',     { 'on': 'NERDTree' }
+Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
-Plug 'diepm/vim-rest-console',  { 'for': 'rest' }
 Plug '/usr/local/opt/fzf' " thru homebrew
 Plug 'junegunn/fzf.vim'
-
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'sjl/vitality.vim' " force autoread on terminal vim. (amerlyq/vim-focus-autocmd for linux)
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'w0ng/vim-hybrid' " colors
 
-" colors
-Plug 'mhartington/oceanic-next'
-Plug 'cocopon/iceberg.vim'
-Plug 'w0ng/vim-hybrid'
+" force autoread on terminal vim.
+if os == "Linux"
+  Plug 'amerlyq/vim-focus-autocmd'
+else
+  Plug 'sjl/vitality.vim'
+endif
 
 call plug#end()
 
@@ -134,8 +136,8 @@ set smarttab
 set ttimeoutlen=50
 
 " Look up the tree for tags file, but first look here for a .tags
-" Fuck this syntax
-set tags=.tags,./tags;/
+" Fuck this syntax (recursive look: (magic is ';') set tags=./tags;,tags;)
+set tags=.tags,tags
 
 " Spelling languages
 set spelllang=en,el
@@ -169,7 +171,7 @@ endif
 " Colorize the column
 set colorcolumn=80
 
-colorscheme OceanicNext
+colorscheme hybrid
 
 if has("gui_running")
   set guioptions-=T
@@ -253,6 +255,9 @@ noremap ^ 0
 nnoremap [[ [{
 nnoremap ]] ]}
 
+nnoremap gd <C-]>
+autocmd Syntax go nnoremap gd :GoDef<CR>
+
 " Search for word under cursor at the cwd (with external grep)
 nnoremap # :Ack!<CR>
 
@@ -278,9 +283,6 @@ nnoremap <leader>g :UndotreeToggle<CR>
 
 " Show registers
 nnoremap <leader>r :registers<CR>
-
-" Show marks
-nnoremap <leader>m :marks<CR>
 
 " Show invisible characters
 nnoremap <leader>c :set list!<CR>:IndentLinesToggle<CR>
@@ -321,11 +323,15 @@ cnoremap <m-f> <S-right>
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null<CR>
 
+" Debugger for ruby (plugin idea: this for every language)
+nnoremap <leader>b obinding.pry<ESC>
+
 " }---------------------------- Auto and plugins ----------------------------{
 
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72 " Mail
 autocmd FocusGained,BufEnter * :checktime " force autoread on terminal vim
 autocmd Syntax mail,mkd setlocal spell " Enable spelling to specific text filetypes
+autocmd Syntax go setlocal list!
 
 " Abbreviations for correction and ease
 iabbrev teh the
@@ -336,7 +342,7 @@ cabbrev h vert bo help
 " Powerline with the light-weight airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#branch#displayed_head_limit = 8
+let g:airline#extensions#branch#displayed_head_limit = 13
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -353,6 +359,15 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Case insensitive sneak
 let g:sneak#use_ic_scs = 1
+
+" leave my ctrl-t alone vim-go
+let g:go_def_mapping_enabled = 0
+
+" gutentags
+let g:gutentags_ctags_tagfile = ".tags"
+let g:gutentags_ctags_executable_go = 'gotags'
+let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor"]
+let g:gutentags_resolve_symlinks = 1
 
 " FZF is the new champ
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -374,10 +389,17 @@ let g:fzf_command_prefix = 'F'
 nnoremap <c-p> :FFiles<CR>
 nnoremap <c-t> :FTags<CR>
 nnoremap gt    :FBTags<CR>
-nnoremap <c-m> :FGFiles?<CR>
+nnoremap <c-y> :FGFiles?<CR>
 nnoremap <c-u> :FHistory<CR>
 nnoremap <c-c> :FBCommits!<CR>
-nnoremap <leader>b :FBuffers<CR>
+nnoremap <leader>m :FMarks<CR>
 
 " enable build-in matchit pluggin
 runtime macros/matchit.vim
+
+" @nitsas command for yogurt github
+command! OpenOnGithub execute ('!open "'.CurrentRepoGithubURL().'"')
+
+function! CurrentRepoGithubURL()
+  return 'https://github.skroutz.gr/skroutz/yogurt/blob/master/'.expand('%').'\#L'.line('.')
+endfunction
