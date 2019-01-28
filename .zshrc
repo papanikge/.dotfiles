@@ -26,10 +26,6 @@ export PAGER="less -iw -F -X"
 export MANPAGER=$PAGER
 export GREP_OPTIONS="--color=auto"
 
-# Lang
-# export LC_ALL=C.UTF-8
-# export LANG=C.UTF-8
-
 if [[ `uname -s` == 'Darwin' ]]; then
   # god damn it apple
   PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
@@ -38,6 +34,10 @@ if [[ `uname -s` == 'Darwin' ]]; then
   PATH=$PATH:/usr/local/opt/mariadb@10.1/bin
   # more below after the $GOBIN set up
   MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+else
+  LANG=C
+  LC_CTYPE=el_GR.ISO8859-7
+  LC_COLLATE=el_GR.ISO8859-7
 fi
 
 # Custom shit
@@ -88,7 +88,6 @@ epoch-to-normal() {
   perl -le "print scalar localtime $1"
 }
 
-# history helper
-h() {
-  history | fgrep -i $1 | tail
+tree() {
+  tree -aC -I '.git' --dirsfirst "$@" | less -FRNX
 }
