@@ -13,22 +13,17 @@ let os = substitute(system('uname'), "\n", "", "")
 "
 call plug#begin('~/.vim/plugged')
 
-Plug 'mileszs/ack.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
-Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rails',                            { 'for': 'ruby' }
 Plug 'thoughtbot/vim-rspec',                       { 'for': 'ruby' }
 Plug 'tpope/vim-endwise',                          { 'for': 'ruby' }
 Plug 'fatih/vim-go',                               { 'for': 'go' }
 Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace',                        { 'for': 'clojure' }
-Plug 'guns/vim-sexp',                              { 'for': 'clojure' }
-Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -41,6 +36,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'w0ng/vim-hybrid' " colors
+Plug 'terryma/vim-smooth-scroll'
 
 " force autoread on terminal vim.
 if os == "Linux"
@@ -214,6 +210,13 @@ nnoremap Y y$
 " Just use Q to quit
 noremap Q :bd<CR>
 
+" Tabs
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll, 5, 2)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll, 5, 2)<CR>
+
 " remap basic keys (because I want to use J,K in a diff way)
 " carefull: these should of course be in order
 nnoremap T H
@@ -257,9 +260,6 @@ nnoremap ]] ]}
 
 nnoremap gd <C-]>
 autocmd Syntax go nnoremap gd :GoDef<CR>
-
-" Search for word under cursor at the cwd (with external grep)
-nnoremap # :Ack!<CR>
 
 " Use ? for substitution. I never use it to search backwards anyway
 nnoremap ? :%s/<C-R><C-W>//g<left><left>
@@ -393,11 +393,12 @@ nnoremap <c-y> :FGFiles?<CR>
 nnoremap <c-u> :FHistory<CR>
 nnoremap <c-c> :FBCommits!<CR>
 nnoremap <leader>m :FMarks<CR>
+nnoremap # :FRg <C-R><C-W><CR>
 
 " enable build-in matchit pluggin
 runtime macros/matchit.vim
 
-" @nitsas command for yogurt github
+" @nitsas command for skroutz's yogurt github
 command! OpenOnGithub execute ('!open "'.CurrentRepoGithubURL().'"')
 
 function! CurrentRepoGithubURL()
