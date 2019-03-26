@@ -87,7 +87,3 @@ right_status() {
 epoch-to-normal() {
   perl -le "print scalar localtime $1"
 }
-
-tree() {
-  tree -aC -I '.git' --dirsfirst "$@" | less -FRNX
-}
