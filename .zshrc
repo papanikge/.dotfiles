@@ -1,13 +1,15 @@
 #
 # George 'papanikge' Papanikolaou 2014 zsh configuration.
 # Modified and tried again 19/07/2017
+# Modified a lot again 26/03/2019
 #
 
 export ZSH=$HOME/.oh-my-zsh
 
+# ZSH_THEME="agnoster"
 ZSH_THEME="papanikge"
-plugins=(sudo screen python docker brew ruby rake vagrant redis-cli cabal z \
-  colored-man-pages fzf-docker) # fzf-docker is not build-in
+plugins=(sudo screen python docker brew ruby rake vagrant redis-cli cabal z colored-man-pages)
+# if you're here looking for something that's missing check fzf-docker
 
 # Activate oh-my-zsh.
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -25,6 +27,10 @@ export EDITOR=vim
 export PAGER="less -iw -F -X"
 export MANPAGER=$PAGER
 export GREP_OPTIONS="--color=auto"
+
+# These are the result of hours of searching of greek character encoding
+export LC_ALL=""
+export LC_CTYPE="en_US.UTF-8"
 
 if [[ `uname -s` == 'Darwin' ]]; then
   # god damn it apple
