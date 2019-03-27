@@ -1,6 +1,6 @@
 # Better defaults
 alias ls="ls --color"
-alias ll="clear && ls -lhGS"
+alias ll="clear && exa -bghHliS"
 alias la="ls -A"
 alias ls1="find . -name *"
 alias p="pgrep -l"
