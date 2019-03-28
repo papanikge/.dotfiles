@@ -23,12 +23,14 @@
     yesterday = log --since '1 day ago' --oneline
     files     = log --oneline --graph --color --abbrev-commit --name-status --no-decorate
     dc        = diff --cached
-    dw        = diff --word-diff
+    wd        = diff --word-diff
     dn        = diff --name-only
     fml       = reset --hard
-    edit      = !git rebase -i $(git merge-base head master)
-    day       = "!__git_day() { git log --name-status --after=\"$1 0:00\" --before=\"$1 23:59\";}; __git_day"
-    find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+    edit      = !git rebase -i --autosquash $(git merge-base head master)
+    contributors  = shortlog --summary --numbered
+    day           = "!__git_day() { git log --name-status --after=\"$1 0:00\" --before=\"$1 23:59\";}; __git_day"
+    when-merged   = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+    delete-merged = "!git branch --merged | grep -v '\\*' | grep -v master | xargs -n 1 git branch -d; git remote -v update -p"
 [sendemail]
     smtpserver = ~/.dotfiles/bin/msmtpq
 [help]
@@ -37,6 +39,10 @@
     autosquash = true
 [diff]
     algorithm = histogram
+[merge]
+    tool = meld
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 [url "git@github.skroutz.gr:"]
     insteadOf = skroutz:
 [url "git@github.com:"]
