@@ -1,15 +1,13 @@
 #
 # George 'papanikge' Papanikolaou 2014 zsh configuration.
 # Modified and tried again 19/07/2017
-# Modified a lot again 26/03/2019
+# Modified a lot for locales and safety/sanity 26-7/03/2019
 #
 
 export ZSH=$HOME/.oh-my-zsh
 
-# ZSH_THEME="agnoster"
-ZSH_THEME="papanikge"
-plugins=(sudo screen python docker brew ruby rake vagrant redis-cli cabal z colored-man-pages)
-# if you're here looking for something that's missing check fzf-docker
+ZSH_THEME="papanikge" # based on af-magic. I don't like the separator line
+plugins=(sudo python docker brew ruby rake redis-cli z colored-man-pages)
 
 # Activate oh-my-zsh.
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -40,21 +38,20 @@ if [[ `uname -s` == 'Darwin' ]]; then
   PATH=$PATH:/usr/local/opt/mariadb@10.1/bin
   # more below after the $GOBIN set up
   MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
-else
-  LANG=C
-  LC_CTYPE=el_GR.ISO8859-7
-  LC_COLLATE=el_GR.ISO8859-7
+
+  # Enable Google Cloud SDK
+  PATH=$PATH:/Users/papanikge/.google-cloud-sdk/bin
+  CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
 fi
 
 # Custom shit
-source ~/.aliases
-source ~/.skroutz-helpers
-
-if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.skroutz-helpers ] && source ~/.skroutz-helpers
 
 # env handlers
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
+command -v rbenv >/dev/null && eval "$(rbenv init -)"
+command -v pyenv >/dev/null && eval "$(pyenv init -)"
+command -v kubectl >/dev/null && source <(kubectl completion zsh);
 
 # Go
 export GOPATH=$HOME/playground/go
@@ -62,11 +59,8 @@ export GOBIN=$GOPATH/bin
 PATH=$PATH:$GOBIN
 
 # Enable fzf and helpers
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh && source ~/.fzf_helpers
-
-# Enable Google Cloud SDK
-PATH=$PATH:/Users/papanikge/.google-cloud-sdk/bin
-CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf_helpers ] && source ~/.fzf_helpers
 
 # Don't mess with my prompt, virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -74,10 +68,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Jupyter/ipython/itermplot
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
-
-# Skroutz specific
-export YOGURT_PATH="/Users/papanikge/skroutz/yogurt/"
-export DISABLE_SPRING=true
 
 # Used by the custom theme to display the ruby/python version on the right.
 right_status() {
@@ -92,4 +82,8 @@ right_status() {
 
 epoch-to-normal() {
   perl -le "print scalar localtime $1"
+}
+
+manswitch () {
+  man $1 | less -p "^ +$2";
 }
