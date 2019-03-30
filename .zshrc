@@ -24,7 +24,6 @@ bindkey -e
 export EDITOR=vim
 export PAGER="less -iw -F -X"
 export MANPAGER=$PAGER
-export GREP_OPTIONS="--color=auto"
 
 # These are the result of hours of searching of greek character encoding
 export LC_ALL=""
