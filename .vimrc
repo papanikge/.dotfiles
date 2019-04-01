@@ -19,11 +19,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
-Plug 'tpope/vim-rails',                            { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec',                       { 'for': 'ruby' }
-Plug 'tpope/vim-endwise',                          { 'for': 'ruby' }
-Plug 'fatih/vim-go',                               { 'for': 'go' }
-Plug 'guns/vim-clojure-static',                    { 'for': 'clojure' }
+Plug 'tpope/vim-rails',             { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec',        { 'for': 'ruby' }
+Plug 'tpope/vim-endwise',           { 'for': 'ruby' }
+Plug 'fatih/vim-go',                { 'for': 'go', 'do': ':GoUpdateBinaries' }
+Plug 'guns/vim-clojure-static',     { 'for': 'clojure' }
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -31,12 +31,19 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
-Plug '/usr/local/opt/fzf' " thru homebrew
+Plug '/usr/local/opt/fzf'       " thru homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'w0ng/vim-hybrid' " colors
+Plug 'w0ng/vim-hybrid'          " colors
 Plug 'terryma/vim-smooth-scroll'
+
+Plug 'diepm/vim-rest-console'
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+let g:deoplete#enable_at_startup = 1
 
 " force autoread on terminal vim.
 if os == "Linux"
@@ -326,11 +333,14 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " Debugger for ruby (plugin idea: this for every language)
 nnoremap <leader>b obinding.pry<ESC>
 
+nnoremap <leader>j :%!jq '.'<CR>
+
 " }---------------------------- Auto and plugins ----------------------------{
 
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72 " Mail
 autocmd FocusGained,BufEnter * :checktime " force autoread on terminal vim
 autocmd Syntax mail,mkd setlocal spell " Enable spelling to specific text filetypes
+autocmd Syntax markdown,mkd setlocal conceallevel=0
 autocmd Syntax go setlocal list!
 
 " Abbreviations for correction and ease
@@ -354,9 +364,6 @@ let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeHighlightCursorline = 1
 
-" Ack (with the silver searcher)
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 " Case insensitive sneak
 let g:sneak#use_ic_scs = 1
 
@@ -365,9 +372,8 @@ let g:go_def_mapping_enabled = 0
 
 " gutentags
 let g:gutentags_ctags_tagfile = ".tags"
-let g:gutentags_ctags_executable_go = 'gotags'
-let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor"]
-let g:gutentags_resolve_symlinks = 1
+let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec"]
+let g:gutentags_exclude_filetypes=['go', 'vim', 'sh']
 
 " FZF is the new champ
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -391,9 +397,18 @@ nnoremap <c-t> :FTags<CR>
 nnoremap gt    :FBTags<CR>
 nnoremap <c-y> :FGFiles?<CR>
 nnoremap <c-u> :FHistory<CR>
-nnoremap <c-c> :FBCommits!<CR>
+nnoremap <leader>k :FBCommits!<CR>
 nnoremap <leader>m :FMarks<CR>
+nnoremap <leader>f :FRg<CR>
 nnoremap # :FRg <C-R><C-W><CR>
+
+" vim rest console
+let b:vrc_response_default_content_type = 'application/json'
+let g:vrc_auto_format_response_enabled = 1
+let g:vrc_curl_opts = {
+  \ '--connect-timeout' : 10,
+  \ '-s': ''
+  \}
 
 " enable build-in matchit pluggin
 runtime macros/matchit.vim
