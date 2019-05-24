@@ -7,6 +7,8 @@
 
 # Account ---------------------------------------------------------------------
 
+# set folder      = "imaps://mailer.skroutz.gr/" ##### set up protonmail
+# set imap_user   = "gpapanikolaou@skroutz.gr"
 set folder      = "imaps://mailer.skroutz.gr/"
 set imap_user   = "gpapanikolaou@skroutz.gr"
 # set imap_pass # need to set up gpg with: source "gpg -dq ~/.mutt/passwords.gpg |"
@@ -134,7 +136,7 @@ set sidebar_visible
 set sidebar_width = 35
 set sidebar_short_path
 set sidebar_indent_string = '  '
-set sidebar_divider_char = "| "
+set sidebar_divider_char = " |    "
 set sidebar_folder_indent
 set mail_check_stats
 
@@ -144,3 +146,8 @@ set sidebar_sort_method = 'path'
 bind index,pager \Ck sidebar-prev
 bind index,pager \Cj sidebar-next
 bind index,pager \Ci sidebar-open
+
+# my terminal can show all characters of this charset
+set charset="ISO-8859-7"
+# what different charsets I will use when sending
+set send_charset="US-ASCII:ISO-8859-1:ISO-8859-7:UTF-8"
