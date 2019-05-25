@@ -10,3 +10,5 @@
 .irssi/default.theme
 .irssi/saved_colors
 .tags
+.skroutz-helpers
+ssh-config
