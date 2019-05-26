@@ -13,6 +13,7 @@ alias gdb="gdb -q"
 alias dmesg="dmesg --color --ctime"
 alias fd="fd -H"
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+alias pb="nc termbin.com 9999"
 
 # Time
 alias today="date +%Y-%m-%d"
