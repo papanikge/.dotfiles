@@ -20,9 +20,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
 Plug 'tpope/vim-rails',             { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec',        { 'for': 'ruby' }
 Plug 'tpope/vim-endwise',           { 'for': 'ruby' }
 Plug 'fatih/vim-go',                { 'for': 'go', 'do': ':GoUpdateBinaries' }
+Plug 'rust-lang/rust.vim',          { 'for': 'rust' }
 Plug 'guns/vim-clojure-static',     { 'for': 'clojure' }
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
@@ -37,13 +37,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'w0ng/vim-hybrid'          " colors
 Plug 'terryma/vim-smooth-scroll'
-
-Plug 'diepm/vim-rest-console'
-
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-let g:deoplete#enable_at_startup = 1
+Plug 'airblade/vim-gitgutter'
 
 " force autoread on terminal vim.
 if os == "Linux"
@@ -226,12 +220,12 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll, 5, 2)<CR>
 
 " remap basic keys (because I want to use J,K in a diff way)
 " carefull: these should of course be in order
-nnoremap T H
+" nnoremap T H
 nnoremap H J
-nnoremap J 15j
-" overwrite vim-fireplace's K (doc) first
-autocmd Syntax clojure nnoremap M K
-nnoremap K 15k
+" nnoremap J 15j
+" " overwrite vim-fireplace's K (doc) first
+" autocmd Syntax clojure nnoremap M K
+" nnoremap K 15k
 
 " System clipboard
 if os == "Linux"
@@ -267,6 +261,7 @@ nnoremap ]] ]}
 
 nnoremap gd <C-]>
 autocmd Syntax go nnoremap gd :GoDef<CR>
+autocmd Syntax go nnoremap gt :GoDecls<CR>
 
 " Use ? for substitution. I never use it to search backwards anyway
 nnoremap ? :%s/<C-R><C-W>//g<left><left>
@@ -286,7 +281,16 @@ nnoremap <leader><Space> :nohlsearch<CR>
 nnoremap <leader>t :NERDTree<CR>
 
 " changing from Gundo to undotree due to ext deps
-nnoremap <leader>g :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
+
+nnoremap <leader>gg :GitGutterToggle<CR>
+nnoremap <leader>gb :GitGutterBufferToggle<CR>
+nnoremap <leader>gn :GitGutterNextHunk<CR>
+nnoremap <leader>gp :GitGutterPrevHunk<CR>
+nnoremap <Leader>ga :GitGutterStageHunk<CR>
+nnoremap <Leader>gr :GitGutterUndoHunk<CR>
+nnoremap <Leader>gv :GitGutterPreviewHunk<CR>
+nnoremap <Leader>gf :GitGutterFold<CR>
 
 " Show registers
 nnoremap <leader>r :registers<CR>
@@ -335,6 +339,13 @@ nnoremap <leader>b obinding.pry<ESC>
 
 nnoremap <leader>j :%!jq '.'<CR>
 
+" Copy filename into clipboard
+if os == "Linux"
+  nnoremap <leader>n :let @*=expand("%")<CR>
+else
+  nnoremap <leader>n :let @+=expand("%")<CR>
+endif
+
 " }---------------------------- Auto and plugins ----------------------------{
 
 autocmd BufRead,BufNewFile *mutt-* setlocal ft=mail cc=72 " Mail
@@ -370,10 +381,13 @@ let g:sneak#use_ic_scs = 1
 " leave my ctrl-t alone vim-go
 let g:go_def_mapping_enabled = 0
 
+" Rust
+let g:rustfmt_autosave = 1
+
 " gutentags
-let g:gutentags_ctags_tagfile = ".tags"
 let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec"]
 let g:gutentags_exclude_filetypes=['go', 'vim', 'sh']
+let g:gutentags_cache_dir = '~/.cache/gutentags'
 
 " FZF is the new champ
 let g:fzf_history_dir = '~/.local/share/fzf-history'
@@ -419,3 +433,9 @@ command! OpenOnGithub execute ('!open "'.CurrentRepoGithubURL().'"')
 function! CurrentRepoGithubURL()
   return 'https://github.skroutz.gr/skroutz/yogurt/blob/master/'.expand('%').'\#L'.line('.')
 endfunction
+
+
+let ruby_no_expensive = 1
+
+" set nofoldenable
+" set foldmethod=syntax
