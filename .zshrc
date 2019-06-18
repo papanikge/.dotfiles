@@ -57,9 +57,14 @@ export GOPATH=$HOME/playground/go
 export GOBIN=$GOPATH/bin
 PATH=$PATH:$GOBIN
 
+# Rust
+PATH=$PATH:~/.cargo/bin
+
 # Enable fzf and helpers
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.fzf_helpers ] && source ~/.fzf_helpers
+
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # Don't mess with my prompt, virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
