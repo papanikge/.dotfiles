@@ -23,6 +23,8 @@ ln -s .dotfiles/.irbrc .
 # oh-my-tmux
 wget -qO .tmux.conf https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf
 
+# oh-my-zsh
+git clone https://github.com/robbyrussell/oh-my-zsh .oh-my-zsh
 
 echo "You might need to run:"
 echo "    adduser <username>"
