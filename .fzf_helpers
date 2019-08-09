@@ -80,5 +80,3 @@ gfa() {
   # ${target} has origin/ in front. we use or # for prefix of // for substring
   git checkout $(echo "${target//origin\/}" | awk '{print $2}')
 }
-
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
