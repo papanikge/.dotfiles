@@ -1,0 +1,5 @@
+#!/bin/sh
+
+scrot -s /tmp/scrot_ss_clip.png
+xclip -selection clipboard -t image/png -i /tmp/scrot_ss_clip.png
+rm -f /tmp/scrot_ss_clip.png
