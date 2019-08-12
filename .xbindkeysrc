@@ -1,0 +1,22 @@
+"xbacklight -dec 5"
+  XF86MonBrightnessDown
+"xbacklight -inc 5"
+  XF86MonBrightnessUp
+"pactl set-sink-volume @DEFAULT_SINK@ -2000"
+  XF86AudioLowerVolume
+"pactl set-sink-volume @DEFAULT_SINK@ +2000"
+  XF86AudioRaiseVolume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  XF86AudioMute
+"pactl set-sink-volume @DEFAULT_SINK@ +2000"
+  F12
+"pactl set-sink-volume @DEFAULT_SINK@ -2000"
+  F11
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  F7
+"/home/papanikge/.dotfiles/bin/screenshot-clipboard"
+  Release + F3
+"/home/papanikge/.dotfiles/bin/lock-blur"
+  Release + F9
+"ruby ~/.dotfiles/bin/change-language.rb"
+  Control + space
