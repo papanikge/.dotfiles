@@ -31,13 +31,18 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
-Plug '/usr/local/opt/fzf'       " thru homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'w0ng/vim-hybrid'          " colors
 Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
+
+if os == "Linux"
+  Plug '~/.fzf'
+else
+  Plug '/usr/local/opt/fzf'
+endif
 
 " force autoread on terminal vim.
 if os == "Linux"
@@ -151,8 +156,11 @@ set wildignore+=*.swp?                           " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.pyc                            " Python bytecode
 
-" truecolor support
-set termguicolors
+if os == "Linux"
+  " truecolor support
+  " set t_Co=256
+  set termguicolors
+end
 
 set mouse=a
 
@@ -168,6 +176,7 @@ endif
 " Colorize the column
 set colorcolumn=80
 
+set background=dark
 colorscheme hybrid
 
 if has("gui_running")
@@ -384,6 +393,9 @@ let g:go_def_mapping_enabled = 0
 " Rust
 let g:rustfmt_autosave = 1
 
+" Ruby
+let ruby_no_expensive = 1
+
 " gutentags
 let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec"]
 let g:gutentags_exclude_filetypes=['go', 'vim', 'sh']
@@ -433,9 +445,3 @@ command! OpenOnGithub execute ('!open "'.CurrentRepoGithubURL().'"')
 function! CurrentRepoGithubURL()
   return 'https://github.skroutz.gr/skroutz/yogurt/blob/master/'.expand('%').'\#L'.line('.')
 endfunction
-
-
-let ruby_no_expensive = 1
-
-" set nofoldenable
-" set foldmethod=syntax
