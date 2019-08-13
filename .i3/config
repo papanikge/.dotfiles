@@ -1,0 +1,121 @@
+# vim: filetype=i3
+
+set $mod Mod1
+
+font pango:DejaVu Sans 9
+
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec terminator
+bindsym $mod+Shift+Return exec google-chrome-stable
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec "rofi -show run"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+n split h
+
+# split in vertical orientation
+bindsym $mod+b split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# layouts (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# tiling / floating windows
+bindsym $mod+shift+t focus mode_toggle
+bindsym $mod+t floating toggle
+bindsym $mod+g sticky toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+z focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bar {
+    status_command i3status
+    colors {
+        background #222222
+        statusline #dddddd
+        separator  #666666
+        active_workspace   #333333 #333333 #888888
+        focused_workspace  #0088CC #0088CC #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
+
+# Scratchpads
+bindsym $mod+Shift+backslash move scratchpad
+bindsym $mod+backslash scratchpad show
+
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left
+
+bindsym $mod+Tab workspace back_and_forth
+
+exec --no-startup-id "xset r rate 300 44"
+exec --no-startup-id "xbindkeys"
+exec --no-startup-id "parcellite"
+exec --no-startup-id "sh ~/.fehbg"
+exec --no-startup-id "udiskie -t"
+exec --no-startup-id "pactl load-module module-bluetooth-discover"
+exec --no-startup-id "blueman-applet"

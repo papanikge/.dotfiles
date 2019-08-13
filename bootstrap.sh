@@ -14,8 +14,9 @@ ln -s .dotfiles/.muttrc .
 ln -s .dotfiles/.skroutz-helpers .
 ln -s .dotfiles/.aliases .
 ln -s .dotfiles/.gitconfig .
-ln -s .dotfiles/.weechat .
 ln -s .dotfiles/.irbrc .
+ln -s .dotfiles/.i3 .
+ln -s /home/papanikge/.dotfiles/i3status .config
 
 # Secrets and sensitive files
 # TODO need to fetch password-sensitive files
