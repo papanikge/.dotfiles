@@ -41,6 +41,8 @@ if [[ `uname -s` == 'Darwin' ]]; then
   # Enable Google Cloud SDK
   PATH=$PATH:/Users/papanikge/.google-cloud-sdk/bin
   CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
+else
+  export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 # Custom shit
@@ -55,10 +57,13 @@ command -v kubectl >/dev/null && source <(kubectl completion zsh);
 # Go
 export GOPATH=$HOME/playground/go
 export GOBIN=$GOPATH/bin
-PATH=$PATH:$GOBIN
+if [[ `uname -s` == 'Linux' ]]; then
+  export PATH=$PATH:/usr/local/go/bin
+fi
+export PATH=$PATH:$GOBIN
 
 # Rust
-PATH=$PATH:~/.cargo/bin
+export PATH=$PATH:~/.cargo/bin
 
 # Enable fzf and helpers
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
