@@ -6,15 +6,18 @@
 set -eu
 
 cd $HOME
-ln -s .dotfiles/.zshrc .
 ln -s .dotfiles/.vim .
 ln -s .dotfiles/.vimrc .
+ln -s .dotfiles/.zshrc .
+ln -s .dotfiles/.aliases .
 ln -s .dotfiles/.mutt .
 ln -s .dotfiles/.muttrc .
-ln -s .dotfiles/.skroutz-helpers .
-ln -s .dotfiles/.aliases .
+ln -s .dotfiles/.fzf_helpers .
+ln -s .dotfiles/.xbindkeysrc .
+ln -s .dotfiles/.wgetrc .
 ln -s .dotfiles/.gitconfig .
 ln -s .dotfiles/.irbrc .
+ln -s .dotfiles/.ghci .
 ln -s .dotfiles/.i3 .
 ln -s /home/papanikge/.dotfiles/i3status .config
 

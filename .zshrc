@@ -96,3 +96,15 @@ epoch-to-normal() {
 manswitch () {
   man $1 | less -p "^ +$2";
 }
+
+bindkey ^B backward-word
+bindkey ^F forward-word
+bindkey ^H backward-char
+# bindkey ^L forward-char
+bindkey ^V push-line      # interim command
+
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz run-help-ip
+autoload -Uz run-help-openssl
+autoload -Uz run-help-sudo
