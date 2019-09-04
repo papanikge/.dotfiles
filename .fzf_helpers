@@ -18,7 +18,9 @@ is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
+#
 # Show hashes with control-g-h (like tig)
+#
 _hashes_gh() {
   is_in_git_repo || return
 
@@ -32,6 +34,9 @@ fzf-gh-widget() LBUFFER+=$(_hashes_gh | join-lines)
 zle -N fzf-gh-widget
 bindkey '^g^h' fzf-gh-widget
 
+#
+# Find docker images
+#
 _docker_images() {
   docker image ls |
   fzf-tmux --ansi --no-sort --reverse | awk '{print $3}'
@@ -39,6 +44,20 @@ _docker_images() {
 fzf-di-widget() LBUFFER+=$(_docker_images | join-lines)
 zle -N fzf-di-widget
 bindkey '^g^i' fzf-di-widget
+
+#
+# Find files that have changed
+#
+_changed_files() {
+  is_in_git_repo || return
+  git ls-files -m -o --exclude-standard | fzf-tmux --no-sort --reverse --height 10 -m
+}
+fzf-gy-widget() {
+  LBUFFER+=$(_changed_files | join-lines)
+  zle reset-prompt
+}
+zle -N fzf-gy-widget
+bindkey '^g^y' fzf-gy-widget
 
 # FZF WITH PREVIEW (Try highlight, then fall back to cat)
 export FZF_CTRL_T_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] && \
