@@ -38,6 +38,13 @@ Plug 'w0ng/vim-hybrid'          " colors
 Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'pseewald/vim-anyfold',    { 'on': 'AnyFoldActivate' }
+Plug 'arecarn/vim-fold-cycle'
+let g:fold_cycle_default_mapping = 0 "disable default mappings
+nnoremap <CR> [j
+nmap <Space> <Plug>(fold-cycle-open)
+nmap <BS> <Plug>(fold-cycle-close)
+
 if os == "Linux"
   Plug '~/.fzf'
 else
@@ -333,6 +340,9 @@ nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
+
+" Fold
+nnoremap <leader>o :AnyFoldActivate<CR>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
