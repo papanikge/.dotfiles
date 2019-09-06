@@ -11,6 +11,7 @@
 
 set folder      = "imaps://mailer.skroutz.gr/"
 set imap_user   = "gpapanikolaou@skroutz.gr"
+set smtp_url = "smtp://gpapanikolaou@skroutz.gr@mailer.skroutz.gr:587"
 source "gpg -qd ~/.mutt/passwords.gpg |"
 set from        = "gpapanikolaou@skroutz.gr"
 set spoolfile   = +INBOX
@@ -31,6 +32,7 @@ unset use_ipv6
 # It also makes every mailbox visible in the sidebar
 set imap_check_subscribed
 set imap_list_subscribed
+
 # You probably need a tool to fetch mail to have these:
 # set header_cache     = "~/.mutt/cache/headers/"
 # set message_cachedir = "~/.mutt/cache/bodies/"

@@ -16,10 +16,12 @@
   F7
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
   F8
-"rofi -p 'Add to Things' -dmenu | neomutt -s '' add-to-things-t7vw0je2vdk812onve4@things.email"
+"neomutt -s `rofi -p 'Add to Things' -theme DarkBlue -dmenu` add-to-things-t7vw0je2vdk812onve4@things.email"
   F3
-"cat ~/.local/share/parcellite/history | strings | rofi -dmenu -p 'Copy' -theme Paper | xclip"
+"cat ~/.local/share/parcellite/history | strings | tail -n+2 | rofi -dmenu -p 'Copy' -theme Paper | xclip"
   F2
+"/home/papanikge/.dotfiles/bin/rofi-emoji"
+  F5
 "/home/papanikge/.dotfiles/bin/screenshot-clipboard"
   Release + F4
 "/home/papanikge/.dotfiles/bin/lock-blur"
