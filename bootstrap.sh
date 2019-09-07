@@ -19,7 +19,8 @@ ln -s .dotfiles/.gitconfig .
 ln -s .dotfiles/.irbrc .
 ln -s .dotfiles/.ghci .
 ln -s .dotfiles/.i3 .
-ln -s /home/papanikge/.dotfiles/i3status .config
+ln -s .dotfiles/rofi .config/rofi
+ln -s /home/papanikge/.dotfiles/i3status .config/i3status
 
 # Secrets and sensitive files
 # TODO need to fetch password-sensitive files
