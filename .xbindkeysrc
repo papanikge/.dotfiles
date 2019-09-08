@@ -25,6 +25,8 @@
 "/home/papanikge/.dotfiles/bin/screenshot-clipboard"
   Release + F4
 "/home/papanikge/.dotfiles/bin/lock-blur"
-  Release + F9
-"ruby ~/.dotfiles/bin/change-language.rb"
+  Release + F12
+"/home/papanikge/.dotfiles/bin/change-language.sh"
   Control + space
+"rofi -show run -theme onedark-full-screen"
+  Mod4 + space
