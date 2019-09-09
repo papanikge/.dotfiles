@@ -184,7 +184,7 @@ endif
 set colorcolumn=80
 
 set background=dark
-colorscheme hybrid
+colorscheme jellybeans
 
 if has("gui_running")
   set guioptions-=T

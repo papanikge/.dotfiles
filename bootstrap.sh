@@ -5,6 +5,8 @@
 
 set -eu
 
+mkdir -p .config/terminator
+
 cd $HOME
 ln -s .dotfiles/.vim .
 ln -s .dotfiles/.vimrc .
@@ -21,6 +23,7 @@ ln -s .dotfiles/.ghci .
 ln -s .dotfiles/.i3 .
 ln -s .dotfiles/rofi .config/rofi
 ln -s /home/papanikge/.dotfiles/i3status .config/i3status
+ln -s /home/papanikge/.dotfiles/terminator_config .config/terminator/config
 
 # Secrets and sensitive files
 # TODO need to fetch password-sensitive files
