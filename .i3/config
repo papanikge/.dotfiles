@@ -1,6 +1,7 @@
 # vim: filetype=i3
 
-set $mod Mod1
+# super (remapped to alt in order to be next to space bar)
+set $mod Mod4
 
 font pango:DejaVu Sans 9
 
@@ -14,7 +15,9 @@ bindsym $mod+Shift+Return exec google-chrome-stable
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+space exec "rofi -show run -theme onedark-full-screen"
+# move to xbindkeys because of shadowing(?)
+# https://github.com/i3/i3/issues/1831#issuecomment-128145197
+# bindsym $mod+space exec "rofi -show run -theme onedark-full-screen"
 
 # change focus
 bindsym $mod+h focus left
@@ -53,25 +56,32 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+set $w1 1 λ
+set $w2 2 www
+set $w3 3 msg
+set $w4 4 misc
+set $w5 5 mx
+set $w8 8 mail
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace 9
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+8 move container to workspace $w8
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -90,19 +100,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bar {
-    status_command i3status
-    colors {
-        background #222222
-        statusline #dddddd
-        separator  #666666
-        active_workspace   #333333 #333333 #888888
-        focused_workspace  #0088CC #0088CC #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-    }
-}
-
 # Scratchpads
 bindsym $mod+Shift+backslash move scratchpad
 bindsym $mod+backslash scratchpad show
@@ -112,6 +109,9 @@ bindsym $mod+less move workspace to output left
 
 bindsym $mod+Tab workspace back_and_forth
 
+popup_during_fullscreen smart
+
+# Daemons and execs
 exec --no-startup-id "xset r rate 300 44"
 exec --no-startup-id "xbindkeys"
 exec --no-startup-id "parcellite"
@@ -120,13 +120,44 @@ exec --no-startup-id "udiskie -t"
 exec --no-startup-id "pactl load-module module-bluetooth-discover"
 exec --no-startup-id "blueman-applet"
 
-# client.focused          #077761 #08876E #FFFFFF #19F4CF #0CCEA8
-# client.focused_inactive #333333 #5F676A #FFFFFF #484E50 #5F676A
-# client.unfocused        #333333 #202124 #888888 #292D2E #202124
-# client.urgent           #FF28D4 #FF28D4 #FFFFFF #FF28D4 #FF28D4
-# client.placeholder      #000000 #0C0C0C #FFFFFF #000000 #0C0C0C
-# client.background       #551177
+# Window settings
+for_window [class="Google-chrome"] border none
+for_window [class="Spotify"] border none
+for_window [class="Firefox"] border none
+for_window [class="Thunderbird"] border none
+for_window [class="MPlayer"] border none
+for_window [class="MPlayer"] floating enable
+assign [class="Spotify"] 5 mx
+assign [class="Thunderbird"] 8 mail
 
-for_window [class="google-chrome"] border pixel 1
-for_window [class="firefox"] border pixel 1
-# green: 4ca16e
+#
+# !!! Colors !!!
+#
+# gray: 222222
+# dark green: 003629
+# lighter 004939 (choosen for title bars)
+# lighter 005d48
+# light good green: 008466 (from imgur)
+#
+# item                  border  bground text    indicator child_border
+client.focused          #005d48 #004939 #e5e5e5 #4A4A4A   #003629
+client.placeholder      #242424 #242424 #242424
+client.background       #242424 #242424 #242424
+client.unfocused        #222222 #0B0B0B #aaaaaa #222222
+client.focused_inactive #222222 #222222 #a9a9a9 #222222
+client.urgent           #4A4A4A #4A4A4A #f7f7f7 #4A4A4A
+
+bar {
+    status_command i3status
+    # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    # font pango:DejaVu Sans Mono 10
+    colors {
+        background         #000000
+        statusline         #dddddd
+        separator          #666666
+        active_workspace   #333333 #0e1019 #888888
+        focused_workspace  #003629 #007057 #ffffff
+        inactive_workspace #333333 #0e1019 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+    }
+}
