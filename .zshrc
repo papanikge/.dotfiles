@@ -2,6 +2,7 @@
 # George 'papanikge' Papanikolaou 2014 zsh configuration.
 # Modified and tried again 19/07/2017
 # Modified a lot for locales and safety/sanity 26-7/03/2019
+# Major rewrites for i3 and linux on 08/2019
 #
 
 export ZSH=$HOME/.oh-my-zsh
@@ -97,10 +98,18 @@ manswitch () {
   man $1 | less -p "^ +$2";
 }
 
+_change_cmd () {
+  zle beginning-of-line
+  zle kill-word
+}
+# you can "define" a method as a widget and just bind it to a key
+zle -N _change_cmd
+bindkey ^Q _change_cmd # ^ is contorl, \e is meta/alt key. bless zle
+
+# define with -N
 bindkey ^B backward-word
 bindkey ^F forward-word
 bindkey ^H backward-char
-# bindkey ^L forward-char
 bindkey ^V push-line      # interim command
 
 autoload -Uz run-help
@@ -108,3 +117,12 @@ autoload -Uz run-help-git
 autoload -Uz run-help-ip
 autoload -Uz run-help-openssl
 autoload -Uz run-help-sudo
+
+# How on earth did I survive without this all this time?
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+# _backward-kill-dir () {
+#   local WORDCHARS=${WORDCHARS/\/}
+#   zle backward-kill-word
+# }
+# zle -N _backward-kill-dir
+# bindkey '^[^?' _backward-kill-dir
