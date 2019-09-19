@@ -1,4 +1,4 @@
 rofi.kb-accept-entry: Control+m,Return,KP_Enter
-rofi.kb-row-down: Control+j
+rofi.kb-row-down: Control+j,Down
 rofi.kb-remove-to-eol: Control+0
 rofi.kb-row-up: Up,Control+k

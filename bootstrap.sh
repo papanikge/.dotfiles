@@ -21,7 +21,7 @@ ln -s .dotfiles/.gitconfig .
 ln -s .dotfiles/.irbrc .
 ln -s .dotfiles/.ghci .
 ln -s .dotfiles/.i3 .
-ln -s .dotfiles/rofi .config/rofi
+ln -s /home/papanikge/.dotfiles/rofi .config/rofi
 ln -s /home/papanikge/.dotfiles/i3status .config/i3status
 ln -s /home/papanikge/.dotfiles/xorg.conf /etc/x11/xorg.conf
 ln -s /home/papanikge/.dotfiles/terminator_config .config/terminator/config
