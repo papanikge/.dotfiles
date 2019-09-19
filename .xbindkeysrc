@@ -8,10 +8,6 @@
   XF86AudioRaiseVolume
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   XF86AudioMute
-"pactl set-sink-volume @DEFAULT_SINK@ +2000"
-  F12
-"pactl set-sink-volume @DEFAULT_SINK@ -2000"
-  F11
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   F7
 "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"

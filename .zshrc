@@ -84,9 +84,7 @@ right_status() {
   if [[ -f .ruby-version ]]; then
     echo "[$(rbenv version-name)]"
   else
-    if [[ -f .python-version ]]; then
-      echo "[$(pyenv version-name)]"
-    fi
+    [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
   fi
 }
 
