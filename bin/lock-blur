@@ -1,8 +1,10 @@
 #!/bin/bash
-# from: http://plankenau.com/blog/post-10/gaussianlock
-#
-# schedule this with something like:
-# xautolock -time 10 -locker lock
+# hacked from: http://plankenau.com/blog/post-10/gaussianlock
+
+if [ -z "$(setxkbmap -query | grep ' us')" ]; then
+    # change to english first if otherwise
+    setxkbmap us
+fi
 
 scrot -z /tmp/screenshot.png
 convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
