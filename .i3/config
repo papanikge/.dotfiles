@@ -114,7 +114,7 @@ popup_during_fullscreen smart
 # Daemons and execs
 exec --no-startup-id "xset r rate 300 44"
 exec --no-startup-id "xbindkeys"
-exec --no-startup-id "parcellite"
+exec --no-startup-id "clipit"
 exec --no-startup-id "sh ~/.fehbg"
 exec --no-startup-id "udiskie -t"
 exec --no-startup-id "pactl load-module module-bluetooth-discover"
