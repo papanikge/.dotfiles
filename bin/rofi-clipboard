@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+contents=$(strings ~/.local/share/clipit/history | tail -n+2 | uniq)
+selection=$(echo "$contents" | rofi -dmenu -p 'Copy' -theme Paper)
+sleep 0.1 # Delay pasting so the text-entry can come active
+xdotool type --clearmodifiers "${selection}"
