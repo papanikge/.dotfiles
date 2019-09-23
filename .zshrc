@@ -44,6 +44,7 @@ if [[ `uname -s` == 'Darwin' ]]; then
   CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
 else
   export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$HOME/.pyenv/bin:$PATH"
 fi
 
 # Custom shit
