@@ -12,7 +12,6 @@
 set folder      = "imaps://mailer.skroutz.gr/"
 set imap_user   = "gpapanikolaou@skroutz.gr"
 set smtp_url = "smtp://gpapanikolaou@skroutz.gr@mailer.skroutz.gr:587"
-source "gpg -qd ~/.mutt/passwords.gpg |"
 set from        = "gpapanikolaou@skroutz.gr"
 set spoolfile   = +INBOX
 set postponed   = +Drafts
@@ -55,8 +54,7 @@ unset move
 # source ~/.mutt/powerline.muttrc
 
 # Cryptography. Thanks Mr. Snowden. -------------------------------------------
-# source "gpg -dq ~/.mutt/passwords.gpg |"
-# source ~/.mutt/gpg.rc         # From mutt defaults ###### CHECK THIS/THESE
+source "gpg -qd ~/.mutt/passwords.gpg |"
 # unset pgp_autosign
 # unset pgp_verify_sig
 # set pgp_timeout = 3600
