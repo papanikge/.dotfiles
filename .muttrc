@@ -50,8 +50,6 @@ unset confirmappend
 unset mark_old         # read/new is good enough
 unset wait_key         # shut up, mutt
 unset move
-# source ~/.mutt/badwolf.muttrc
-# source ~/.mutt/powerline.muttrc
 
 # Cryptography. Thanks Mr. Snowden. -------------------------------------------
 source "gpg -qd ~/.mutt/passwords.gpg |"
@@ -194,3 +192,5 @@ color status blue yellow '() ([0-9]+%|all|end) \s*' 1
 color status black blue ' ([0-9]+%|all|end) \s*'
 color status yellow black '()\s*' 1
 color status default black ''
+
+source ~/.mutt/dracula.muttrc
