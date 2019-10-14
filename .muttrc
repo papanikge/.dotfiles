@@ -38,7 +38,7 @@ set imap_list_subscribed
 
 # General ---------------------------------------------------------------------
 set editor   = "vim --noplugin"
-set beep_new           # bell on new mails
+set new_mail_command = "notify-send 'New Mail'"
 set pipe_decode        # strip headers and eval mimes when piping
 set reverse_alias      # show names from alias file in index
 set thorough_search    # strip headers and eval mimes before searching
@@ -108,8 +108,8 @@ unset mime_forward   # forward attachments as part of body
 bind pager q  exit
 bind pager i  toggle-quoted
 bind pager /  search
-bind pager j  next-line
-bind pager k  previous-line
+bind pager <up> next-line
+bind pager <down> previous-line
 bind pager g  noop
 bind pager gg top
 bind pager G  bottom
@@ -147,11 +147,6 @@ set sidebar_sort_method = 'path'
 bind index,pager \Ck sidebar-prev
 bind index,pager \Cj sidebar-next
 bind index,pager \Ci sidebar-open
-
-# my terminal can show all characters of this charset
-set charset="ISO-8859-7"
-# what different charsets I will use when sending
-set send_charset="US-ASCII:ISO-8859-1:ISO-8859-7:UTF-8"
 
 # ----------------------------------------------------------------------------
 # Powerline / nerdfont
