@@ -19,7 +19,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth/'
+Plug 'vim-ruby/vim-ruby',           { 'for': 'ruby' }
 Plug 'tpope/vim-rails',             { 'for': 'ruby' }
+Plug 'tpope/vim-bundler',           { 'for': 'ruby' }
 Plug 'tpope/vim-endwise',           { 'for': 'ruby' }
 Plug 'fatih/vim-go',                { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim',          { 'for': 'rust' }
