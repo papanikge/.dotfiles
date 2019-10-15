@@ -36,7 +36,6 @@ Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
 Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'w0ng/vim-hybrid'          " colors
 Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
 
@@ -145,10 +144,6 @@ set smarttab
 
 " Make Esc work faster
 set ttimeoutlen=50
-
-" Look up the tree for tags file, but first look here for a .tags
-" Fuck this syntax (recursive look: (magic is ';') set tags=./tags;,tags;)
-set tags=.tags,tags
 
 " Spelling languages
 set spelllang=en,el
@@ -409,8 +404,8 @@ let g:rustfmt_autosave = 1
 let ruby_no_expensive = 1
 
 " gutentags
-let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec"]
-let g:gutentags_exclude_filetypes=['go', 'vim', 'sh']
+let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec","app/assets"]
+let g:gutentags_exclude_filetypes=['go', 'vim', 'sh', 'javascript', 'html', 'css']
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
 " FZF is the new champ
