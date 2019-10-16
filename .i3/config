@@ -161,3 +161,7 @@ bar {
         urgent_workspace   #2f343a #900000 #ffffff
     }
 }
+
+exec terminator -c scratch-term
+for_window [instance="scratch-term"] floating enable, move to scratchpad
+bindsym $mod+p [instance="scratch-term"] scratchpad show
