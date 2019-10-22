@@ -404,8 +404,10 @@ let g:rustfmt_autosave = 1
 let ruby_no_expensive = 1
 
 " gutentags
-let g:gutentags_ctags_exclude=["node_modules","plugged","tmp","temp","log","vendor","test","spec","app/assets"]
-let g:gutentags_exclude_filetypes=['go', 'vim', 'sh', 'javascript', 'html', 'css']
+let g:gutentags_ctags_exclude=["node_modules", "plugged", "tmp", "temp", "log",
+      \"vendor", "test", "spec", "app/assets", "*.js", "*.go", "*.css", "*.html",
+      \"*.jsx", "*.json", ".yaml"]
+let g:gutentags_exclude_filetypes=['go']
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
 " FZF is the new champ
