@@ -110,6 +110,8 @@ bindsym $mod+less move workspace to output left
 bindsym $mod+Tab workspace back_and_forth
 
 popup_during_fullscreen smart
+mouse_warping none
+focus_wrapping no
 
 # Daemons and execs
 exec --no-startup-id "xset r rate 300 44"
