@@ -38,7 +38,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'airblade/vim-gitgutter'
-
+Plug 'dense-analysis/ale'
 Plug 'pseewald/vim-anyfold',    { 'on': 'AnyFoldActivate' }
 Plug 'arecarn/vim-fold-cycle'
 let g:fold_cycle_default_mapping = 0 "disable default mappings
@@ -341,6 +341,8 @@ nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
 " Fold
 nnoremap <leader>o :AnyFoldActivate<CR>
 
+nnoremap <leader>l :ALEToggle<CR>
+
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
@@ -444,6 +446,13 @@ let g:vrc_curl_opts = {
   \ '--connect-timeout' : 10,
   \ '-s': ''
   \}
+" ALE
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
 
 " enable build-in matchit pluggin
 runtime macros/matchit.vim
