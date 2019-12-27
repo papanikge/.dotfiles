@@ -1,0 +1,159 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.014  000.014: --- VIM STARTING ---
+000.175  000.161: Allocated generic buffers
+000.228  000.053: locale set
+000.247  000.019: GUI prepared
+000.253  000.006: clipboard setup
+000.261  000.008: window checked
+000.954  000.693: inits 1
+000.997  000.043: parsing arguments
+000.999  000.002: expanding arguments
+001.043  000.044: shell init
+001.543  000.500: Termcap init
+001.617  000.074: inits 2
+001.899  000.282: init highlight
+002.478  000.415  000.415: sourcing /usr/share/vim/vim81/debian.vim
+002.540  000.587  000.172: sourcing $VIM/vimrc
+011.932  002.077  002.077: sourcing /home/papanikge/.vim/autoload/plug.vim
+016.827  000.078  000.078: sourcing /home/papanikge/.vim/plugged/vim-go/ftdetect/gofiletype.vim
+017.174  000.035  000.035: sourcing /home/papanikge/.vim/plugged/rust.vim/ftdetect/rust.vim
+024.738  000.086  000.086: sourcing /home/papanikge/.vim/plugged/vim-git/ftdetect/git.vim
+024.799  000.012  000.012: sourcing /home/papanikge/.vim/plugged/vim-fugitive/ftdetect/fugitive.vim
+024.951  000.088  000.088: sourcing /home/papanikge/.vim/plugged/vim-ruby/ftdetect/ruby.vim
+025.083  000.117  000.117: sourcing /home/papanikge/.vim/plugged/vim-ruby/ftdetect/ruby_extra.vim
+025.160  000.029  000.029: sourcing /home/papanikge/.vim/plugged/vim-clojure-static/ftdetect/clojure.vim
+029.862  004.636  004.636: sourcing /home/papanikge/.vim/plugged/vim-polyglot/ftdetect/polyglot.vim
+030.072  011.019  006.051: sourcing /usr/share/vim/vim81/filetype.vim
+030.270  000.036  000.036: sourcing /usr/share/vim/vim81/ftplugin.vim
+030.442  000.029  000.029: sourcing /usr/share/vim/vim81/indent.vim
+031.550  000.721  000.721: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+031.657  001.005  000.284: sourcing /usr/share/vim/vim81/syntax/synload.vim
+031.683  001.187  000.182: sourcing /usr/share/vim/vim81/syntax/syntax.vim
+032.076  000.325  000.325: sourcing /usr/share/vim/vim81/syntax/nosyntax.vim
+032.467  000.114  000.114: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+032.559  000.349  000.235: sourcing /usr/share/vim/vim81/syntax/synload.vim
+032.583  000.864  000.190: sourcing /usr/share/vim/vim81/syntax/syntax.vim
+032.720  000.010  000.010: sourcing /usr/share/vim/vim81/filetype.vim
+032.865  000.009  000.009: sourcing /usr/share/vim/vim81/ftplugin.vim
+033.004  000.007  000.007: sourcing /usr/share/vim/vim81/indent.vim
+033.779  000.145  000.145: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+034.258  000.140  000.140: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+034.717  000.142  000.142: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+035.097  000.156  000.156: sourcing /usr/share/vim/vim81/syntax/syncolor.vim
+052.824  018.999  018.561: sourcing /home/papanikge/.vim/colors/jellybeans.vim
+054.244  000.321  000.321: sourcing /usr/share/vim/vim81/pack/dist/opt/matchit/plugin/matchit.vim
+054.285  000.749  000.428: sourcing /usr/share/vim/vim81/macros/matchit.vim
+054.306  051.728  016.484: sourcing $HOME/.vimrc
+054.310  000.096: sourcing vimrc file(s)
+055.852  001.412  001.412: sourcing /home/papanikge/.vim/plugged/vim-sneak/plugin/sneak.vim
+057.289  001.342  001.342: sourcing /home/papanikge/.vim/plugged/vim-fugitive/plugin/fugitive.vim
+057.937  000.573  000.573: sourcing /home/papanikge/.vim/plugged/vim-surround/plugin/surround.vim
+058.201  000.199  000.199: sourcing /home/papanikge/.vim/plugged/vim-sleuth/plugin/sleuth.vim
+058.408  000.031  000.031: sourcing /home/papanikge/.vim/plugged/tcomment_vim/autoload/tcomment/deprecated.vim
+061.254  002.977  002.946: sourcing /home/papanikge/.vim/plugged/tcomment_vim/plugin/tcomment.vim
+061.681  000.081  000.081: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/init.vim
+062.030  000.075  000.075: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/parts.vim
+062.919  000.127  000.127: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/util.vim
+062.983  001.643  001.360: sourcing /home/papanikge/.vim/plugged/vim-airline/plugin/airline.vim
+063.108  000.034  000.034: sourcing /home/papanikge/.vim/plugged/vim-airline-themes/plugin/airline-themes.vim
+063.724  000.141  000.141: sourcing /home/papanikge/.vim/plugged/nerdtree/autoload/nerdtree.vim
+064.689  000.368  000.368: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/path.vim
+064.889  000.101  000.101: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/menu_controller.vim
+065.048  000.061  000.061: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/menu_item.vim
+065.216  000.080  000.080: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/key_map.vim
+065.461  000.157  000.157: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/bookmark.vim
+065.708  000.154  000.154: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/tree_file_node.vim
+066.110  000.310  000.310: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/tree_dir_node.vim
+066.358  000.152  000.152: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/opener.vim
+066.611  000.166  000.166: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/creator.vim
+066.739  000.039  000.039: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/flag_set.vim
+066.920  000.096  000.096: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/nerdtree.vim
+067.273  000.261  000.261: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/ui.vim
+067.451  000.028  000.028: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/event.vim
+067.579  000.037  000.037: sourcing /home/papanikge/.vim/plugged/nerdtree/lib/nerdtree/notifier.vim
+067.996  000.315  000.315: sourcing /home/papanikge/.vim/plugged/nerdtree/autoload/nerdtree/ui_glue.vim
+070.046  000.085  000.085: sourcing /home/papanikge/.vim/plugged/nerdtree/nerdtree_plugin/exec_menuitem.vim
+070.577  000.507  000.507: sourcing /home/papanikge/.vim/plugged/nerdtree/nerdtree_plugin/fs_menu.vim
+070.645  000.042  000.042: sourcing /home/papanikge/.vim/plugged/nerdtree/nerdtree_plugin/vcs.vim
+070.838  007.624  004.524: sourcing /home/papanikge/.vim/plugged/nerdtree/plugin/NERD_tree.vim
+071.164  000.263  000.263: sourcing /home/papanikge/.vim/plugged/vim-indent-object/plugin/indent-object.vim
+071.728  000.491  000.491: sourcing /home/papanikge/.vim/plugged/vim-gutentags/plugin/gutentags.vim
+072.225  000.122  000.122: sourcing /home/papanikge/.vim/plugged/vim-gitgutter/autoload/gitgutter/utility.vim
+072.835  000.288  000.288: sourcing /home/papanikge/.vim/plugged/vim-gitgutter/autoload/gitgutter/highlight.vim
+073.856  002.049  001.639: sourcing /home/papanikge/.vim/plugged/vim-gitgutter/plugin/gitgutter.vim
+074.902  000.191  000.191: sourcing /home/papanikge/.vim/plugged/ale/autoload/ale/events.vim
+075.136  001.217  001.026: sourcing /home/papanikge/.vim/plugged/ale/plugin/ale.vim
+075.332  000.135  000.135: sourcing /home/papanikge/.vim/plugged/vim-fold-cycle/plugin/fold_cycle.vim
+076.234  000.846  000.846: sourcing /home/papanikge/.vim/plugged/fzf.vim/plugin/fzf.vim
+077.198  000.909  000.909: sourcing /home/papanikge/.fzf/plugin/fzf.vim
+077.504  000.050  000.050: sourcing /home/papanikge/.vim/plugged/vim-focus-autocmd/autoload/focau/init.vim
+077.772  000.071  000.071: sourcing /home/papanikge/.vim/plugged/vim-focus-autocmd/autoload/focau/cursor.vim
+078.014  000.083  000.083: sourcing /home/papanikge/.vim/plugged/vim-focus-autocmd/autoload/focau/events.vim
+078.488  001.225  001.021: sourcing /home/papanikge/.vim/plugged/vim-focus-autocmd/plugin/focau.vim
+078.760  000.058  000.058: sourcing /usr/share/vim/vim81/plugin/getscriptPlugin.vim
+078.968  000.189  000.189: sourcing /usr/share/vim/vim81/plugin/gzip.vim
+079.338  000.352  000.352: sourcing /usr/share/vim/vim81/plugin/logiPat.vim
+079.395  000.036  000.036: sourcing /usr/share/vim/vim81/plugin/manpager.vim
+079.612  000.200  000.200: sourcing /usr/share/vim/vim81/plugin/matchparen.vim
+080.285  000.654  000.654: sourcing /usr/share/vim/vim81/plugin/netrwPlugin.vim
+080.372  000.058  000.058: sourcing /usr/share/vim/vim81/plugin/rrhelper.vim
+080.420  000.026  000.026: sourcing /usr/share/vim/vim81/plugin/spellfile.vim
+080.642  000.177  000.177: sourcing /usr/share/vim/vim81/plugin/tarPlugin.vim
+080.740  000.076  000.076: sourcing /usr/share/vim/vim81/plugin/tohtml.vim
+080.948  000.187  000.187: sourcing /usr/share/vim/vim81/plugin/vimballPlugin.vim
+081.139  000.166  000.166: sourcing /usr/share/vim/vim81/plugin/zipPlugin.vim
+081.241  000.020  000.020: sourcing /usr/share/vim/vim81/pack/dist/opt/matchit/plugin/matchit.vim
+081.245  001.797: loading plugins
+081.293  000.048: loading packages
+081.922  000.538  000.538: sourcing /home/papanikge/.vim/plugged/indentLine/after/plugin/indentLine.vim
+081.938  000.107: loading after plugins
+081.950  000.012: inits 3
+082.221  000.271: reading viminfo
+083.930  001.709: setup clipboard
+083.951  000.021: setting raw mode
+083.958  000.007: start termcap
+084.002  000.044: clearing screen
+084.907  000.486  000.486: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions.vim
+085.117  000.095  000.095: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/quickfix.vim
+085.401  000.202  000.202: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline.vim
+085.565  000.037  000.037: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/netrw.vim
+085.860  000.064  000.064: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/section.vim
+086.192  000.182  000.182: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/highlighter.vim
+086.352  000.677  000.431: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/term.vim
+086.541  000.030  000.030: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/undotree.vim
+086.729  000.074  000.074: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/hunks.vim
+087.094  000.206  000.206: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/branch.vim
+087.316  000.053  000.053: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/fugitiveline.vim
+087.549  000.083  000.083: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/ale.vim
+088.045  000.052  000.052: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/po.vim
+088.261  000.082  000.082: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/wordcount.vim
+088.547  000.142  000.142: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline.vim
+088.718  000.049  000.049: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/autoshow.vim
+089.061  000.088  000.088: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabs.vim
+089.372  000.151  000.151: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/buffers.vim
+089.626  000.023  000.023: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/gutentags.vim
+089.775  000.023  000.023: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/keymap.vim
+099.899  000.049  000.049: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/themes.vim
+100.117  000.418  000.369: sourcing /home/papanikge/.vim/plugged/vim-airline-themes/autoload/airline/themes/jellybeans.vim
+117.536  000.152  000.152: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/builder.vim
+117.928  000.070  000.070: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/default.vim
+153.736  000.146  000.146: sourcing /home/papanikge/.vim/plugged/ale/autoload/ale.vim
+154.212  066.871: opening buffers
+154.469  000.109  000.109: sourcing /home/papanikge/.vim/plugged/vim-gitgutter/autoload/gitgutter.vim
+154.925  000.604: BufEnter autocommands
+154.927  000.002: editing files in windows
+155.906  000.361  000.361: sourcing /home/papanikge/.vim/plugged/vim-gutentags/autoload/gutentags.vim
+156.186  000.898: VimEnter autocommands
+156.188  000.002: before starting main loop
+156.592  000.102  000.102: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/ctrlspace.vim
+156.790  000.093  000.093: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/tabws.vim
+157.271  000.122  000.122: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/builder.vim
+157.502  000.052  000.052: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/buflist.vim
+159.792  000.046  000.046: sourcing /home/papanikge/.vim/plugged/vim-airline/autoload/airline/extensions/tabline/formatters/default.vim
+161.823  005.220: first screen update
+161.824  000.001: --- VIM STARTED ---
