@@ -1,6 +1,6 @@
 "
 " Hacked together by George 'papanikge' Papanikolaou.
-" Third-ish version 2013-5, optimized for Linux
+" Third-ish version 2011-2020, optimized for Linux
 " Changing from crappy pathogen (to avoid submodules) to vim-plug. 07/2017
 "
 
