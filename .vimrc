@@ -33,7 +33,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
-Plug 'junegunn/fzf.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'terryma/vim-smooth-scroll'
@@ -41,11 +40,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'pseewald/vim-anyfold',    { 'on': 'AnyFoldActivate' }
 Plug 'arecarn/vim-fold-cycle'
-let g:fold_cycle_default_mapping = 0 "disable default mappings
-nnoremap <CR> [j
-nmap <Space> <Plug>(fold-cycle-open)
-nmap <BS> <Plug>(fold-cycle-close)
 
+Plug 'junegunn/fzf.vim'
 if os == "Linux"
   Plug '~/.fzf'
 else
@@ -330,7 +326,7 @@ nnoremap <leader>do :diffoff!<CR>
 nnoremap <leader>dg :diffget<CR>
 nnoremap <leader>dp :diffput<CR>
 
-" Easy edit. Useless because of ctrl-p but I'm used to them
+" Easy edit. Useless because of fzf but I'm used to them
 nnoremap <leader>eb :e ~/.bashrc<CR>
 nnoremap <leader>ez :e ~/.zshrc<CR>
 nnoremap <leader>ea :e ~/.aliases<CR>
@@ -355,6 +351,7 @@ cnoremap w!! w !sudo tee % >/dev/null<CR>
 " Debugger for ruby (plugin idea: this for every language)
 nnoremap <leader>b obinding.pry<ESC>
 
+" Filter file thru jq
 nnoremap <leader>j :%!jq '.'<CR>
 
 " Copy filename into clipboard
@@ -439,13 +436,12 @@ nnoremap <leader>m :FMarks<CR>
 nnoremap <leader>f :FRg<CR>
 nnoremap # :FRg <C-R><C-W><CR>
 
-" vim rest console
-let b:vrc_response_default_content_type = 'application/json'
-let g:vrc_auto_format_response_enabled = 1
-let g:vrc_curl_opts = {
-  \ '--connect-timeout' : 10,
-  \ '-s': ''
-  \}
+" Fold cycle
+let g:fold_cycle_default_mapping = 0 "disable default mappings
+nnoremap <CR> [j
+nmap <Space> <Plug>(fold-cycle-open)
+nmap <BS> <Plug>(fold-cycle-close)
+
 " ALE
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_text_changed = 'never'
