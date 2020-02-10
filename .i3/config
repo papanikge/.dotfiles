@@ -1,10 +1,11 @@
 # vim: filetype=i3
 
-# super (remapped to alt in order to be next to space bar)
+# mod1 = alt
+# mod2 =
+# mod3 =
+# mod4 = super
 set $mod Mod4
-
 font pango:DejaVu Sans 9
-
 floating_modifier $mod
 
 # start a terminal
@@ -13,11 +14,6 @@ bindsym $mod+Shift+Return exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-# move to xbindkeys because of shadowing(?)
-# https://github.com/i3/i3/issues/1831#issuecomment-128145197
-# bindsym $mod+space exec "rofi -show run -theme onedark-full-screen"
 
 # change focus
 bindsym $mod+h focus left
