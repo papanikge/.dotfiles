@@ -37,8 +37,8 @@ bindsym $mod+b split v
 bindsym $mod+f fullscreen toggle
 
 # layouts (stacked, tabbed, toggle split)
-bindsym $mod+e layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+w layout stacking
+bindsym $mod+e layout tabbed
 bindsym $mod+s layout toggle split
 
 # tiling / floating windows
@@ -68,6 +68,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -78,6 +79,12 @@ bindsym $mod+Shift+5 move container to workspace $w5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Layouts
+bindsym $mod+Mod1+1 workspace $w1; append_layout /home/papanikge/.i3/coding-three-verticals.json
+bindsym $mod+Mod1+3 workspace $w3; append_layout /home/papanikge/.i3/slack-three-uneven.json
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
