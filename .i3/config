@@ -138,12 +138,6 @@ assign [class="Thunderbird"] 8 mail
 #
 # !!! Colors !!!
 #
-# gray: 222222
-# dark green: 003629
-# lighter 004939 (choosen for title bars)
-# lighter 005d48
-# light good green: 008466 (from imgur)
-#
 # item                  border  bground text    indicator child_border
 client.focused          #005d48 #004939 #e5e5e5 #4A4A4A   #003629
 client.placeholder      #242424 #242424 #242424
