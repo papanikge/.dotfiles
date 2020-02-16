@@ -52,6 +52,8 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+
+# names
 set $w1 1 λ
 set $w2 2 www
 set $w3 3 msg
