@@ -6,8 +6,8 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 PROMPT='$FG[032]%~\
 $(git_prompt_info) \
 $FG[105]%(!.#.»)%{$reset_color%} '
-RPS1='${return_code}'
 
+RPROMPT='$(right_status)${return_code}'
 
 # color vars
 eval my_gray='$FG[237]'
