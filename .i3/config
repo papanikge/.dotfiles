@@ -52,6 +52,9 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
+# mark
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+x exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: 's
 
 # names
 set $w1 1 λ
