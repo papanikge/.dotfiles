@@ -63,6 +63,7 @@ set $w3 3 msg
 set $w4 4 misc
 set $w5 5 mx
 set $w8 8 mail
+
 # switch to workspace
 bindsym $mod+1 workspace $w1
 bindsym $mod+2 workspace $w2
@@ -109,14 +110,20 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Scratchpads
-bindsym $mod+Shift+backslash move scratchpad
+bindsym $mod+Shift+backslash move to scratchpad
 bindsym $mod+backslash scratchpad show
+
+# bindsym $mod+Shift+y mark "y", move to scratchpad
+# bindsym $mod+y [con_mark="y"] scratchpad show
+
+exec --no-startup-id urxvt -name yogurt_scratch_term
+for_window [instance="yogurt_scratch_term"] floating enable, move to scratchpad
+bindsym $mod+y [instance="yogurt_scratch_term"] scratchpad show
 
 bindsym $mod+greater move workspace to output right
 bindsym $mod+less move workspace to output left
 
 bindsym $mod+Tab workspace back_and_forth
-
 popup_during_fullscreen smart
 mouse_warping none
 focus_wrapping no
