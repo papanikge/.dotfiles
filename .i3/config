@@ -136,6 +136,7 @@ exec --no-startup-id "sh ~/.fehbg"
 exec --no-startup-id "udiskie -t"
 exec --no-startup-id "pactl load-module module-bluetooth-discover"
 exec --no-startup-id "blueman-applet"
+exec --no-startup-id "xset -b"
 
 # Window settings
 for_window [class="Google-chrome"] border none
