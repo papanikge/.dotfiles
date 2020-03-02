@@ -41,6 +41,8 @@ Plug 'dense-analysis/ale'
 Plug 'pseewald/vim-anyfold',    { 'on': 'AnyFoldActivate' }
 Plug 'arecarn/vim-fold-cycle'
 
+Plug 'junegunn/vim-peekaboo'
+
 Plug 'junegunn/fzf.vim'
 if os == "Linux"
   Plug '~/.fzf'
@@ -300,9 +302,6 @@ nnoremap <Leader>ga :GitGutterStageHunk<CR>
 nnoremap <Leader>gr :GitGutterUndoHunk<CR>
 nnoremap <Leader>gv :GitGutterPreviewHunk<CR>
 nnoremap <Leader>gf :GitGutterFold<CR>
-
-" Show registers
-nnoremap <leader>r :registers<CR>
 
 " Show invisible characters
 nnoremap <leader>c :set list!<CR>:IndentLinesToggle<CR>
