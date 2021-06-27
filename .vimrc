@@ -1,6 +1,6 @@
 "
 " Hacked together by George 'papanikge' Papanikolaou.
-" Third-ish version 2011-2020, optimized for Linux
+" Third-ish version 2011-2021, optimized for Linux
 " Changing from crappy pathogen (to avoid submodules) to vim-plug. 07/2017
 "
 
@@ -29,7 +29,6 @@ Plug 'guns/vim-clojure-static',     { 'for': 'clojure' }
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'mbbill/undotree',         { 'on': 'UndotreeToggle' }
@@ -40,8 +39,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'pseewald/vim-anyfold',    { 'on': 'AnyFoldActivate' }
 Plug 'arecarn/vim-fold-cycle'
+Plug 'frazrepo/vim-rainbow'
 
-Plug 'junegunn/vim-peekaboo'
+" Experiment:
+Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 
 Plug 'junegunn/fzf.vim'
 if os == "Linux"
@@ -56,6 +57,9 @@ if os == "Linux"
 else
   Plug 'sjl/vitality.vim'
 endif
+
+" colors
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -160,7 +164,7 @@ set wildignore+=*.pyc                            " Python bytecode
 
 if os == "Linux"
   " truecolor support
-  " set t_Co=256
+  set t_Co=256
   set termguicolors
 end
 
@@ -178,8 +182,9 @@ endif
 " Colorize the column
 set colorcolumn=80
 
-set background=dark
-colorscheme jellybeans
+" colors
+let ayucolor="dark"
+colorscheme ayu
 
 if has("gui_running")
   set guioptions-=T
@@ -270,7 +275,12 @@ noremap ^ 0
 nnoremap [[ [{
 nnoremap ]] ]}
 
-nnoremap gd <C-]>
+" jump to definition - if you can
+" nnoremap gd <C-]>
+nmap <silent> gs <Plug>(coc-definition)
+" uuuuuuh
+nmap <silent> gd :ALEGoToDefinition<CR>
+
 autocmd Syntax go nnoremap gd :GoDef<CR>
 autocmd Syntax go nnoremap gt :GoDecls<CR>
 
@@ -331,11 +341,12 @@ nnoremap <leader>ez :e ~/.zshrc<CR>
 nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
-nnoremap <leader>ex :e ~/.xmonad/xmonad.hs<CR>
+nnoremap <leader>ei :e ~/.i3/config<CR>
 
 " Fold
 nnoremap <leader>o :AnyFoldActivate<CR>
 
+" ale linter toggle
 nnoremap <leader>l :ALEToggle<CR>
 
 " Emacs bindings in command line mode
@@ -403,8 +414,8 @@ let ruby_no_expensive = 1
 
 " gutentags
 let g:gutentags_ctags_exclude=["node_modules", "plugged", "tmp", "temp", "log",
-      \"vendor", "test", "spec", "app/assets", "*.js", "*.go", "*.css", "*.html",
-      \"*.jsx", "*.json", ".yaml"]
+      \"vendor", "test", "spec", "app/assets", "*.go", "*.css", "*.html",
+      \"*.json", ".yaml", "test"]
 let g:gutentags_exclude_filetypes=['go']
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
@@ -434,6 +445,8 @@ nnoremap <leader>k :FBCommits!<CR>
 nnoremap <leader>m :FMarks<CR>
 nnoremap <leader>f :FRg<CR>
 nnoremap # :FRg <C-R><C-W><CR>
+" this requires a newer vim - curse you debian
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Fold cycle
 let g:fold_cycle_default_mapping = 0 "disable default mappings
@@ -443,11 +456,21 @@ nmap <BS> <Plug>(fold-cycle-close)
 
 " ALE
 let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
+let g:ale_linters = {
+  \ 'python': ['flake8'],
+  \ 'javascript': ['eslint', 'prettier'],
+  \ }
+" Fixers for command :ALEFix
+let g:ale_fixers = {
+      \ 'javascript': ['eslint', 'prettier'],
+      \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 " enable build-in matchit pluggin
 runtime macros/matchit.vim
@@ -458,3 +481,15 @@ command! OpenOnGithub execute ('!open "'.CurrentRepoGithubURL().'"')
 function! CurrentRepoGithubURL()
   return 'https://github.skroutz.gr/skroutz/yogurt/blob/master/'.expand('%').'\#L'.line('.')
 endfunction
+
+" CoC
+let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_disable_startup_warning = 1
+
+augroup filetype_js
+    autocmd!
+    autocmd FileType javascript set filetype=javascript
+augroup END
+
+" Rainlow
+let g:rainbow_active = 1
