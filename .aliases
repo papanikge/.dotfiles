@@ -14,6 +14,9 @@ alias fd="fd -H"
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias pb="nc termbin.com 9999"
 alias please='sudo $(fc -ln -1)'
+alias s="sudo systemctl"
+alias j="sudo journalctl"
+alias connections='ss -rtp'
 
 # apt
 alias apti="sudo apt-get install"
@@ -48,6 +51,7 @@ alias vleaks="valgrind --tool=memcheck --leak-check=full --show-reachable=yes --
 # docker
 alias dka="docker kill $(docker ps -q)"
 alias dc="docker-compose"
+alias dri="docker run -it"
 
 alias mutt="neomutt"
 
