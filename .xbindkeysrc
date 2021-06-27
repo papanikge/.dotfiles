@@ -24,6 +24,8 @@
   F5
 "/home/papanikge/.dotfiles/bin/screenshot-clipboard"
   Release + F4
+"/home/papanikge/.dotfiles/bin/toggle-radio.sh"
+  F6
 "/home/papanikge/.dotfiles/bin/lock-blur"
   Release + F12
 "/home/papanikge/.dotfiles/bin/change-language.sh"
