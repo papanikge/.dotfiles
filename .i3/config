@@ -1,16 +1,22 @@
 # vim: filetype=i3
 
 # mod1 = alt
-# mod2 =
-# mod3 =
-# mod4 = super
+# mod2 = numlock(?)
+# mod3 = hyper(?)
+# mod4 = super (that is windows key)
+# mod5 = iso something(?)
+
 set $mod Mod4
 font pango:DejaVu Sans 9
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec terminator
+bindsym $mod+Mod1+Return split v; layout stacking; exec terminator
+
+# start a terminal
 bindsym $mod+Shift+Return exec google-chrome-stable
+bindsym $mod+Mod1+Shift+Return split v; layout stacking; exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -27,6 +33,13 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# move focused window
+bindsym $mod+u focus output left
+bindsym $mod+i focus output right
+
+# use rofi to select window
+bindsym $mod+v exec rofi -show window -theme flat-orange
+
 # split in horizontal orientation
 bindsym $mod+n split h
 
@@ -37,8 +50,8 @@ bindsym $mod+b split v
 bindsym $mod+f fullscreen toggle
 
 # layouts (stacked, tabbed, toggle split)
-bindsym $mod+w layout stacking
-bindsym $mod+e layout tabbed
+bindsym $mod+w layout toggle stacking tabbed
+bindsym $mod+e layout toggle stacking tabbed
 bindsym $mod+s layout toggle split
 
 # tiling / floating windows
@@ -56,13 +69,19 @@ bindsym $mod+z focus child
 bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+x exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: 's
 
+# debug
+bindsym $mod+d debuglog toggle
+
 # names
 set $w1 1 λ
 set $w2 2 www
 set $w3 3 msg
 set $w4 4 misc
 set $w5 5 mx
+set $w6 6 tx/rx
+set $w7 7 http
 set $w8 8 mail
+set $w9 9 idea
 
 # switch to workspace
 bindsym $mod+1 workspace $w1
@@ -70,10 +89,10 @@ bindsym $mod+2 workspace $w2
 bindsym $mod+3 workspace $w3
 bindsym $mod+4 workspace $w4
 bindsym $mod+5 workspace $w5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
 bindsym $mod+8 workspace $w8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
@@ -82,16 +101,13 @@ bindsym $mod+Shift+2 move container to workspace $w2
 bindsym $mod+Shift+3 move container to workspace $w3
 bindsym $mod+Shift+4 move container to workspace $w4
 bindsym $mod+Shift+5 move container to workspace $w5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
 bindsym $mod+Shift+8 move container to workspace $w8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+9 move container to workspace $w9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# Layouts
-bindsym $mod+Mod1+1 workspace $w1; append_layout /home/papanikge/.i3/coding-three-verticals.json
-bindsym $mod+Mod1+3 workspace $w3; append_layout /home/papanikge/.i3/slack-three-uneven.json
-
+# i3 meta
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -109,20 +125,19 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Scratchpads
-bindsym $mod+Shift+backslash move to scratchpad
+# Scratchpads (working)
+bindsym $mod+Shift+backslash mark "f", move to scratchpad
 bindsym $mod+backslash scratchpad show
 
-# bindsym $mod+Shift+y mark "y", move to scratchpad
-# bindsym $mod+y [con_mark="y"] scratchpad show
+# Scratchpads (not working)
+bindsym Mod3+Shift+y mark "y", move to scratchpad
+bindsym Mod3+y [con_mark="y"] scratchpad show
 
-exec --no-startup-id urxvt -name yogurt_scratch_term
-for_window [instance="yogurt_scratch_term"] floating enable, move to scratchpad
-bindsym $mod+y [instance="yogurt_scratch_term"] scratchpad show
-
+# Move whole workspace to a different screen
 bindsym $mod+greater move workspace to output right
 bindsym $mod+less move workspace to output left
 
+# Extras
 bindsym $mod+Tab workspace back_and_forth
 popup_during_fullscreen smart
 mouse_warping none
@@ -131,20 +146,24 @@ focus_wrapping no
 # Daemons and execs
 exec --no-startup-id "xset r rate 300 44"
 exec --no-startup-id "xbindkeys"
-exec --no-startup-id "clipit"
 exec --no-startup-id "sh ~/.fehbg"
 exec --no-startup-id "udiskie -t"
 exec --no-startup-id "pactl load-module module-bluetooth-discover"
 exec --no-startup-id "blueman-applet"
 exec --no-startup-id "xset -b"
 
+# uncomment this to use left control as hyper
+# exec --no-startup-id "xmodmap ~/.XModmap"
+
 # Window settings
 for_window [class="Google-chrome"] border none
+for_window [class="Code"] border none
 for_window [class="Spotify"] border none
 for_window [class="Firefox"] border none
 for_window [class="Thunderbird"] border none
 for_window [class="MPlayer"] border none
 for_window [class="MPlayer"] floating enable
+for_window [class="Google-chrome"] geometry {"x": 1434, "y": 701, "width": 500, "height": 356}
 assign [class="Spotify"] 5 mx
 assign [class="Thunderbird"] 8 mail
 
@@ -159,17 +178,26 @@ client.unfocused        #222222 #0B0B0B #aaaaaa #222222
 client.focused_inactive #222222 #222222 #a9a9a9 #222222
 client.urgent           #4A4A4A #4A4A4A #f7f7f7 #4A4A4A
 
-bar {
-    status_command i3status
-    # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    # font pango:DejaVu Sans Mono 10
-    colors {
-        background         #000000
-        statusline         #dddddd
-        separator          #666666
-        active_workspace   #333333 #0e1019 #888888
-        focused_workspace  #003629 #007057 #ffffff
-        inactive_workspace #333333 #0e1019 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-    }
-}
+
+# polybar (for i3status see below)
+exec_always "~/.config/polybar/launch.sh"
+# normal i3status lightweight bar
+# bar {
+#     status_command i3status
+#     # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#     # font pango:DejaVu Sans Mono 10
+#     colors {
+#         background         #000000
+#         statusline         #dddddd
+#         separator          #666666
+#         active_workspace   #333333 #0e1019 #888888
+#         focused_workspace  #003629 #007057 #ffffff
+#         inactive_workspace #333333 #0e1019 #888888
+#         urgent_workspace   #2f343a #900000 #ffffff
+#     }
+# }
+
+# for i3gaps (it's a fork)
+# gaps inner 5
+# gaps outer 5
+# for_window [class="^.*"] border pixel 2
