@@ -18,7 +18,7 @@ HIST_STAMPS="yyyy-mm-dd"
 HISTFILE=~/.zsh-history
 HISTSIZE=200000
 SAVEHIST=200000
-HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd|z)"
+HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd|z|fg)"
 bindkey -e
 
 # General
@@ -67,6 +67,9 @@ export PATH=$PATH:$GOBIN
 # Rust
 export PATH=$PATH:~/.cargo/bin
 
+# finally locals (for pip mostly)
+export PATH=$PATH:~/.local/bin
+
 # Enable fzf and helpers
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.fzf_helpers ] && source ~/.fzf_helpers
@@ -77,8 +80,10 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Jupyter/ipython/itermplot
-export MPLBACKEND="module://itermplot"
-export ITERMPLOT=rv
+if [[ `uname -s` == 'Darwin' ]]; then
+  export MPLBACKEND="module://itermplot"
+  export ITERMPLOT=rv
+fi
 
 # Used by the custom theme to display the ruby/python version on the right.
 right_status() {
@@ -125,3 +130,10 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # }
 # zle -N _backward-kill-dir
 # bindkey '^[^?' _backward-kill-dir
+
+# This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# for that throw error
+export NODE_PATH=/usr/lib/nodejs:/usr/share/nodejs
