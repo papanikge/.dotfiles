@@ -8,7 +8,7 @@
 [core]
     editor  = vim --noplugin
 [push]
-    default = upstream
+    default = current
 [grep]
     lineNumber = true
 [alias]
@@ -16,6 +16,7 @@
     br        = branch
     zip       = archive --output latest.zip HEAD
     pullsub   = submodule foreach git pull
+    cp        = cherry-pick
     news      = diff --stat HEAD@{1}..HEAD
     head      = log --graph --no-decorate --abbrev-commit --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d' --max-count=15 --
     serve     = daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
@@ -42,9 +43,7 @@
 [diff]
     algorithm = histogram
 [merge]
-    tool = meld
-[mergetool "meld"]
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    conflictstyle = diff3
 [url "git@github.skroutz.gr:"]
     insteadOf = skroutz:
     insteadOf = deploy:
