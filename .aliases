@@ -1,5 +1,4 @@
 # Better defaults
-alias ls="ls --color"
 alias ll="clear && exa -bghHliS"
 alias la="ls -A"
 alias ls1="find . -name *"
@@ -17,6 +16,8 @@ alias please='sudo $(fc -ln -1)'
 alias s="sudo systemctl"
 alias j="sudo journalctl"
 alias connections='ss -rtp'
+alias ed='goland'
+alias g='goland'
 
 # apt
 alias apti="sudo apt-get install"
@@ -38,6 +39,7 @@ alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=
 
 # most basic git stuff that I'm used to
 alias gst="git status -sb"
+alias gg="git grep"
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -59,6 +61,7 @@ alias mutt="neomutt"
 alias -g no="--name-only"
 alias -g lc='$(docker ps -l -q)'
 alias -g li='$(docker image ls -q | head -1)'
+alias -g nt="':(exclude)*_test.go' ':(exclude)*_tests.yml' ':(exclude)*managedschemas*'" # for git grep: git grep <pattern> nt
 
 #
 # Some of the following are mostly cheat sheets for future reference
@@ -83,3 +86,5 @@ alias aes-decrypt="gpg --decrypt"
 alias disable-puppet="sudo puppet agent -t --disable"
 alias external-ip='curl ipinfo.io/ip'
 alias genpass="openssl rand -base64 20"
+
+alias tf="terraform"

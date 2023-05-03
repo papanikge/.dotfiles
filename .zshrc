@@ -1,14 +1,14 @@
 #
-# George 'papanikge' Papanikolaou 2014 zsh configuration.
+# George Papanikolaou (aka papanikge, aka g.pap) 2014 zsh configuration.
 # Modified and tried again 19/07/2017
 # Modified a lot for locales and safety/sanity 26-7/03/2019
 # Major rewrites for i3 and linux on 08/2019
+# Major rewrites for mac again on 2021
 #
-
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="papanikge" # based on af-magic. I don't like the separator line
-plugins=(sudo python docker brew ruby rake redis-cli z colored-man-pages)
+plugins=(sudo z colored-man-pages pyenv)
 
 # Activate oh-my-zsh.
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
@@ -30,45 +30,26 @@ export MANPAGER=$PAGER
 export LC_ALL=""
 export LC_CTYPE="en_US.UTF-8"
 
-if [[ `uname -s` == 'Darwin' ]]; then
-  # god damn it apple
-  PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-  PATH=/usr/local/bin:$PATH
-  PATH=$PATH:~/.dotfiles/bin:~/.local/bin
-  PATH=$PATH:/usr/local/opt/mariadb@10.1/bin
-  # more below after the $GOBIN set up
-  MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+PATH=/usr/local/bin:$PATH
+MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
-  # Enable Google Cloud SDK
-  PATH=$PATH:/Users/papanikge/.google-cloud-sdk/bin
-  CLOUDSDK_PYTHON=/usr/bin/python # for there is no python2
-else
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  export PATH="$HOME/.pyenv/bin:$PATH"
-fi
-
-# Custom shit
 [ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/.skroutz-helpers ] && source ~/.skroutz-helpers
-
-# env handlers
-command -v rbenv >/dev/null && eval "$(rbenv init -)"
-command -v pyenv >/dev/null && eval "$(pyenv init -)"
-command -v kubectl >/dev/null && source <(kubectl completion zsh);
 
 # Go
-export GOPATH=$HOME/playground/go
+export GOPATH=$HOME/panther/go
 export GOBIN=$GOPATH/bin
-if [[ `uname -s` == 'Linux' ]]; then
-  export PATH=$PATH:/usr/local/go/bin
-fi
+
 export PATH=$PATH:$GOBIN
 
-# Rust
-export PATH=$PATH:~/.cargo/bin
+## Python. added on 21-07-22. why didn't I have these?
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
 
-# finally locals (for pip mostly)
-export PATH=$PATH:~/.local/bin
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+#### Until here. I swear I had these
 
 # Enable fzf and helpers
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -76,22 +57,9 @@ export PATH=$PATH:~/.local/bin
 
 export FZF_DEFAULT_COMMAND='rg --files'
 
-# Don't mess with my prompt, virtualenv
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-# Jupyter/ipython/itermplot
-if [[ `uname -s` == 'Darwin' ]]; then
-  export MPLBACKEND="module://itermplot"
-  export ITERMPLOT=rv
-fi
-
 # Used by the custom theme to display the ruby/python version on the right.
 right_status() {
-  if [[ -f .ruby-version ]]; then
-    echo "[$(rbenv version-name)]"
-  else
-    [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
-  fi
+  [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
 }
 
 epoch-to-normal() {
@@ -124,16 +92,13 @@ autoload -Uz run-help-sudo
 
 # How on earth did I survive without this all this time?
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-# _backward-kill-dir () {
-#   local WORDCHARS=${WORDCHARS/\/}
-#   zle backward-kill-word
-# }
-# zle -N _backward-kill-dir
-# bindkey '^[^?' _backward-kill-dir
 
 # This loads nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
-# for that throw error
-export NODE_PATH=/usr/lib/nodejs:/usr/share/nodejs
+# system
+alias systemupdate="sudo softwareupdate -ia --verbose"
+
+# autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

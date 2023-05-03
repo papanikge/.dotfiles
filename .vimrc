@@ -183,8 +183,7 @@ endif
 set colorcolumn=80
 
 " colors
-let ayucolor="dark"
-colorscheme ayu
+colorscheme jellybeans
 
 if has("gui_running")
   set guioptions-=T
