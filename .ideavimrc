@@ -1,0 +1,51 @@
+let mapleader = ","
+set commentary
+set easymotion
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set nowrapscan
+
+set ideastatusicon=gray
+set ideajoin
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
+" nnoremap gt :action ActivateStructureToolWindow<CR>
+nnoremap <leader>t :action ActivateProjectToolWindow<CR>
+
+nnoremap <c-t> :action GotoSymbol<CR>
+" nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap gt :action FileStructurePopup<CR>
+nnoremap <leader>f :action FindInPath<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <c-p> :action GotoFile<CR>
+nnoremap <leader>i :action GotoImplementation<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+
+nnoremap <c-u> :action RecentFiles<CR>
+nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader><leader> :action JumpToLastWindow<CR>:action HideActiveWindow<CR>
+
+" need to discover the rest of the easymotion ones
+nmap s <Plug>(easymotion-s)
+Plug 'preservim/nerdtree`
+
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
