@@ -1,0 +1,11 @@
+scratchpad_space = 8
+launch_timeout = 5
+
+[[scratchpad]]
+name = "logseq"
+target_type = "app"
+target = "Logseq"
+position = [290, 175]
+size = [1300, 900]
+launch_type = "app"
+launch_command = "Logseq.app"
