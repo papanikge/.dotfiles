@@ -48,7 +48,9 @@ Plug 'junegunn/fzf.vim'
 if os == "Linux"
   Plug '~/.fzf'
 else
-  Plug '/usr/local/opt/fzf'
+  " Plug '/usr/local/opt/fzf'
+  set rtp+=/opt/homebrew/opt/fzf
+  Plug '/opt/homebrew/opt/fzf'
 endif
 
 " force autoread on terminal vim.
@@ -341,6 +343,9 @@ nnoremap <leader>ea :e ~/.aliases<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>ei :e ~/.i3/config<CR>
+nnoremap <leader>ek :e ~/.config/kitty/kitty.conf<CR>
+nnoremap <leader>es :e ~/.config/skhd/skhdrc<CR>
+nnoremap <leader>ey :e ~/.config/yabai/yabairc<CR>
 
 " Fold
 nnoremap <leader>o :AnyFoldActivate<CR>
@@ -414,7 +419,7 @@ let ruby_no_expensive = 1
 " gutentags
 let g:gutentags_ctags_exclude=["node_modules", "plugged", "tmp", "temp", "log",
       \"vendor", "test", "spec", "app/assets", "*.go", "*.css", "*.html",
-      \"*.json", ".yaml", "test"]
+      \"*.json", ".yaml", "test", ".yml"]
 let g:gutentags_exclude_filetypes=['go']
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
@@ -492,3 +497,7 @@ augroup END
 
 " Rainlow
 let g:rainbow_active = 1
+
+
+set nofixeol
+set nofixendofline

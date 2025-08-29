@@ -18,6 +18,7 @@ alias j="sudo journalctl"
 alias connections='ss -rtp'
 alias ed='goland'
 alias g='goland'
+alias pq='parquet'
 
 # apt
 alias apti="sudo apt-get install"
@@ -40,6 +41,7 @@ alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=
 # most basic git stuff that I'm used to
 alias gst="git status -sb"
 alias gg="git grep"
+alias gp="git pull"
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -88,3 +90,17 @@ alias external-ip='curl ipinfo.io/ip'
 alias genpass="openssl rand -base64 20"
 
 alias tf="terraform"
+
+# panther granted things
+alias assume-populate-internal='granted sso populate --prefix internal_ --sso-region us-west-2 https://d-92677e4671.awsapps.com/start'
+alias assume-populate-production='granted sso populate --prefix production_ --sso-region us-east-1 https://d-906746ebb9.awsapps.com/start'
+alias assume-populate='assume-populate-internal && assume-populate-production'
+
+alias assume-mine="assume internal_panther-dev-george-papanikolaou/DevAdmin --region eu-west-1 --export-all-env-vars"
+
+alias pantherlog="/Users/g.pap/panther/enterprise/tmp/pantherlog-apr-04"
+
+alias gd="git diff"
+alias pa="out/bin/tools/darwin-arm64-pantherlog/pantherlog"
+
+alias pulumistate="pulumi -C deployments/pulumi/ stack export --file ffs.json"

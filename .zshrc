@@ -13,12 +13,13 @@ plugins=(sudo z colored-man-pages pyenv)
 # Activate oh-my-zsh.
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy-mm-dd"
-HISTFILE=~/.zsh-history
-HISTSIZE=200000
-SAVEHIST=200000
-HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd|z|fg)"
+export COMPLETION_WAITING_DOTS="true"
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTFILE=~/.zsh-history
+export HISTSIZE=200000
+export SAVEHIST=200000
+export HISTORY_IGNORE="(ls|la|ll|clear|history|cd|pwd|z|fg)"
+
 bindkey -e
 
 # General
@@ -30,26 +31,15 @@ export MANPAGER=$PAGER
 export LC_ALL=""
 export LC_CTYPE="en_US.UTF-8"
 
-PATH=/usr/local/bin:$PATH
-MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
-
 [ -f ~/.aliases ] && source ~/.aliases
 
-# Go
-export GOPATH=$HOME/panther/go
-export GOBIN=$GOPATH/bin
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
-export PATH=$PATH:$GOBIN
+# pulumi required this
+ulimit -n 10240
 
-## Python. added on 21-07-22. why didn't I have these?
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-#### Until here. I swear I had these
+# PATH change on .zprofile
 
 # Enable fzf and helpers
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -57,9 +47,12 @@ eval "$(pyenv virtualenv-init -)"
 
 export FZF_DEFAULT_COMMAND='rg --files'
 
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 # Used by the custom theme to display the ruby/python version on the right.
 right_status() {
-  [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
+  # [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
+  echo ""
 }
 
 epoch-to-normal() {
@@ -91,14 +84,17 @@ autoload -Uz run-help-openssl
 autoload -Uz run-help-sudo
 
 # How on earth did I survive without this all this time?
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-# This loads nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # system
 alias systemupdate="sudo softwareupdate -ia --verbose"
 
 # autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
+
+export AWS_REGION=eu-west-1
+export AWS_DEFAULT_REGION=eu-west-1
+
+export DOCKER_HOST="unix:///var/run/docker.sock"
+
+export LOCAL_STATE=1

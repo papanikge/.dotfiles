@@ -1,6 +1,7 @@
 [user]
     name  = George Papanikolaou
-    email = g3orge.app@gmail.com
+    email = george.papanikolaou@panther.com
+    signingkey = F0A2F25237BFCBDB
 [github]
     user = papanikge
 [color]
@@ -9,6 +10,7 @@
     editor  = vim --noplugin
 [push]
     default = current
+    autoSetupRemote = true
 [grep]
     lineNumber = true
 [alias]
@@ -46,3 +48,11 @@
     algorithm = histogram
 [merge]
     conflictstyle = diff3
+[rerere]
+    enabled = true
+[branch]
+    sort = -committerdate
+[maintenance]
+    repo = /Users/g.pap/panther/enterprise
+[commit]
+	gpgsign = true

@@ -1,6 +1,6 @@
 let mapleader = ","
 set commentary
-set easymotion
+set sneak
 
 set incsearch
 set hlsearch
@@ -49,3 +49,5 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
+
+Plug 'vim-scripts/argtextobj.vim'
