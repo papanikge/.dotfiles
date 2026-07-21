@@ -42,6 +42,8 @@ alias ubuntu="qemu -m 1024 -hda Virtual/pompeii-ubuntu.img -smp cores=1,threads=
 alias gst="git status -sb"
 alias gg="git grep"
 alias gp="git pull"
+alias gd="git diff"
+alias gcm="git commit -a -m 'dum'" # dummy commit
 
 # python helpers
 alias activate='source $(find . -name activate)'
@@ -64,6 +66,7 @@ alias -g no="--name-only"
 alias -g lc='$(docker ps -l -q)'
 alias -g li='$(docker image ls -q | head -1)'
 alias -g nt="':(exclude)*_test.go' ':(exclude)*_tests.yml' ':(exclude)*managedschemas*'" # for git grep: git grep <pattern> nt
+alias -g jqp="| jq"
 
 #
 # Some of the following are mostly cheat sheets for future reference
@@ -90,17 +93,3 @@ alias external-ip='curl ipinfo.io/ip'
 alias genpass="openssl rand -base64 20"
 
 alias tf="terraform"
-
-# panther granted things
-alias assume-populate-internal='granted sso populate --prefix internal_ --sso-region us-west-2 https://d-92677e4671.awsapps.com/start'
-alias assume-populate-production='granted sso populate --prefix production_ --sso-region us-east-1 https://d-906746ebb9.awsapps.com/start'
-alias assume-populate='assume-populate-internal && assume-populate-production'
-
-alias assume-mine="assume internal_panther-dev-george-papanikolaou/DevAdmin --region eu-west-1 --export-all-env-vars"
-
-alias pantherlog="/Users/g.pap/panther/enterprise/tmp/pantherlog-apr-04"
-
-alias gd="git diff"
-alias pa="out/bin/tools/darwin-arm64-pantherlog/pantherlog"
-
-alias pulumistate="pulumi -C deployments/pulumi/ stack export --file ffs.json"

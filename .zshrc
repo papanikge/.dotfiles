@@ -4,14 +4,11 @@
 # Modified a lot for locales and safety/sanity 26-7/03/2019
 # Major rewrites for i3 and linux on 08/2019
 # Major rewrites for mac again on 2021
-#
-export ZSH=$HOME/.oh-my-zsh
+# Starship: 2026
 
-ZSH_THEME="papanikge" # based on af-magic. I don't like the separator line
-plugins=(sudo z colored-man-pages pyenv)
+# PATH changes go to .zprofile !!!
 
-# Activate oh-my-zsh.
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+eval "$(starship init zsh)"
 
 export COMPLETION_WAITING_DOTS="true"
 export HIST_STAMPS="yyyy-mm-dd"
@@ -33,15 +30,17 @@ export LC_CTYPE="en_US.UTF-8"
 
 [ -f ~/.aliases ] && source ~/.aliases
 
+# z activation
+source /opt/homebrew/etc/profile.d/z.sh
+
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # pulumi required this
 ulimit -n 10240
 
-# PATH change on .zprofile
-
 # Enable fzf and helpers
+source <(fzf --zsh) # why didn't I have this?
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.fzf_helpers ] && source ~/.fzf_helpers
 
@@ -50,10 +49,10 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Used by the custom theme to display the ruby/python version on the right.
-right_status() {
-  # [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
-  echo ""
-}
+# right_status() {
+#   # [[ ! -z $VIRTUAL_ENV ]] && echo "[${VIRTUAL_ENV}]"
+#   echo ""
+# }
 
 epoch-to-normal() {
   perl -le "print scalar localtime $1"

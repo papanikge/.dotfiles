@@ -32,6 +32,7 @@
     forget    = update-index --assume-unchanged
     unforget  = update-index --no-assume-unchanged
     fml       = reset --hard
+    wt        = worktree
     edit      = !git rebase -i --autosquash $(git merge-base HEAD main)
     pr-diff   = !git diff $(git merge-base main HEAD)..$(git rev-parse --abbrev-ref HEAD)
     contributors  = shortlog --summary --numbered

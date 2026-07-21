@@ -1,8 +1,5 @@
 # Aerospace is what is up
 
-# Mouse follows focus when focused monitor changes
-# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
@@ -20,7 +17,7 @@ after-startup-command = [
     # same for sketchybar
     'exec-and-forget sketchybar',
     # scratches:
-    'exec-and-forget aerospace-scratchpad move Logseq',
+    'exec-and-forget aerospace-scratchpad move Obsidian',
     'exec-and-forget aerospace-scratchpad move kitty',
     'exec-and-forget aerospace-scratchpad move ChatGPT',
     'exec-and-forget aerospace-scratchpad move Spotify'
@@ -90,22 +87,27 @@ after-startup-command = [
     alt-shift-c = 'reload-config'
 
     alt-r = 'mode resize'
+    #§ = "exec-and-forget osascript -e 'tell application \"System Events\" to keystroke \"`\"'"
 
     # more:
     cmd-h = [] # Disable "hide application"
     cmd-alt-h = [] # Disable "hide others"
+    cmd-tab = [] # Disable "hide others"
 
     # scratchpad
-    cmd-backslash = "exec-and-forget aerospace-scratchpad show Logseq"
-    alt-enter = "exec-and-forget aerospace-scratchpad show kitty"
-    alt-space = "exec-and-forget aerospace-scratchpad show ChatGPT"
-    alt-p = "exec-and-forget aerospace-scratchpad show Spotify"
+    cmd-backslash = "exec-and-forget aerospace-scratchpad show Obsidian"
+    cmd-shift-enter = "exec-and-forget aerospace-scratchpad show kitty"
+    #alt-space = "exec-and-forget aerospace-scratchpad show ChatGPT"
+    #alt-p = "exec-and-forget aerospace-scratchpad show Spotify"
 
 [mode.resize.binding]
-    h = 'resize width -50'
+    h = 'resize smart -50'
     j = 'resize height +50'
     k = 'resize height -50'
-    l = 'resize width +50'
+    l = 'resize smart +50'
+
+    #H = 'resize smart -50'
+    #L = 'resize smart +50'
     enter = 'mode main'
     esc = 'mode main'
 
